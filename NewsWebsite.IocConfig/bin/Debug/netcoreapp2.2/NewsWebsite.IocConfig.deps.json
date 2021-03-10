@@ -879,6 +879,9 @@
         }
       },
       "NewsWebsite.ViewModels/1.0.0": {
+        "dependencies": {
+          "NewsWebsite.Common": "1.0.0"
+        },
         "runtime": {
           "NewsWebsite.ViewModels.dll": {}
         }

@@ -310,7 +310,11 @@
         "frameworks": {
           "netcoreapp2.2": {
             "targetAlias": "netcoreapp2.2",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Common\\NewsWebsite.Common.csproj": {
+                "projectPath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Common\\NewsWebsite.Common.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
