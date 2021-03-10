@@ -1,0 +1,115 @@
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.deps.json
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.json
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.dev.json
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csprojAssemblyReference.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfoInputs.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CopyComplete
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Views.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.input.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.output.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorCoreGenerate.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLayout.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\Index.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminMenu.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLogin.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_CategoryTable.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.deps.json
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.json
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.dev.json
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Views.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csprojAssemblyReference.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfoInputs.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.input.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.output.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorCoreGenerate.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\Index.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_CategoryTable.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLayout.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLogin.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminMenu.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CopyComplete
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.IocConfig.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.IocConfig.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_RenderCategory.g.cshtml.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\_ViewImports.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.deps.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.dev.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Views.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.IocConfig.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.IocConfig.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CoreCompileInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.input.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.output.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorCoreGenerate.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\Index.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_CategoryTable.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_DeleteConfirmation.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_RenderCategory.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLogin.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminMenu.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CopyComplete
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.genruntimeconfig.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_DeleteGroup.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs

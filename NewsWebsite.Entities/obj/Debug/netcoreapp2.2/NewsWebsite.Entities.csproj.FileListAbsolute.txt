@@ -1,0 +1,27 @@
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.deps.json
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csprojAssemblyReference.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.AssemblyInfoInputs.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.AssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.deps.json
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csprojAssemblyReference.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.AssemblyInfoInputs.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.AssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.deps.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.AssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csproj.CoreCompileInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csprojAssemblyReference.cache

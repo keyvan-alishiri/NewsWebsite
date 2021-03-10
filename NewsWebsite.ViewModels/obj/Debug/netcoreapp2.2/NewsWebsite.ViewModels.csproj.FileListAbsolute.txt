@@ -1,0 +1,33 @@
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.deps.json
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfoInputs.cache
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+E:\ASP.NET Core Training\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csprojAssemblyReference.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csprojAssemblyReference.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfoInputs.cache
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfo.cs
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.deps.json
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
+E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CopyComplete
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.deps.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CopyComplete
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
