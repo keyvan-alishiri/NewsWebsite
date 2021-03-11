@@ -228,7 +228,9 @@ namespace NewsWebsite.Data.Migrations
 
                     b.Property<string>("Poster");
 
-                    b.Property<DateTime?>("PublishDateTime");
+                    b.Property<DateTime?>("PublishDateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
 
                     b.Property<string>("Title");
 

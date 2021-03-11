@@ -115,3 +115,15 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.genruntimeconfig.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\RoleManager\Index.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\RoleManager\_DeleteConfirmation.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\RoleManager\_RenderRole.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\RoleManager\_RoleTable.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\Index.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\_DeleteConfirmation.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\_RenderTag.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\_TagTable.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Video\Index.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Video\_DeleteConfirmation.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Video\_RenderVideo.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Video\_VideoTable.cshtml.g.cs

@@ -23,6 +23,7 @@ namespace NewsWebsite.Data
             builder.AddCustomIdentityMappings();
             builder.AddCustomNewsWebsiteMappings();
             builder.Entity<News>().Property(b => b.PublishDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+            builder.Entity<Video>().Property(b => b.PublishDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
         }
 
         public virtual DbSet<Category> Categories { set; get; }

@@ -131,7 +131,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                             //category.Url = viewModel.Url;
                             _uw.BaseRepository<Category>().Update(_mapper.Map(viewModel, category));
                             await _uw.Commit();
-                            TempData["notification"] = "ویرایش اطلاعات با موفقیت انجام شد.";
+                            TempData["notification"] = EditSuccess;
                         }
                         else
                             ModelState.AddModelError(string.Empty, CategoryNotFound);
@@ -152,7 +152,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                         var temp = _mapper.Map<Category>(viewModel);
                         await _uw.BaseRepository<Category>().CreateAsync(_mapper.Map<Category>(viewModel));
                         await _uw.Commit();
-                        TempData["notification"] = "درج اطلاعات با موفقیت انجام شد.";
+                        TempData["notification"] = InsertSuccess;
                     }
                 }
 
@@ -204,7 +204,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
                     _uw.BaseRepository<Category>().Delete(category);
                     await _uw.Commit();
-                    TempData["notification"] = "حذف اطلاعات با موفقیت انجام شد.";
+                    TempData["notification"] = DeleteSuccess;
                     return PartialView("_DeleteConfirmation", category);
                 }
             }
@@ -212,12 +212,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet ,AjaxOnly]
-        public IActionResult DeleteGroup()
-        {
-            return PartialView("_DeleteGroup");
-        }
-
+     
 
         [HttpPost, ActionName("DeleteGroup"), AjaxOnly]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)

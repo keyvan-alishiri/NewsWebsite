@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5MvS+xWMr7Q+JJiLcQX+Lp5artuSPqVa//k9RgoME18Cn81b8dxZB0Mn1bYWJixr1iXXmDleDp3EMN4DWZ6uEQ==",
+  "dgSpecHash": "jysCjqgBMfRf4H4pkMmRKf0GcQkdgyXRp7h6GlAc3cp+ljspIWCUlH0J+YVfxLa6Cl6QEAMju/Lfb29GHsAs5g==",
   "success": true,
   "projectFilePath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.ViewModels\\NewsWebsite.ViewModels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
     "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\md.persiandatetime.core\\2.3.5\\md.persiandatetime.core.2.3.5.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
