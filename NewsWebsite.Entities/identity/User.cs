@@ -6,7 +6,7 @@ using System.Text;
 
 namespace NewsWebsite.Entities.identity
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

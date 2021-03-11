@@ -16,3 +16,12 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.csproj.CopyComplete

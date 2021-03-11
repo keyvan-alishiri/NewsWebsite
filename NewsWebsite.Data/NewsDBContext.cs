@@ -10,7 +10,7 @@ using System.Text;
 
 namespace NewsWebsite.Data
 {
-    public class NewsDBContext : IdentityDbContext<User,Role,string,UserClaim,UserRole,IdentityUserLogin<string>,RoleClaim,IdentityUserToken<string>>
+    public class NewsDBContext : IdentityDbContext<User,Role,int,UserClaim,UserRole,IdentityUserLogin<int>,RoleClaim,IdentityUserToken<int>>
     {
         public NewsDBContext(DbContextOptions options) : base(options)
         {
@@ -36,6 +36,7 @@ namespace NewsWebsite.Data
         public virtual DbSet<NewsTag> NewsTags { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Visit> Visits { get; set; }
+        public virtual DbSet<Video> Videos { get; set; }
 
     }
 }

@@ -25,6 +25,7 @@ namespace NewsWebsite
         {
             services.AddDbContext<NewsDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
             services.AddCustomServices();
+            services.AddCustomIdentityServices();
             services.AddAutoMapper();
             services.AddMvc();
         }
@@ -38,6 +39,7 @@ namespace NewsWebsite
             }
 
             app.UseStaticFiles();
+            app.UseCustomIdentityServices();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

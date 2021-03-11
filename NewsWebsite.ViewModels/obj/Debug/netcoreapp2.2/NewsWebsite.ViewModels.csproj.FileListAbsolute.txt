@@ -22,8 +22,6 @@ E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.ViewModels\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.deps.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csprojAssemblyReference.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfo.cs

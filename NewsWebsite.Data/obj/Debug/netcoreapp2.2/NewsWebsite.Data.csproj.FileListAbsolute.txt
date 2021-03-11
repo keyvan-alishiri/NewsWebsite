@@ -37,10 +37,8 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debu
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.csprojAssemblyReference.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.AssemblyInfo.cs

@@ -31,11 +31,9 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp2.2\NewsWebsite.IocConfig.csprojAssemblyReference.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp2.2\NewsWebsite.IocConfig.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp2.2\NewsWebsite.IocConfig.AssemblyInfo.cs

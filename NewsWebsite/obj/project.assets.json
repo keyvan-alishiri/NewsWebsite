@@ -4750,6 +4750,10 @@
       "NewsWebsite.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Razor": "2.2.0"
+        },
         "compile": {
           "bin/placeholder/NewsWebsite.Common.dll": {}
         },
@@ -4764,7 +4768,6 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore": "2.2.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.4",
-          "NewsWebsite.Common": "1.0.0",
           "NewsWebsite.Entities": "1.0.0",
           "NewsWebsite.ViewModels": "1.0.0"
         },
@@ -4793,13 +4796,27 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.0.0",
-          "NewsWebsite.Data": "1.0.0"
+          "NewsWebsite.Data": "1.0.0",
+          "NewsWebsite.Services": "1.0.0"
         },
         "compile": {
           "bin/placeholder/NewsWebsite.IocConfig.dll": {}
         },
         "runtime": {
           "bin/placeholder/NewsWebsite.IocConfig.dll": {}
+        }
+      },
+      "NewsWebsite.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "NewsWebsite.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NewsWebsite.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NewsWebsite.Services.dll": {}
         }
       },
       "NewsWebsite.ViewModels/1.0.0": {
@@ -13086,6 +13103,11 @@
       "type": "project",
       "path": "../NewsWebsite.IocConfig/NewsWebsite.IocConfig.csproj",
       "msbuildProject": "../NewsWebsite.IocConfig/NewsWebsite.IocConfig.csproj"
+    },
+    "NewsWebsite.Services/1.0.0": {
+      "type": "project",
+      "path": "../NewsWebsite.Services/NewsWebsite.Services.csproj",
+      "msbuildProject": "../NewsWebsite.Services/NewsWebsite.Services.csproj"
     },
     "NewsWebsite.ViewModels/1.0.0": {
       "type": "project",

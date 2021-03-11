@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NewsWebsite.Entities.identity
 {
-    public class Role : IdentityRole<string>
+    public class Role : IdentityRole<int>
     {
         public Role()
         {
