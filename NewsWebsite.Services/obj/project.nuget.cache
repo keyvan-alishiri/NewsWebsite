@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "QqpZ26yR2kl1J1R4u8daUNZIPlnRNKsk48aZ3sqFQzh39W6Zxngom5O4N4hVYI+S1GNld+7kPcyqlF2b56GsiQ==",
+  "dgSpecHash": "CxK3RFRmA9oYPTTsJq1IC0T75A+gz+qPBbiAYyjBVuTODrM/OjpG1OfAHyBTiHuTMPYYInZe/GljsrrAW1Teiw==",
   "success": true,
   "projectFilePath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Services\\NewsWebsite.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

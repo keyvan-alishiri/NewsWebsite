@@ -117,7 +117,7 @@ namespace NewsWebsite.Services.Identity
                 RegisterDateTime=DateTime.Now,
                 FirstName= firstName,
                 LastName= lastName,
-                Gender=GenderType.Female,
+                Gender=GenderType.Male,
                 IsActive=true
             };
             var adminUserResult = await _applicationUserManager.CreateAsync(adminUser, password);

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsWebsite.Data;
 using NewsWebsite.IocConfig;
+using NewsWebsite.ViewModels.Settings;
+
+
 
 namespace NewsWebsite
 {
@@ -23,6 +21,7 @@ namespace NewsWebsite
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<NewsDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
             services.AddCustomServices();
             services.AddCustomIdentityServices();

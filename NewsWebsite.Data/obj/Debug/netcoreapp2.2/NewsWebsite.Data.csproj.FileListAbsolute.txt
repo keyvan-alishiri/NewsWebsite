@@ -35,10 +35,12 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debu
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Data.runtimeconfig.dev.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.csprojAssemblyReference.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.AssemblyInfo.cs
@@ -47,5 +49,3 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debu
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.genruntimeconfig.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb

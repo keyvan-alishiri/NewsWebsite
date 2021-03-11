@@ -81,11 +81,13 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.IocConfig.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Services.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.IocConfig.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Services.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csprojAssemblyReference.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfoInputs.cache
@@ -104,6 +106,8 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLayout.cshtml.g.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLogin.cshtml.g.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminMenu.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_DeleteGroup.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorTargetAssemblyInfo.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.Views.pdb
@@ -111,5 +115,3 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.genruntimeconfig.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_DeleteGroup.cshtml.g.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs

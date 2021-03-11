@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hW2IEEHQgxXAJF5GIHQAmhwKcq/fbulQ25l9MfmT9e62MgpS/cQAVPCoBjqjYOxylKt0UbPszi6m8pBh2/WRtA==",
+  "dgSpecHash": "09KM9cNjDkZ0jcWcV03p53exxhJNscrVGxI9ERgZS4v7o+UXopxGMrdxEP4YHuioHEHQL2IgGVXh23THQdC8Cg==",
   "success": true,
   "projectFilePath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite\\NewsWebsite.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.0.0\\automapper.8.0.0.nupkg.sha512",
-    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.0.0\\automapper.extensions.microsoft.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

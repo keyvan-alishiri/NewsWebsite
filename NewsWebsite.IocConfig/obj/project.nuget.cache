@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "aloL/jlGGFUDLIfQNxhKLnYUXl+HEcaEiRvht6PRcysAa0xqozsw6qgbJsfusn/3kIHnls5qM4wD179h6rB6Fg==",
+  "dgSpecHash": "LEHhFeVEE+uwS77Q8rFbd2t+aH+TVUOo7jNQd8za1eFiK5axCwZ+GdKhyof1FAja7DX/2aCgPADTK4DJI5oTYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.IocConfig\\NewsWebsite.IocConfig.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.0.0\\automapper.8.0.0.nupkg.sha512",
-    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.0.0\\automapper.extensions.microsoft.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
