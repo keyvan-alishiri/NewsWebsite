@@ -11,10 +11,12 @@ namespace NewsWebsite.Data.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         public NewsDBContext _Context { get; }
+        private IMapper _mapper;
         private ICategoryRepository _categoryRepository;
-        private readonly IMapper _mapper;
         private ITagRepository _tagRepository;
         private IVideoRepository _videoRepository;
+        private INewsRepository _newsRepository;
+
         public UnitOfWork(NewsDBContext context, IMapper mapper)
         {
             _Context = context;
@@ -60,6 +62,19 @@ namespace NewsWebsite.Data.UnitOfWork
                 return _videoRepository;
             }
         }
+
+        public INewsRepository NewsRepository
+        {
+            get
+            {
+                if (_newsRepository == null)
+                    _newsRepository = new NewsRepository(_Context, _mapper);
+
+                return _newsRepository;
+            }
+        }
+
+
         public async Task Commit()
         {
             await _Context.SaveChangesAsync();

@@ -10,8 +10,8 @@ using NewsWebsite.Data;
 namespace NewsWebsite.Data.Migrations
 {
     [DbContext(typeof(NewsDBContext))]
-    [Migration("20210313110602_UpdateAppUserTable")]
-    partial class UpdateAppUserTable
+    [Migration("20210313141037_UpdateUserAppTable")]
+    partial class UpdateUserAppTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

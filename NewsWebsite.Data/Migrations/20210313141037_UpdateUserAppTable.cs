@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NewsWebsite.Data.Migrations
 {
-    public partial class UpdateAppUserTable : Migration
+    public partial class UpdateUserAppTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace NewsWebsite.Data.Migrations
                 name: "IsActive",
                 table: "AppUsers",
                 nullable: false,
-                defaultValueSql: "0",
+                defaultValueSql: "1",
                 oldClrType: typeof(bool));
         }
 
@@ -38,7 +38,7 @@ namespace NewsWebsite.Data.Migrations
                 table: "AppUsers",
                 nullable: false,
                 oldClrType: typeof(bool),
-                oldDefaultValueSql: "0");
+                oldDefaultValueSql: "1");
         }
     }
 }

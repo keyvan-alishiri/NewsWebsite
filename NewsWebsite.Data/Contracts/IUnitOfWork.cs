@@ -11,6 +11,8 @@ namespace NewsWebsite.Data.Contracts
         ICategoryRepository CategoryRepository { get; }
         ITagRepository TagRepository { get; }
         IVideoRepository VideoRepository { get; }
+        INewsRepository NewsRepository { get; }
+
         NewsDBContext _Context { get; }
         Task Commit();
     }

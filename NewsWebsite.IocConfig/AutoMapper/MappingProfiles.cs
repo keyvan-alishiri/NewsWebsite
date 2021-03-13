@@ -3,6 +3,7 @@ using NewsWebsite.Entities;
 using NewsWebsite.Entities.identity;
 using NewsWebsite.ViewModels.Category;
 using NewsWebsite.ViewModels.Manage;
+using NewsWebsite.ViewModels.News;
 using NewsWebsite.ViewModels.RoleManager;
 using NewsWebsite.ViewModels.Tag;
 using NewsWebsite.ViewModels.UserManager;
@@ -43,7 +44,7 @@ namespace NewsWebsite.IocConfig.AutoMapper
                    .ForMember(p => p.Claims, opt => opt.Ignore());
 
 
-
+            CreateMap<News, NewsViewModel>().ReverseMap();
 
 
         }

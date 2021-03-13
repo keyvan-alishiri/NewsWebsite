@@ -25,7 +25,7 @@ namespace NewsWebsite.Data
             builder.Entity<News>().Property(b => b.PublishDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
             builder.Entity<Video>().Property(b => b.PublishDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
             builder.Entity<User>().Property(b => b.RegisterDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
-            builder.Entity<User>().Property(b => b.IsActive).HasDefaultValueSql("0");
+            builder.Entity<User>().Property(b => b.IsActive).HasDefaultValueSql("1");
         }
 
         public virtual DbSet<Category> Categories { set; get; }
