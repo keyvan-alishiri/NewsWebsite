@@ -1710,7 +1710,8 @@
       },
       "NewsWebsite.ViewModels/1.0.0": {
         "dependencies": {
-          "NewsWebsite.Common": "1.0.0"
+          "NewsWebsite.Common": "1.0.0",
+          "NewsWebsite.Entities": "1.0.0"
         },
         "runtime": {
           "NewsWebsite.ViewModels.dll": {}

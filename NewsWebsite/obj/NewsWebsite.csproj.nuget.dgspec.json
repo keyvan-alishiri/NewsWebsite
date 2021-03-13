@@ -386,6 +386,9 @@
             "projectReferences": {
               "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Common\\NewsWebsite.Common.csproj": {
                 "projectPath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Common\\NewsWebsite.Common.csproj"
+              },
+              "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Entities\\NewsWebsite.Entities.csproj": {
+                "projectPath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Entities\\NewsWebsite.Entities.csproj"
               }
             }
           }

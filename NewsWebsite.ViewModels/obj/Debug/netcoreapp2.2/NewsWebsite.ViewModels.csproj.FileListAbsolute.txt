@@ -31,3 +31,5 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\ob
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
