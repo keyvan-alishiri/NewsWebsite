@@ -28,13 +28,13 @@ namespace NewsWebsite.Data.Repositories
         }
 
 
-        public async Task<List<NewsViewModel>> GetPaginateNewsAsync(int offset, int limit, bool? titleSortAsc, bool? visitSortAsc, bool? likeSortAsc, bool? dislikeSortAsc, bool? publishDateTimeSortAsc, string searchText)
+        public async Task<List<NewsViewModel>> GetPaginateNewsAsync(int offset, int limit, bool? titleSortAsc, bool? visitSortAsc, bool? likeSortAsc, bool? dislikeSortAsc, bool? publishDateTimeSortAsc, string searchText,bool? isPublish)
         {
             string NameOfCategories = "";
             string NameOfTags = "";
             List<NewsViewModel> newsViewModel = new List<NewsViewModel>();
 
-            var newsGroup = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(u=>u.User)
+            var newsGroup = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(u=>u.User).Include(c=>c.Comments)
                                    join e in _context.NewsCategories on n.NewsId equals e.NewsId into bc
                                    from bct in bc.DefaultIfEmpty()
                                    join c in _context.Categories on bct.CategoryId equals c.CategoryId into cg
@@ -43,17 +43,19 @@ namespace NewsWebsite.Data.Repositories
                                    from act in ac.DefaultIfEmpty()
                                    join t in _context.Tags on act.TagId equals t.TagId into tg
                                    from tog in tg.DefaultIfEmpty()
-                                   where (n.Title.Contains(searchText))
+                                   where (n.Title.Contains(searchText) && isPublish ==null?(n.IsPublish==true || n.IsPublish==false):(isPublish==true?n.IsPublish==true && n.PublishDateTime <= DateTime.Now : n.IsPublish==false))
                                    select (new
                                    {
                                        n.NewsId,
                                        n.Title,
                                        ShortTitle = n.Title.Length > 60 ? n.Title.Substring(0, 60) + "..." : n.Title,
                                        n.Url,
+                                       n.ImageName,
                                        n.Description,
                                        NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
                                        NumberOfLike = n.Likes.Where(l => l.IsLiked == true).Count(),
                                        NumberOfDisLike = n.Likes.Where(l => l.IsLiked == false).Count(),
+                                       NumberOfComments = n.Comments.Count(),
                                        CategoryName = cog != null ? cog.CategoryName : "",
                                        TagName= tog!=null ? tog.TagName :"",
                                        AuthorName=n.User.FirstName+" "+ n.User.LastName,
@@ -89,6 +91,7 @@ namespace NewsWebsite.Data.Repositories
                     Title = item.NewsGroup.First().Title,
                     ShortTitle = item.NewsGroup.First().ShortTitle,
                     Url = item.NewsGroup.First().Url,
+                    ImageName = item.NewsGroup.First().ImageName,
                     Description = item.NewsGroup.First().Description,
                     NumberOfVisit = item.NewsGroup.First().NumberOfVisit,
                     NumberOfDisLike = item.NewsGroup.First().NumberOfDisLike,
@@ -99,6 +102,7 @@ namespace NewsWebsite.Data.Repositories
                     NameOfCategories = NameOfCategories,
                     NameOfTags = NameOfTags,
                     AuthorName = item.NewsGroup.First().AuthorName,
+                    NumberOfComments = item.NewsGroup.First().NumberOfComments,
                 };
                 newsViewModel.Add(news);
             }

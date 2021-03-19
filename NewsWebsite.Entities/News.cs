@@ -18,6 +18,7 @@ namespace NewsWebsite.Entities
         public string ImageName { get; set; }
         public bool IsPublish { get; set; }
         public bool IsInternal { get; set; }
+        public string  Abstract { get; set; }
 
         public virtual User User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

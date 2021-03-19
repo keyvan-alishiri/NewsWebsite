@@ -48,4 +48,3 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debu
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Data\obj\Debug\netcoreapp2.2\NewsWebsite.Data.genruntimeconfig.cache

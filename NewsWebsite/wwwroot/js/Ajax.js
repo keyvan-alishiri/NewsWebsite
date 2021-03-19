@@ -24,7 +24,7 @@
             form = $(".card-body").find('form');
             actionUrl = form.attr('action') + '/' + $(".modal").attr('id');
         }
-        
+      
         var dataToSend = new FormData(form.get(0));
 
         $.ajax({
@@ -47,7 +47,7 @@
             }
         });
 
-        $("body").preloader('remove'); 
+        $("body").preloader('remove');
     });
 });
 
@@ -63,7 +63,6 @@ function ShowSweetErrorAlert() {
 function ShowLoading() {
     $("body").preloader({ text: 'لطفا صبر کنید ...' });
 }
-
 
 function ShowSweetSuccessAlert(message) {
     Swal.fire({

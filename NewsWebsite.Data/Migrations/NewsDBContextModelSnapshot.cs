@@ -15,7 +15,7 @@ namespace NewsWebsite.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -128,6 +128,8 @@ namespace NewsWebsite.Data.Migrations
                     b.Property<string>("NewsId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Abstract");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("ImageName");
@@ -136,9 +138,7 @@ namespace NewsWebsite.Data.Migrations
 
                     b.Property<bool>("IsPublish");
 
-                    b.Property<DateTime?>("PublishDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
+                    b.Property<DateTime?>("PublishDateTime");
 
                     b.Property<string>("Title");
 

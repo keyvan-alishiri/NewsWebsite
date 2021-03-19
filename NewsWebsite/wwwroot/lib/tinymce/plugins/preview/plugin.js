@@ -4,72 +4,66 @@
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.7.0 (2021-02-10)
+ * Version: 5.0.14 (2019-08-19)
  */
 (function () {
     'use strict';
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-    var global$1 = tinymce.util.Tools.resolve('tinymce.Env');
+    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
 
-    var global$2 = tinymce.util.Tools.resolve('tinymce.util.Tools');
-
+    var getPreviewDialogWidth = function (editor) {
+      return parseInt(editor.getParam('plugin_preview_width', '650'), 10);
+    };
+    var getPreviewDialogHeight = function (editor) {
+      return parseInt(editor.getParam('plugin_preview_height', '500'), 10);
+    };
     var getContentStyle = function (editor) {
-      return editor.getParam('content_style', '', 'string');
+      return editor.getParam('content_style', '');
     };
     var shouldUseContentCssCors = function (editor) {
       return editor.getParam('content_css_cors', false, 'boolean');
     };
-    var getBodyClassByHash = function (editor) {
-      var bodyClass = editor.getParam('body_class', '', 'hash');
-      return bodyClass[editor.id] || '';
-    };
-    var getBodyClass = function (editor) {
-      var bodyClass = editor.getParam('body_class', '', 'string');
-      if (bodyClass.indexOf('=') === -1) {
-        return bodyClass;
-      } else {
-        return getBodyClassByHash(editor);
-      }
-    };
-    var getBodyIdByHash = function (editor) {
-      var bodyId = editor.getParam('body_id', '', 'hash');
-      return bodyId[editor.id] || bodyId;
-    };
-    var getBodyId = function (editor) {
-      var bodyId = editor.getParam('body_id', 'tinymce', 'string');
-      if (bodyId.indexOf('=') === -1) {
-        return bodyId;
-      } else {
-        return getBodyIdByHash(editor);
-      }
+    var Settings = {
+      getPreviewDialogWidth: getPreviewDialogWidth,
+      getPreviewDialogHeight: getPreviewDialogHeight,
+      getContentStyle: getContentStyle,
+      shouldUseContentCssCors: shouldUseContentCssCors
     };
 
     var getPreviewHtml = function (editor) {
       var headHtml = '';
       var encode = editor.dom.encode;
-      var contentStyle = getContentStyle(editor);
+      var contentStyle = Settings.getContentStyle(editor);
       headHtml += '<base href="' + encode(editor.documentBaseURI.getURI()) + '">';
-      var cors = shouldUseContentCssCors(editor) ? ' crossorigin="anonymous"' : '';
-      global$2.each(editor.contentCSS, function (url) {
-        headHtml += '<link type="text/css" rel="stylesheet" href="' + encode(editor.documentBaseURI.toAbsolute(url)) + '"' + cors + '>';
-      });
       if (contentStyle) {
         headHtml += '<style type="text/css">' + contentStyle + '</style>';
       }
-      var bodyId = getBodyId(editor);
-      var bodyClass = getBodyClass(editor);
-      var isMetaKeyPressed = global$1.mac ? 'e.metaKey' : 'e.ctrlKey && !e.altKey';
-      var preventClicksOnLinksScript = '<script>' + 'document.addEventListener && document.addEventListener("click", function(e) {' + 'for (var elm = e.target; elm; elm = elm.parentNode) {' + 'if (elm.nodeName === "A" && !(' + isMetaKeyPressed + ')) {' + 'e.preventDefault();' + '}' + '}' + '}, false);' + '</script> ';
+      var cors = Settings.shouldUseContentCssCors(editor) ? ' crossorigin="anonymous"' : '';
+      global$1.each(editor.contentCSS, function (url) {
+        headHtml += '<link type="text/css" rel="stylesheet" href="' + encode(editor.documentBaseURI.toAbsolute(url)) + '"' + cors + '>';
+      });
+      var bodyId = editor.settings.body_id || 'tinymce';
+      if (bodyId.indexOf('=') !== -1) {
+        bodyId = editor.getParam('body_id', '', 'hash');
+        bodyId = bodyId[editor.id] || bodyId;
+      }
+      var bodyClass = editor.settings.body_class || '';
+      if (bodyClass.indexOf('=') !== -1) {
+        bodyClass = editor.getParam('body_class', '', 'hash');
+        bodyClass = bodyClass[editor.id] || '';
+      }
+      var preventClicksOnLinksScript = '<script>' + 'document.addEventListener && document.addEventListener("click", function(e) {' + 'for (var elm = e.target; elm; elm = elm.parentNode) {' + 'if (elm.nodeName === "A") {' + 'e.preventDefault();' + '}' + '}' + '}, false);' + '</script> ';
       var directionality = editor.getBody().dir;
       var dirAttr = directionality ? ' dir="' + encode(directionality) + '"' : '';
       var previewHtml = '<!DOCTYPE html>' + '<html>' + '<head>' + headHtml + '</head>' + '<body id="' + encode(bodyId) + '" class="mce-content-body ' + encode(bodyClass) + '"' + dirAttr + '>' + editor.getContent() + preventClicksOnLinksScript + '</body>' + '</html>';
       return previewHtml;
     };
+    var IframeContent = { getPreviewHtml: getPreviewHtml };
 
     var open = function (editor) {
-      var content = getPreviewHtml(editor);
+      var content = IframeContent.getPreviewHtml(editor);
       var dataApi = editor.windowManager.open({
         title: 'Preview',
         size: 'large',
@@ -97,6 +91,7 @@
         open(editor);
       });
     };
+    var Commands = { register: register };
 
     var register$1 = function (editor) {
       editor.ui.registry.addButton('preview', {
@@ -114,11 +109,12 @@
         }
       });
     };
+    var Buttons = { register: register$1 };
 
     function Plugin () {
       global.add('preview', function (editor) {
-        register(editor);
-        register$1(editor);
+        Commands.register(editor);
+        Buttons.register(editor);
       });
     }
 

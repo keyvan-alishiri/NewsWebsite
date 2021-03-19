@@ -4,28 +4,30 @@
  * For LGPL see License.txt in the project root for license information.
  * For commercial licenses see https://www.tiny.cloud/
  *
- * Version: 5.7.0 (2021-02-10)
+ * Version: 5.0.14 (2019-08-19)
  */
 (function () {
     'use strict';
 
     var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
+    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+
     var applyListFormat = function (editor, listName, styleValue) {
       var cmd = listName === 'UL' ? 'InsertUnorderedList' : 'InsertOrderedList';
       editor.execCommand(cmd, false, styleValue === false ? null : { 'list-style-type': styleValue });
     };
+    var Actions = { applyListFormat: applyListFormat };
 
     var register = function (editor) {
       editor.addCommand('ApplyUnorderedListStyle', function (ui, value) {
-        applyListFormat(editor, 'UL', value['list-style-type']);
+        Actions.applyListFormat(editor, 'UL', value['list-style-type']);
       });
       editor.addCommand('ApplyOrderedListStyle', function (ui, value) {
-        applyListFormat(editor, 'OL', value['list-style-type']);
+        Actions.applyListFormat(editor, 'OL', value['list-style-type']);
       });
     };
-
-    var global$1 = tinymce.util.Tools.resolve('tinymce.util.Tools');
+    var Commands = { register: register };
 
     var getNumberStyles = function (editor) {
       var styles = editor.getParam('advlist_number_styles', 'default,lower-alpha,lower-greek,lower-roman,upper-alpha,upper-roman');
@@ -35,9 +37,11 @@
       var styles = editor.getParam('advlist_bullet_styles', 'default,circle,square');
       return styles ? styles.split(/[ ,]/) : [];
     };
-
-    var noop = function () {
+    var Settings = {
+      getNumberStyles: getNumberStyles,
+      getBulletStyles: getBulletStyles
     };
+
     var constant = function (value) {
       return function () {
         return value;
@@ -46,6 +50,8 @@
     var never = constant(false);
     var always = constant(true);
 
+    var never$1 = never;
+    var always$1 = always;
     var none = function () {
       return NONE;
     };
@@ -59,27 +65,37 @@
       var id = function (n) {
         return n;
       };
+      var noop = function () {
+      };
+      var nul = function () {
+        return null;
+      };
+      var undef = function () {
+        return undefined;
+      };
       var me = {
-        fold: function (n, _s) {
+        fold: function (n, s) {
           return n();
         },
-        is: never,
-        isSome: never,
-        isNone: always,
+        is: never$1,
+        isSome: never$1,
+        isNone: always$1,
         getOr: id,
         getOrThunk: call,
         getOrDie: function (msg) {
           throw new Error(msg || 'error: getOrDie called on none.');
         },
-        getOrNull: constant(null),
-        getOrUndefined: constant(undefined),
+        getOrNull: nul,
+        getOrUndefined: undef,
         or: id,
         orThunk: call,
         map: none,
+        ap: none,
         each: noop,
         bind: none,
-        exists: never,
-        forall: always,
+        flatten: none,
+        exists: never$1,
+        forall: always$1,
         filter: none,
         equals: eq,
         equals_: eq,
@@ -88,12 +104,20 @@
         },
         toString: constant('none()')
       };
+      if (Object.freeze) {
+        Object.freeze(me);
+      }
       return me;
     }();
     var some = function (a) {
-      var constant_a = constant(a);
+      var constant_a = function () {
+        return a;
+      };
       var self = function () {
         return me;
+      };
+      var map = function (f) {
+        return some(f(a));
       };
       var bind = function (f) {
         return f(a);
@@ -105,8 +129,8 @@
         is: function (v) {
           return a === v;
         },
-        isSome: always,
-        isNone: never,
+        isSome: always$1,
+        isNone: never$1,
         getOr: constant_a,
         getOrThunk: constant_a,
         getOrDie: constant_a,
@@ -114,31 +138,35 @@
         getOrUndefined: constant_a,
         or: self,
         orThunk: self,
-        map: function (f) {
-          return some(f(a));
+        map: map,
+        ap: function (optfab) {
+          return optfab.fold(none, function (fab) {
+            return some(fab(a));
+          });
         },
         each: function (f) {
           f(a);
         },
         bind: bind,
+        flatten: constant_a,
         exists: bind,
         forall: bind,
         filter: function (f) {
           return f(a) ? me : NONE;
+        },
+        equals: function (o) {
+          return o.is(a);
+        },
+        equals_: function (o, elementEq) {
+          return o.fold(never$1, function (b) {
+            return elementEq(a, b);
+          });
         },
         toArray: function () {
           return [a];
         },
         toString: function () {
           return 'some(' + a + ')';
-        },
-        equals: function (o) {
-          return o.is(a);
-        },
-        equals_: function (o, elementEq) {
-          return o.fold(never, function (b) {
-            return elementEq(a, b);
-          });
         }
       };
       return me;
@@ -146,7 +174,7 @@
     var from = function (value) {
       return value === null || value === undefined ? NONE : some(value);
     };
-    var Optional = {
+    var Option = {
       some: some,
       none: none,
       from: from
@@ -166,7 +194,12 @@
     var getSelectedStyleType = function (editor) {
       var listElm = editor.dom.getParent(editor.selection.getNode(), 'ol,ul');
       var style = editor.dom.getStyle(listElm, 'listStyleType');
-      return Optional.from(style);
+      return Option.from(style);
+    };
+    var ListUtils = {
+      isTableCellNode: isTableCellNode,
+      isListNode: isListNode,
+      getSelectedStyleType: getSelectedStyleType
     };
 
     var findIndex = function (list, predicate) {
@@ -184,9 +217,9 @@
       });
     };
     var isWithinList = function (editor, e, nodeName) {
-      var tableCellIndex = findIndex(e.parents, isTableCellNode);
+      var tableCellIndex = findIndex(e.parents, ListUtils.isTableCellNode);
       var parents = tableCellIndex !== -1 ? e.parents.slice(0, tableCellIndex) : e.parents;
-      var lists = global$1.grep(parents, isListNode(editor));
+      var lists = global$1.grep(parents, ListUtils.isListNode(editor));
       return lists.length > 0 && lists[0].nodeName === nodeName;
     };
     var addSplitButton = function (editor, id, tooltip, cmd, nodeName, styles) {
@@ -213,11 +246,11 @@
         onAction: function () {
           return editor.execCommand(cmd);
         },
-        onItemAction: function (_splitButtonApi, value) {
-          applyListFormat(editor, nodeName, value);
+        onItemAction: function (splitButtonApi, value) {
+          Actions.applyListFormat(editor, nodeName, value);
         },
         select: function (value) {
-          var listStyleType = getSelectedStyleType(editor);
+          var listStyleType = ListUtils.getSelectedStyleType(editor);
           return listStyleType.map(function (listStyle) {
             return value === listStyle;
           }).getOr(false);
@@ -233,7 +266,7 @@
         }
       });
     };
-    var addButton = function (editor, id, tooltip, cmd, nodeName, _styles) {
+    var addButton = function (editor, id, tooltip, cmd, nodeName, styles) {
       editor.ui.registry.addToggleButton(id, {
         active: false,
         tooltip: tooltip,
@@ -253,24 +286,27 @@
       });
     };
     var addControl = function (editor, id, tooltip, cmd, nodeName, styles) {
-      if (styles.length > 1) {
+      if (styles.length > 0) {
         addSplitButton(editor, id, tooltip, cmd, nodeName, styles);
       } else {
         addButton(editor, id, tooltip, cmd, nodeName);
       }
     };
     var register$1 = function (editor) {
-      addControl(editor, 'numlist', 'Numbered list', 'InsertOrderedList', 'OL', getNumberStyles(editor));
-      addControl(editor, 'bullist', 'Bullet list', 'InsertUnorderedList', 'UL', getBulletStyles(editor));
+      addControl(editor, 'numlist', 'Numbered list', 'InsertOrderedList', 'OL', Settings.getNumberStyles(editor));
+      addControl(editor, 'bullist', 'Bullet list', 'InsertUnorderedList', 'UL', Settings.getBulletStyles(editor));
     };
+    var Buttons = { register: register$1 };
 
     function Plugin () {
       global.add('advlist', function (editor) {
-        if (editor.hasPlugin('lists')) {
-          register$1(editor);
-          register(editor);
-        } else {
-          console.error('Please use the Lists plugin together with the Advanced List plugin.');
+        var hasPlugin = function (editor, plugin) {
+          var plugins = editor.settings.plugins ? editor.settings.plugins : '';
+          return global$1.inArray(plugins.split(/[ ,]/), plugin) !== -1;
+        };
+        if (hasPlugin(editor, 'lists')) {
+          Buttons.register(editor);
+          Commands.register(editor);
         }
       });
     }
