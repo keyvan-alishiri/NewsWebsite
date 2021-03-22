@@ -50,6 +50,7 @@ namespace NewsWebsite.Data.Repositories
                                        n.Title,
                                        ShortTitle = n.Title.Length > 60 ? n.Title.Substring(0, 60) + "..." : n.Title,
                                        n.Url,
+                                       n.Abstract,
                                        n.ImageName,
                                        n.Description,
                                        NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
@@ -90,6 +91,7 @@ namespace NewsWebsite.Data.Repositories
                     NewsId = item.NewsId,
                     Title = item.NewsGroup.First().Title,
                     ShortTitle = item.NewsGroup.First().ShortTitle,
+                    Abstract = item.NewsGroup.First().Abstract,
                     Url = item.NewsGroup.First().Url,
                     ImageName = item.NewsGroup.First().ImageName,
                     Description = item.NewsGroup.First().Description,
@@ -103,6 +105,7 @@ namespace NewsWebsite.Data.Repositories
                     NameOfTags = NameOfTags,
                     AuthorName = item.NewsGroup.First().AuthorName,
                     NumberOfComments = item.NewsGroup.First().NumberOfComments,
+                    PublishDateTime=item.NewsGroup.First().PublishDateTime
                 };
                 newsViewModel.Add(news);
             }

@@ -24,3 +24,4 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp2.2\NewsWebsite.Entities.csprojAssemblyReference.cache
