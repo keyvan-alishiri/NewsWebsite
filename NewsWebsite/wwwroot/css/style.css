@@ -50,7 +50,12 @@ a:focus {
   font-size: 14px;
   font-family: "Vazir_Medium", sans-serif; }
 .classynav ul li a:hover{
-    color: #fff !important;
+    color: #fff ;
+}
+
+.dropdown a:hover
+{
+    color:#000 !important;
 }
 
 .post-meta a, .post-meta span
