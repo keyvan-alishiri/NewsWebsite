@@ -54,45 +54,45 @@ namespace NewsWebsite.Areas.Admin.Controllers
             if (sort == "ShortTitle")
             {
                 if (order == "asc")
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, true, null, null, null, null, search,null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit,item=>item.First().Title,item=>"", search,null);
                 else
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, false, null, null, null, null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item=>"",item=>item.First().Title, search, null);
             }
 
             else if (sort == "بازدید")
             {
                 if (order == "asc")
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null, true,null,null,null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit,item=>item.First().NumberOfVisit,item=>"" , search, null);
                 else
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null, false, null, null, null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().NumberOfVisit, search, null);
             }
 
             else if (sort == "لایک")
             {
                 if (order == "asc")
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null,null, true,null,null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => item.First().NumberOfLike, item => "", search, null);
                 else
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null,null, false,null,null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().NumberOfLike, search, null);
             }
 
             else if (sort == "دیس لایک")
             {
                 if (order == "asc")
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null,null,null, true,null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => item.First().NumberOfDisLike, item => "", search, null);
                 else
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null,null,null, false,null, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().NumberOfDisLike, search, null);
             }
 
             else if (sort == "تاریخ انتشار")
             {
                 if (order == "asc")
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null, null, null,null,true, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => item.First().PersianPublishDate, item => "", search, null);
                 else
-                    news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null, null, null,null,false, search, null);
+                    news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, search, null);
             }
 
             else
-                news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, null, null,null,null,false, search, null);
+                news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, search, null);
 
             if (search != "")
                 total = news.Count();
@@ -118,6 +118,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                             {
                                 NewsId = n.NewsId,
                                 Title = n.Title,
+                                Abstract=n.Abstract,
                                 Description = n.Description,
                                 PublishDateTime = n.PublishDateTime,
                                 IsPublish = n.IsPublish,
@@ -150,7 +151,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
         public async Task<IActionResult> CreateOrUpdate(NewsViewModel viewModel,string submitButton)
         {
             ViewBag.Tags = _uw._Context.Tags.Select(t => t.TagName).ToList();
-            viewModel.NewsCategoriesViewModel = new NewsCategoriesViewModel(await _uw.CategoryRepository.GetAllCategoriesAsync(), null);
+            viewModel.NewsCategoriesViewModel = new NewsCategoriesViewModel(await _uw.CategoryRepository.GetAllCategoriesAsync(), viewModel.CategoryIds);
             if (!viewModel.FuturePublish)
             {
                 ModelState.Remove("PersianPublishTime");
@@ -169,7 +170,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
                 if (viewModel.NewsId.HasValue())
                 {
-                    string[] newTagsArray;
+                   
                     var news = _uw.BaseRepository<News>().FindByConditionAsync(n=>n.NewsId==viewModel.NewsId,null,n => n.NewsCategories,n=>n.NewsTags).Result.FirstOrDefault();
                     if (news == null)
                         ModelState.AddModelError(string.Empty, NewsNotFound);
@@ -198,10 +199,10 @@ namespace NewsWebsite.Areas.Admin.Controllers
                         else
                             viewModel.ImageName = news.ImageName;
 
-                        var newsTags = _uw._Context.NewsTags.Include(t => t.Tag).Where(t => t.NewsId == viewModel.NewsId).Select(t => t.Tag).ToList();
+                      
                         if (viewModel.NameOfTags.HasValue())
                         {
-                            newTagsArray = viewModel.NameOfTags.Split(',');
+                           
                             viewModel.NewsTags = await _uw.TagRepository.InsertNewsTags(viewModel.NameOfTags.Split(','), news.NewsId);
                         }
                         else
@@ -216,7 +217,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                         _uw.BaseRepository<News>().Update(_mapper.Map(viewModel, news));
                         await _uw.Commit();
                         ViewBag.Alert = "ذخیره تغییرات با موفقیت انجام شد.";
-                        viewModel.NewsCategoriesViewModel.CategoryId = viewModel.CategoryIds;
+                       
                     }
                 }
 

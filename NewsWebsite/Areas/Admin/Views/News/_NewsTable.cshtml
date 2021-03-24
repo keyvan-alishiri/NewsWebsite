@@ -1,18 +1,18 @@
 ﻿
 <style>
     .fixed-table-header {
-    margin-right: 0px !important;
-}
+        margin-right: 0px !important;
+    }
 </style>
-    <div id="toolbar">
-        <a  class="btn btn-success text-white" asp-action="CreateOrUpdate">
-            <i class="fa fa-plus"></i> | افزودن خبر جدید
-        </a>
+<div id="toolbar">
+    <a class="btn btn-success text-white" asp-action="CreateOrUpdate">
+        <i class="fa fa-plus"></i> | افزودن خبر جدید
+    </a>
 
-        <button type="button" class="btn btn-danger" data-toggle="ajax-modal" data-url="@Url.Action("DeleteGroup","Category")">
-            <i class="fa fa-trash"></i> | حذف گروهی
-        </button>
-    </div>
+    <button type="button" class="btn btn-danger" data-toggle="ajax-modal" data-url="@Url.Action("DeleteGroup","Category")">
+        <i class="fa fa-trash"></i> | حذف گروهی
+    </button>
+</div>
 <table id="table"
        data-toolbar="#toolbar"
        data-search="true"
@@ -62,7 +62,7 @@
          function detailFormatter(index, row) {
             var html = []
             $.each(row, function (key, value) {
-                if (key != "state" && key != "Id" && key!='آدرس' && key!="ردیف" && key!="متن خبر" && key!="NumberOfLike" && key!="NumberOfDisLike" && key!="ShortTitle" && key!="Status")
+                if (key != "state" && key != "Id" && key!='آدرس' && key!="ردیف" && key!="متن خبر" && key!="NumberOfLike" && key!="NumberOfDisLike" && key!="ShortTitle" && key!="Status" & key!="NumberOfComments")
                     html.push('<p><b>' + key + ':</b> ' + value + '</p>')
                 if (key == 'آدرس') {
                     var url = '@string.Format("{0}://{1}", Context.Request.Scheme, Context.Request.Host)' + '/' + row.Id + '/' + value;
@@ -111,6 +111,22 @@
         ].join('')
     }
 
+    
+
+    function commentFormatter(value, row, index) {
+        return [
+            '<a class="btn btn-primary btn-sm text-white">',
+            row.NumberOfComments, '<i class="fa fa-comments mr-1"></i>',
+            '</a >'
+        ].join('')
+    }
+
+
+
+
+
+
+
      function checkBoxFormat(value, row) {
        return '<input type="checkbox" name="btSelectItem" value="' + row.Id + '" />';
     }
@@ -145,7 +161,7 @@
                         footerFormatter: totalTextFormatter
                     }, {
                         title: 'جزئیات اطلاعات اخبار',
-                        colspan: 8,
+                        colspan: 9,
                         align: 'center'
                     }],
                     [{
@@ -159,17 +175,23 @@
                         sortable: true,
                         align: 'center'
                     },{
-                        field: 'لایک',
-                        title: 'لایک',
-                        sortable: true,
-                        align: 'center',
-                        formatter:likeFormatter
+                            field: 'لایک',
+                            title: 'لایک',
+                            sortable: true,
+                            align: 'center',
+                            formatter: likeFormatter
                     },{
                         field: 'دیس لایک',
                         title: 'دیس لایک',
                         sortable: true,
                         align: 'center',
                         formatter:dislikeFormatter
+                    },{
+                            field: 'نظرات',
+                            title: 'نظرات',
+                            sortable: true,
+                            align: 'center',
+                            formatter: commentFormatter
                     },{
                         field: 'تاریخ انتشار',
                         title: 'تاریخ انتشار',

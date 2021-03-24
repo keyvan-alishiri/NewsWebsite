@@ -28,13 +28,14 @@ namespace NewsWebsite.Data.Repositories
         }
 
 
-        public async Task<List<NewsViewModel>> GetPaginateNewsAsync(int offset, int limit, bool? titleSortAsc, bool? visitSortAsc, bool? likeSortAsc, bool? dislikeSortAsc, bool? publishDateTimeSortAsc, string searchText,bool? isPublish)
+        public  List<NewsViewModel> GetPaginateNews(int offset, int limit, Func<IGrouping<string, NewsViewModel>, Object> orderByAscFunc, Func<IGrouping<string, NewsViewModel>, Object> orderByDesFunc, string searchText,bool? isPublish)
         {
             string NameOfCategories = "";
             string NameOfTags = "";
             List<NewsViewModel> newsViewModel = new List<NewsViewModel>();
-
-            var newsGroup = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(u=>u.User).Include(c=>c.Comments)
+          
+           
+            var newsGroup =  (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(u=>u.User).Include(c=>c.Comments)
                                    join e in _context.NewsCategories on n.NewsId equals e.NewsId into bc
                                    from bct in bc.DefaultIfEmpty()
                                    join c in _context.Categories on bct.CategoryId equals c.CategoryId into cg
@@ -44,33 +45,33 @@ namespace NewsWebsite.Data.Repositories
                                    join t in _context.Tags on act.TagId equals t.TagId into tg
                                    from tog in tg.DefaultIfEmpty()
                                    where (n.Title.Contains(searchText) && isPublish ==null?(n.IsPublish==true || n.IsPublish==false):(isPublish==true?n.IsPublish==true && n.PublishDateTime <= DateTime.Now : n.IsPublish==false))
-                                   select (new
+                                   select (new NewsViewModel
                                    {
-                                       n.NewsId,
-                                       n.Title,
-                                       ShortTitle = n.Title.Length > 60 ? n.Title.Substring(0, 60) + "..." : n.Title,
-                                       n.Url,
-                                       n.Abstract,
-                                       n.ImageName,
-                                       n.Description,
+                                      NewsId= n.NewsId,
+                                      Title= n.Title,
+                                       ShortTitle = n.Title.Length > 50 ? n.Title.Substring(0, 50) + "..." : n.Title,
+                                     Url=  n.Url,
+                                     Abstract=  n.Abstract,
+                                     ImageName=  n.ImageName,
+                                     Description=  n.Description,
                                        NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
                                        NumberOfLike = n.Likes.Where(l => l.IsLiked == true).Count(),
                                        NumberOfDisLike = n.Likes.Where(l => l.IsLiked == false).Count(),
                                        NumberOfComments = n.Comments.Count(),
-                                       CategoryName = cog != null ? cog.CategoryName : "",
-                                       TagName= tog!=null ? tog.TagName :"",
+                                     NameOfCategories = cog != null ? cog.CategoryName : "",
+                                       NameOfTags= tog!=null ? tog.TagName :"",
                                        AuthorName=n.User.FirstName+" "+ n.User.LastName,
-                                       n.IsPublish,
+                                     IsPublish=   n.IsPublish,
                                        NewsType = n.IsInternal == true ? "داخلی" : "خارجی",
                                        PublishDateTime=n.PublishDateTime==null? new DateTime(01,01,01):n.PublishDateTime,
-                                       PersianPublishDateTime = n.PublishDateTime==null?"-": n.PublishDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت hh:mm:ss"),
-                                   })).GroupBy(b => b.NewsId).Select(g => new { NewsId = g.Key, NewsGroup = g }).Skip(offset).Take(limit).AsNoTracking().ToListAsync();
+                                       PersianPublishDate = n.PublishDateTime==null?"-": n.PublishDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss"),
+                                   })).GroupBy(b => b.NewsId).OrderBy(orderByAscFunc).OrderByDescending(orderByDesFunc).Select(g => new { NewsId = g.Key, NewsGroup = g }).Skip(offset).Take(limit).ToList();
 
             foreach (var item in newsGroup)
             {
                 NameOfCategories = "";
                 NameOfTags = "";
-                foreach (var a in item.NewsGroup.Select(a => a.CategoryName).Distinct())
+                foreach (var a in item.NewsGroup.Select(a => a.NameOfCategories).Distinct())
                 {
                     if (NameOfCategories == "")
                         NameOfCategories = a;
@@ -78,7 +79,7 @@ namespace NewsWebsite.Data.Repositories
                         NameOfCategories = NameOfCategories + " - " + a;
                 }
 
-                foreach (var a in item.NewsGroup.Select(a => a.TagName).Distinct())
+                foreach (var a in item.NewsGroup.Select(a => a.NameOfTags).Distinct())
                 {
                     if (NameOfTags == "")
                         NameOfTags = a;
@@ -98,7 +99,7 @@ namespace NewsWebsite.Data.Repositories
                     NumberOfVisit = item.NewsGroup.First().NumberOfVisit,
                     NumberOfDisLike = item.NewsGroup.First().NumberOfDisLike,
                     NumberOfLike = item.NewsGroup.First().NumberOfLike,
-                    PersianPublishDate = item.NewsGroup.First().PersianPublishDateTime,
+                    PersianPublishDate = item.NewsGroup.First().PersianPublishDate,
                     NewsType = item.NewsGroup.First().NewsType,
                     Status = item.NewsGroup.First().IsPublish==false?"پیش نویس": (item.NewsGroup.First().PublishDateTime > DateTime.Now ? "انتشار در آینده" : "منتشر شده"),
                     NameOfCategories = NameOfCategories,
@@ -110,28 +111,7 @@ namespace NewsWebsite.Data.Repositories
                 newsViewModel.Add(news);
             }
 
-            if (titleSortAsc != null)
-                newsViewModel = newsViewModel.OrderBy(c => (titleSortAsc == true && titleSortAsc != null) ? c.Title : "")
-                                     .OrderByDescending(c => (titleSortAsc == false && titleSortAsc != null) ? c.Title : "").ToList();
-
-            else if (visitSortAsc != null)
-                newsViewModel = newsViewModel.OrderBy(c => (visitSortAsc == true && visitSortAsc != null) ? c.NumberOfVisit : 0)
-                                   .OrderByDescending(c => (visitSortAsc == false && visitSortAsc != null) ? c.NumberOfVisit : 0).ToList();
-
-            else if (likeSortAsc != null)
-                newsViewModel = newsViewModel.OrderBy(c => (likeSortAsc == true && likeSortAsc != null) ? c.NumberOfLike : 0)
-                                   .OrderByDescending(c => (likeSortAsc == false && likeSortAsc != null) ? c.NumberOfLike : 0).ToList();
-
-            else if (dislikeSortAsc != null)
-                newsViewModel = newsViewModel.OrderBy(c => (dislikeSortAsc == true && dislikeSortAsc != null) ? c.NumberOfDisLike : 0)
-                                   .OrderByDescending(c => (dislikeSortAsc == false && dislikeSortAsc != null) ? c.NumberOfDisLike : 0).ToList();
-
-            else if (publishDateTimeSortAsc != null)
-                newsViewModel = newsViewModel.OrderBy(c => (publishDateTimeSortAsc == true && publishDateTimeSortAsc != null) ? c.PersianPublishDate : "")
-                                   .OrderByDescending(c => (publishDateTimeSortAsc == false && publishDateTimeSortAsc != null) ? c.PersianPublishDate : "").ToList();
-
-            foreach (var item in newsViewModel)
-                item.Row = ++offset;
+           
 
             return newsViewModel;
 

@@ -17,7 +17,7 @@ namespace NewsWebsite.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var news = await _uw.NewsRepository.GetPaginateNewsAsync(0, 10, null, null, null, null, false, "", true);
+            var news =  _uw.NewsRepository.GetPaginateNews(0, 10, item=>"",item=>item.First().PersianPublishDate, "", true);
             var homePageViewModel = new HomePageViewModel(news);
             return View(homePageViewModel);
         }

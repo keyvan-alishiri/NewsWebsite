@@ -113,7 +113,7 @@ namespace NewsWebsite.Services.Identity
 
         public async Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, bool? firstnameSortAsc, bool? lastnameSortAsc, bool? emailSortAsc, bool? usernameSortAsc,bool? registerDateTimeSortAsc, string searchText)
         {
-            var users = await Users.Include(u => u.Roles).Where(t => t.FirstName.Contains(searchText) || t.LastName.Contains(searchText) || t.Email.Contains(searchText) || t.UserName.Contains(searchText) || t.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت hh:mm:ss").Contains(searchText))
+            var users = await Users.Include(u => u.Roles).Where(t => t.FirstName.Contains(searchText) || t.LastName.Contains(searchText) || t.Email.Contains(searchText) || t.UserName.Contains(searchText) || t.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss").Contains(searchText))
                     .Select(user => new UsersViewModel
                     {
                         Id = user.Id,
@@ -125,7 +125,7 @@ namespace NewsWebsite.Services.Identity
                         IsActive = user.IsActive,
                         Image = user.Image,
                         PersianBirthDate = user.BirthDate.ConvertMiladiToShamsi("yyyy/MM/dd"),
-                        PersianRegisterDateTime = user.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت hh:mm:ss"),
+                        PersianRegisterDateTime = user.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss"),
                         GenderName = user.Gender == GenderType.Male ? "مرد" : "زن",
                         RoleId = user.Roles.Select(r => r.Role.Id).FirstOrDefault(),
                         RoleName = user.Roles.Select(r => r.Role.Name).FirstOrDefault()
