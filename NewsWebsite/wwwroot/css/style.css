@@ -1986,3 +1986,8 @@ textarea.form-control {
 .is-sticky .classy-navbar .nav-brand {
   font-size: 18px;
 }
+
+a:not([href]):not([tabindex]) {
+    
+    cursor: pointer !important;
+}

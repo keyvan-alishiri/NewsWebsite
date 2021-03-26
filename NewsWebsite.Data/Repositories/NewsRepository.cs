@@ -131,5 +131,76 @@ namespace NewsWebsite.Data.Repositories
 
             return fileName;
         }
+
+        public async Task<List<NewsViewModel>> MostViewedNews(int offset, int limit, string duration)
+        {
+            string NameOfCategories = "";
+            List<NewsViewModel> newsViewModel = new List<NewsViewModel>();
+            DateTime StartMiladiDate;
+            DateTime EndMiladiDate = DateTime.Now;
+
+            if (duration == "week")
+            {
+                int NumOfWeek = ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "dddd").GetNumOfWeek();
+                StartMiladiDate = DateTime.Now.AddDays((-1) * NumOfWeek).Date + new TimeSpan(0, 0, 0);
+            }
+
+            else if (duration == "day")
+                StartMiladiDate = DateTime.Now.Date + new TimeSpan(0, 0, 0);
+
+            else
+            {
+                string DayOfMonth = ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "dd").Fa2En();
+                StartMiladiDate = DateTime.Now.AddDays((-1) * (int.Parse(DayOfMonth) - 1)).Date + new TimeSpan(0, 0, 0);
+            }
+
+            var newsGroup = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(c => c.Comments)
+                                   join e in _context.NewsCategories on n.NewsId equals e.NewsId into bc
+                                   from bct in bc.DefaultIfEmpty()
+                                   join c in _context.Categories on bct.CategoryId equals c.CategoryId into cg
+                                   from cog in cg.DefaultIfEmpty()
+                                   where (n.PublishDateTime <= EndMiladiDate && StartMiladiDate <= n.PublishDateTime)
+                                   select (new
+                                   {
+                                       n.NewsId,
+                                       ShortTitle = n.Title.Length > 60 ? n.Title.Substring(0, 60) + "..." : n.Title,
+                                       n.Url,
+                                       NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
+                                       NumberOfLike = n.Likes.Where(l => l.IsLiked == true).Count(),
+                                       NumberOfDisLike = n.Likes.Where(l => l.IsLiked == false).Count(),
+                                       NumberOfComments = n.Comments.Count(),
+                                       n.ImageName,
+                                       CategoryName = cog != null ? cog.CategoryName : "",
+                                       PublishDateTime = n.PublishDateTime == null ? new DateTime(01, 01, 01) : n.PublishDateTime,
+                                   })).GroupBy(b => b.NewsId).Select(g => new { NewsId = g.Key, NewsGroup = g }).OrderByDescending(g => g.NewsGroup.First().NumberOfVisit).Skip(offset).Take(limit).AsNoTracking().ToListAsync();
+
+            foreach (var item in newsGroup)
+            {
+                NameOfCategories = "";
+                foreach (var a in item.NewsGroup.Select(a => a.CategoryName).Distinct())
+                {
+                    if (NameOfCategories == "")
+                        NameOfCategories = a;
+                    else
+                        NameOfCategories = NameOfCategories + " - " + a;
+                }
+
+                NewsViewModel news = new NewsViewModel()
+                {
+                    NewsId = item.NewsId,
+                    ShortTitle = item.NewsGroup.First().ShortTitle,
+                    Url = item.NewsGroup.First().Url,
+                    NumberOfVisit = item.NewsGroup.First().NumberOfVisit,
+                    NumberOfDisLike = item.NewsGroup.First().NumberOfDisLike,
+                    NumberOfLike = item.NewsGroup.First().NumberOfLike,
+                    NameOfCategories = NameOfCategories,
+                    PublishDateTime = item.NewsGroup.First().PublishDateTime,
+                    ImageName = item.NewsGroup.First().ImageName,
+                };
+                newsViewModel.Add(news);
+            }
+
+            return newsViewModel;
+        }
     }
 }

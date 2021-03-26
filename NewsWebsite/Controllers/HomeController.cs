@@ -15,11 +15,20 @@ namespace NewsWebsite.Controllers
         {
             _uw = uw;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string duration, string TypeOfNews)
         {
-            var news =  _uw.NewsRepository.GetPaginateNews(0, 10, item=>"",item=>item.First().PersianPublishDate, "", true);
-            var homePageViewModel = new HomePageViewModel(news);
-            return View(homePageViewModel);
+            var isAjax = Request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            if (isAjax && TypeOfNews == "MostViewedNews")
+                return PartialView("_MostViewedNews", await _uw.NewsRepository.MostViewedNews(0, 3, duration));
+
+            else
+            {
+                var news = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true);
+                var mostViewedNews = await _uw.NewsRepository.MostViewedNews(0, 3, "day");
+                var homePageViewModel = new HomePageViewModel(news, mostViewedNews);
+                return View(homePageViewModel);
+            }
+
         }
     }
 }

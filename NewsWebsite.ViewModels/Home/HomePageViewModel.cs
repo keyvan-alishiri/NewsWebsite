@@ -8,9 +8,14 @@ namespace NewsWebsite.ViewModels.Home
    public class HomePageViewModel
     {
         public List<NewsViewModel> News { get; set; }
-        public HomePageViewModel(List<NewsViewModel> news)
+        public List<NewsViewModel> MostViewedNews { get; set; }
+        public HomePageViewModel(List<NewsViewModel> news, List<NewsViewModel> mostViewedNews)
+
         {
+            MostViewedNews = mostViewedNews;
             News = news;
         }
+
+        
     }
 }
