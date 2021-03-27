@@ -143,3 +143,5 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\CategoryList\Default.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Components\LatestNewsTitleList\Default.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Home\_MostViewedNews.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_MostPopularNews.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_MostTalkNews.g.cshtml.cs

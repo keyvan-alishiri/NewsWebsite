@@ -202,5 +202,61 @@ namespace NewsWebsite.Data.Repositories
 
             return newsViewModel;
         }
+
+        public async Task<List<NewsViewModel>> MostTalkNews(int offset, int limit, string duration)
+        {
+            DateTime StartMiladiDate;
+            DateTime EndMiladiDate = DateTime.Now;
+
+            if (duration == "week")
+            {
+                int NumOfWeek = ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "dddd").GetNumOfWeek();
+                StartMiladiDate = DateTime.Now.AddDays((-1) * NumOfWeek).Date + new TimeSpan(0, 0, 0);
+            }
+
+            else if (duration == "day")
+                StartMiladiDate = DateTime.Now.Date + new TimeSpan(0, 0, 0);
+
+            else
+            {
+                string DayOfMonth = ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "dd").Fa2En();
+                StartMiladiDate = DateTime.Now.AddDays((-1) * (int.Parse(DayOfMonth) - 1)).Date + new TimeSpan(0, 0, 0);
+            }
+
+            return await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(c => c.Comments)
+                          where (n.PublishDateTime <= EndMiladiDate && StartMiladiDate <= n.PublishDateTime)
+                          select (new NewsViewModel
+                          {
+                              NewsId = n.NewsId,
+                              ShortTitle = n.Title.Length > 50 ? n.Title.Substring(0, 50) + "..." : n.Title,
+                              Url = n.Url,
+                              NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
+                              NumberOfLike = n.Likes.Where(l => l.IsLiked == true).Count(),
+                              NumberOfDisLike = n.Likes.Where(l => l.IsLiked == false).Count(),
+                              NumberOfComments = n.Comments.Count(),
+                              ImageName = n.ImageName,
+                              PublishDateTime = n.PublishDateTime == null ? new DateTime(01, 01, 01) : n.PublishDateTime,
+                          })).OrderByDescending(o => o.NumberOfComments).Skip(offset).Take(limit).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<NewsViewModel>> MostPopularNews(int offset, int limit)
+        {
+            return await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(c => c.Comments)
+                          where (n.IsPublish == true && n.PublishDateTime <= DateTime.Now)
+                          select (new NewsViewModel
+                          {
+                              NewsId = n.NewsId,
+                              ShortTitle = n.Title.Length > 50 ? n.Title.Substring(0, 50) + "..." : n.Title,
+                              Url = n.Url,
+                              Title = n.Title,
+                              NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
+                              NumberOfLike = n.Likes.Where(l => l.IsLiked == true).Count(),
+                              NumberOfDisLike = n.Likes.Where(l => l.IsLiked == false).Count(),
+                              NumberOfComments = n.Comments.Count(),
+                              ImageName = n.ImageName,
+                              PublishDateTime = n.PublishDateTime == null ? new DateTime(01, 01, 01) : n.PublishDateTime,
+                          })).OrderByDescending(o => o.NumberOfLike).Skip(offset).Take(limit).AsNoTracking().ToListAsync();
+
+        }
     }
 }
