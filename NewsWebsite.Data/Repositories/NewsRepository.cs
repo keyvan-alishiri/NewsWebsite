@@ -28,7 +28,7 @@ namespace NewsWebsite.Data.Repositories
         }
 
 
-        public  List<NewsViewModel> GetPaginateNews(int offset, int limit, Func<IGrouping<string, NewsViewModel>, Object> orderByAscFunc, Func<IGrouping<string, NewsViewModel>, Object> orderByDesFunc, string searchText,bool? isPublish)
+        public  List<NewsViewModel> GetPaginateNews(int offset, int limit, Func<IGrouping<string, NewsViewModel>, Object> orderByAscFunc, Func<IGrouping<string, NewsViewModel>, Object> orderByDesFunc, string searchText,bool? isPublish,bool? isInternal)
         {
             string NameOfCategories = "";
             string NameOfTags = "";
@@ -44,7 +44,7 @@ namespace NewsWebsite.Data.Repositories
                                    from act in ac.DefaultIfEmpty()
                                    join t in _context.Tags on act.TagId equals t.TagId into tg
                                    from tog in tg.DefaultIfEmpty()
-                                   where (n.Title.Contains(searchText) && isPublish ==null?(n.IsPublish==true || n.IsPublish==false):(isPublish==true?n.IsPublish==true && n.PublishDateTime <= DateTime.Now : n.IsPublish==false))
+                                   where (n.Title.Contains(searchText) && isPublish ==null?(n.IsPublish==true || n.IsPublish==false):(isPublish==true?n.IsPublish==true && n.PublishDateTime <= DateTime.Now : n.IsPublish==false) && isInternal == null ? n.IsInternal == true || n.IsInternal == false :(isInternal == true ? n.IsInternal== true : n.IsInternal == false))
                                    select (new NewsViewModel
                                    {
                                       NewsId= n.NewsId,

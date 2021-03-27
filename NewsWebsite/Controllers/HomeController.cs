@@ -26,12 +26,13 @@ namespace NewsWebsite.Controllers
 
             else
             {
-                var news = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true);
+                var news = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true,null);
                 var mostViewedNews = await _uw.NewsRepository.MostViewedNews(0, 3, "day");
                 var mostTalkNews = await _uw.NewsRepository.MostTalkNews(0, 5, "day");
                 var mostPopulerNews = await _uw.NewsRepository.MostPopularNews(0, 5);
-
-                var homePageViewModel = new HomePageViewModel(news, mostViewedNews, mostTalkNews, mostPopulerNews);
+                var internalNews =  _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, true);
+                var foreignNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, false);
+                var homePageViewModel = new HomePageViewModel(news, mostViewedNews, mostTalkNews, mostPopulerNews, internalNews, foreignNews);
                 return View(homePageViewModel);
             }
 
