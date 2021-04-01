@@ -27,7 +27,7 @@ namespace NewsWebsite.Data.Repositories
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
-
+        public int CountNewsPublished() => _context.News.Where(n => n.IsPublish == true && n.PublishDateTime <= DateTime.Now).Count();
         public  List<NewsViewModel> GetPaginateNews(int offset, int limit, Func<IGrouping<string, NewsViewModel>, Object> orderByAscFunc, Func<IGrouping<string, NewsViewModel>, Object> orderByDesFunc, string searchText,bool? isPublish,bool? isInternal)
         {
             string NameOfCategories = "";

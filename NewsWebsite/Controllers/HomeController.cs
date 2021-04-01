@@ -32,7 +32,8 @@ namespace NewsWebsite.Controllers
                 var mostPopulerNews = await _uw.NewsRepository.MostPopularNews(0, 5);
                 var internalNews =  _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, true);
                 var foreignNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, false);
-                var homePageViewModel = new HomePageViewModel(news, mostViewedNews, mostTalkNews, mostPopulerNews, internalNews, foreignNews);
+                var videos =await _uw.VideoRepository.GetPaginateVideosAsync(0, 10, null, false, "");
+                var homePageViewModel = new HomePageViewModel(news, mostViewedNews, mostTalkNews, mostPopulerNews, internalNews, foreignNews,videos);
                 return View(homePageViewModel);
             }
 

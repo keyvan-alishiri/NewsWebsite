@@ -117,7 +117,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                         else
                             viewModel.Poster = video.Poster;
 
-
+                        viewModel.PublishDateTime = video.PublishDateTime;
                         _uw.BaseRepository<Video>().Update(_mapper.Map(viewModel, video));
                         await _uw.Commit();
                         TempData["notification"] = EditSuccess;
