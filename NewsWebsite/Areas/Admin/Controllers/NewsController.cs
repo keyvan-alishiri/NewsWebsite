@@ -150,6 +150,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrUpdate(NewsViewModel viewModel,string submitButton)
         {
+            viewModel.Url = viewModel.Url.Trim();
             ViewBag.Tags = _uw._Context.Tags.Select(t => t.TagName).ToList();
             viewModel.NewsCategoriesViewModel = new NewsCategoriesViewModel(await _uw.CategoryRepository.GetAllCategoriesAsync(), viewModel.CategoryIds);
             if (!viewModel.FuturePublish)

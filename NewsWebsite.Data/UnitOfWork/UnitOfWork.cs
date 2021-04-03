@@ -17,6 +17,7 @@ namespace NewsWebsite.Data.UnitOfWork
         private IVideoRepository _videoRepository;
         private INewsRepository _newsRepository;
         private INewsletterRepository _newsletterRepository;
+        private ICommentRepository _commentRepository;
 
         public UnitOfWork(NewsDBContext context, IMapper mapper)
         {
@@ -86,6 +87,16 @@ namespace NewsWebsite.Data.UnitOfWork
             }
         }
 
+        public ICommentRepository CommentRepository
+        {
+            get
+            {
+                if (_commentRepository == null)
+                    _commentRepository = new CommentRepository(_Context);
+
+                return _commentRepository;
+            }
+        }
 
         public async Task Commit()
         {

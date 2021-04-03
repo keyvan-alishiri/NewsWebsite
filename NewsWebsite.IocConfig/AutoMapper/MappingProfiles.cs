@@ -2,6 +2,7 @@
 using NewsWebsite.Entities;
 using NewsWebsite.Entities.identity;
 using NewsWebsite.ViewModels.Category;
+using NewsWebsite.ViewModels.Comments;
 using NewsWebsite.ViewModels.Manage;
 using NewsWebsite.ViewModels.News;
 using NewsWebsite.ViewModels.RoleManager;
@@ -45,6 +46,7 @@ namespace NewsWebsite.IocConfig.AutoMapper
 
 
             CreateMap<News, NewsViewModel>().ReverseMap();
+            CreateMap<Comment, CommentViewModel>().ReverseMap();
 
 
         }

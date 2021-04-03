@@ -16,7 +16,8 @@ namespace NewsWebsite.ViewModels.Home
         public List<NewsViewModel> InternalNews { get; set; }
         public List<NewsViewModel> ForeignNews { get; set; }
         public List<VideoViewModel> Videos { get; set; }
-        public HomePageViewModel(List<NewsViewModel> news, List<NewsViewModel> mostViewedNews, List<NewsViewModel> mostTalkNews, List<NewsViewModel> mostPopularNews, List<NewsViewModel> internalNews, List<NewsViewModel> foreignNews, List<VideoViewModel> videos)
+        public int CountNewsPublished { get; set; }
+        public HomePageViewModel(List<NewsViewModel> news, List<NewsViewModel> mostViewedNews, List<NewsViewModel> mostTalkNews, List<NewsViewModel> mostPopularNews, List<NewsViewModel> internalNews, List<NewsViewModel> foreignNews, List<VideoViewModel> videos, int countNewsPublished)
 
         {
             MostViewedNews = mostViewedNews;
@@ -26,6 +27,7 @@ namespace NewsWebsite.ViewModels.Home
             InternalNews = internalNews;
             ForeignNews = foreignNews;
             Videos = videos;
+            CountNewsPublished = countNewsPublished;
         }
 
         

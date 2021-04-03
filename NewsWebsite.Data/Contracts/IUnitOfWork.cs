@@ -13,6 +13,7 @@ namespace NewsWebsite.Data.Contracts
         IVideoRepository VideoRepository { get; }
         INewsRepository NewsRepository { get; }
         INewsletterRepository NewsletterRepository { get; }
+        ICommentRepository CommentRepository { get; }
         NewsDBContext _Context { get; }
         Task Commit();
     }

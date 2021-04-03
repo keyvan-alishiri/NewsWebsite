@@ -385,12 +385,14 @@ namespace NewsWebsite.Data.Repositories
             var subComments = await (from c in _context.Comments
                                      where (c.ParentCommentId == comment.CommentId && c.IsConfirm == true)
                                      select new Comment { CommentId = c.CommentId, Desription = c.Desription, Email = c.Email, PostageDateTime = c.PostageDateTime, Name = c.Name ,IsConfirm=c.IsConfirm }).ToListAsync();
-
-            foreach (var item in subComments)
-            {
-                await BindSubComments(item);
-                comment.comments.Add(item);
-            }
+          
+                foreach (var item in subComments)
+                {
+                    await BindSubComments(item);
+                    comment.comments.Add(item);
+                }
+            
+            
         }
 
         public async Task<List<NewsViewModel>> GetRelatedNews(int number, List<string> tagIdList, string newsId)

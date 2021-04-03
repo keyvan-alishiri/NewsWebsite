@@ -32,6 +32,7 @@ namespace NewsWebsite.Controllers
 
             else
             {
+                int countNewsPublished = _uw.NewsRepository.CountNewsPublished();
                 var news = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true , null);
                 var mostViewedNews = await _uw.NewsRepository.MostViewedNews(0, 3, "day");
                 var mostTalkNews = await _uw.NewsRepository.MostTalkNews(0, 5, "day");
@@ -39,7 +40,7 @@ namespace NewsWebsite.Controllers
                 var internalNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, true);
                 var foreignNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, false);
                 var videos = await _uw.VideoRepository.GetPaginateVideosAsync(0, 10, null, false, "");
-                var homePageViewModel = new HomePageViewModel(news, mostViewedNews,mostTalkNews,mostPopulerNews,internalNews,foreignNews, videos);
+                var homePageViewModel = new HomePageViewModel(news, mostViewedNews,mostTalkNews,mostPopulerNews,internalNews,foreignNews, videos, countNewsPublished);
                 return View(homePageViewModel);
             }
            
@@ -69,6 +70,14 @@ namespace NewsWebsite.Controllers
             var newsRelated = await _uw.NewsRepository.GetRelatedNews(2, news.TagIdsList, newsId);
             var newsDetailsViewModel = new NewsDetailsViewModel(news, newsComments, newsRelated, nextAndPreviousNews);
             return View(newsDetailsViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult GetNewsPaginate(int limit, int offset)
+        {
+            int countNewsPublished = _uw.NewsRepository.CountNewsPublished();
+            var news = _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, "", true, null);
+            return PartialView("_NewsPaginate", new NewsPaginateViewModel(countNewsPublished, news));
         }
     }
 }

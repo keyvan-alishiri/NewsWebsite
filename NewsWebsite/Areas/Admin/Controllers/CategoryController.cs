@@ -103,6 +103,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                     ModelState.AddModelError(string.Empty, CategoryDuplicate);
                 else
                 {
+                    viewModel.Url = viewModel.Url.Trim();
                     if (viewModel.ParentCategoryName.HasValue())
                     {
                         var parentCategory = _uw.CategoryRepository.FindByCategoryName(viewModel.ParentCategoryName);
@@ -149,7 +150,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                         //};
 
                         viewModel.CategoryId = StringExtensions.GenerateId(10);
-                        var temp = _mapper.Map<Category>(viewModel);
+                        //var temp = _mapper.Map<Category>(viewModel);
                         await _uw.BaseRepository<Category>().CreateAsync(_mapper.Map<Category>(viewModel));
                         await _uw.Commit();
                         TempData["notification"] = InsertSuccess;

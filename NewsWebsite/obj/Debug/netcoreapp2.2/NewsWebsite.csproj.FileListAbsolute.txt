@@ -151,3 +151,11 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Newsletter\Index.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Newsletter\_DeleteConfirmation.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Newsletter\_NewsletterTable.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Home\NewsDetails.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Home\_SubComments.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_SendComment.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Comments\Index.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Comments\_CommentsTable.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Comments\_ConfirmOrInconfirm.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Comments\_DeleteConfirmation.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Home\_NewsPaginate.g.cshtml.cs
