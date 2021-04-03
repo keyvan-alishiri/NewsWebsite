@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using NewsWebsite.Common.Attributes;
 using NewsWebsite.Entities;
+using NewsWebsite.Entities.identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,7 @@ namespace NewsWebsite.ViewModels.News
 
         [JsonIgnore]
         public bool FuturePublish { get; set; }
+
         [JsonIgnore]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است."),Display(Name ="چکیده")]
         public string Abstract { get; set; }
@@ -84,6 +87,7 @@ namespace NewsWebsite.ViewModels.News
 
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         [Display(Name = "آدرس خبر"), JsonProperty("آدرس")]
+        [UrlValidate("/", @"\", " ")]
         public string Url { get; set; }
 
         [JsonProperty("Status")]
@@ -96,6 +100,19 @@ namespace NewsWebsite.ViewModels.News
         
         [JsonIgnore]
         public string[] CategoryIds { get; set; }
+
+
+        [JsonIgnore]
+        public string IdOfTags { get; set; }
+
+        [JsonIgnore]
+        public List<string> TagIdsList { get; set; }
+
+        [JsonIgnore]
+        public List<string> TagNamesList { get; set; }
+
+        [JsonIgnore]
+        public User AuthorInfo { get; set; }
 
         [JsonIgnore]
         public NewsCategoriesViewModel NewsCategoriesViewModel { get; set; }

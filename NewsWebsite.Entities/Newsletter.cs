@@ -7,6 +7,15 @@ namespace NewsWebsite.Entities
 {
     public class Newsletter
     {
+
+        public Newsletter()
+        {
+
+        }
+        public Newsletter(string email)
+        {
+            Email = email;
+        }
         [Key]
         public string Email { get; set; }
         public DateTime? RegisterDateTime { get; set; }

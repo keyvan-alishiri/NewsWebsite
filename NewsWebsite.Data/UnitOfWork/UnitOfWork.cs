@@ -16,6 +16,7 @@ namespace NewsWebsite.Data.UnitOfWork
         private ITagRepository _tagRepository;
         private IVideoRepository _videoRepository;
         private INewsRepository _newsRepository;
+        private INewsletterRepository _newsletterRepository;
 
         public UnitOfWork(NewsDBContext context, IMapper mapper)
         {
@@ -71,6 +72,17 @@ namespace NewsWebsite.Data.UnitOfWork
                     _newsRepository = new NewsRepository(_Context, _mapper);
 
                 return _newsRepository;
+            }
+        }
+
+        public INewsletterRepository NewsletterRepository
+        {
+            get
+            {
+                if (_newsletterRepository == null)
+                    _newsletterRepository = new NewsletterRepository(_Context);
+
+                return _newsletterRepository;
             }
         }
 

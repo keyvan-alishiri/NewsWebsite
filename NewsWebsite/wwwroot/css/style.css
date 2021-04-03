@@ -50,17 +50,14 @@ a:focus {
   font-size: 14px;
   font-family: "Vazir_Medium", sans-serif; }
 .classynav ul li a:hover{
-    color: #fff ;
+    color: #fff;
+}
+.dropdown a:hover {
+    color: #000 !important;
 }
 
-.dropdown a:hover
-{
-    color:#000 !important;
-}
-
-.post-meta a, .post-meta span
-{
-    font-family: vazir_FD;
+.post-meta a, .post-meta span {
+    font-family: Vazir_FD;
 }
 
 ul {
@@ -568,7 +565,6 @@ input:focus {
             background-color: #222627;
             border-bottom: none; } }
         .header-area .vizew-main-menu .classy-navbar .classynav ul li a:hover, .header-area .vizew-main-menu .classy-navbar .classynav ul li a:focus {
-          color: #0f1112;
           border-bottom-color: #ffffff; }
           @media only screen and (min-width: 768px) and (max-width: 991px) {
             .header-area .vizew-main-menu .classy-navbar .classynav ul li a:hover, .header-area .vizew-main-menu .classy-navbar .classynav ul li a:focus {
@@ -909,8 +905,7 @@ input:focus {
       @media only screen and (max-width: 767px) {
         .single-feature-post.video-post .post-content .post-title {
           font-size: 16px; } }
-      .single-feature-post.video-post .post-content .post-title:hover, .single-feature-post.video-post .post-content .post-title:focus {
-        color: #0f1112; }
+
     .single-feature-post.video-post .post-content .post-meta {
       position: relative;
       z-index: 1; }
@@ -920,10 +915,9 @@ input:focus {
         color: #ffffff; }
         .single-feature-post.video-post .post-content .post-meta a:hover, .single-feature-post.video-post .post-content .post-meta a:focus {
           color: #db4437; }
-  .single-feature-post.video-post .video-duration {
+.single-feature-post.video-post .video-duration, .single-feature-post.video-post .news-duration {
     display: inline-block;
     position: absolute;
-    left: 30px;
     bottom: 30px;
     background-color: #0f1112;
     padding: 6px 12px;
@@ -931,8 +925,16 @@ input:focus {
     font-size: 14px;
     color: #ffffff;
     line-height: 1;
-    z-index: 79; }
+    z-index: 79;
+}
 
+.video-duration {
+    left: 30px;
+}
+
+.news-duration {
+    right: 30px !important;
+}
 .post-cata {
   background-color: #db4437;
   padding: 8px 15px 6px;
@@ -1617,7 +1619,9 @@ input:focus {
     text-align: center;
     font-size: 12px; }
     .newsletter-widget .newsletter-form input:focus {
-      box-shadow: none; }
+      box-shadow: none;
+      
+    }
 
 .single-youtube-channel {
   position: relative;
@@ -1933,18 +1937,18 @@ input:focus {
   height: 48px;
   width: 100%;
   background-color: #e7e7e7;
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 15px;
   padding: 10px 30px;
-  color: #ffffff;
   -webkit-transition-duration: 500ms;
   -o-transition-duration: 500ms;
   transition-duration: 500ms;
   border: none;
   border-radius: 0; }
-  .form-control:focus {
-    box-shadow: none;
-    background-color: #393c3d; }
+    .form-control:focus {
+        box-shadow: none;
+        background-color: #e7e7e7;
+    }
 
 select.form-control {
   -webkit-appearance: none;
@@ -1958,12 +1962,14 @@ textarea.form-control {
 
 /*# custom Styles*/
 .direction-ltr{
-  direction: ltr;
+  direction: ltr ;
 }
 
 .direction-rtl {
     direction: rtl !important;
 }
+
+
 .nav-tabs {
   background-color: #e7e7e7;
 }
@@ -1991,6 +1997,5 @@ textarea.form-control {
 }
 
 a:not([href]):not([tabindex]) {
-    
     cursor: pointer !important;
 }

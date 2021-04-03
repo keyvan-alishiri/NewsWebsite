@@ -99,4 +99,26 @@ $(document).on('click','a[data-toggle="tab"]',function () {
 });
 
 
+$(document).on('click','button[data-save="Ajax"]',function () {
+      var form = $(".newsletter-widget").find('form');
+      var actionUrl = form.attr('action');
+      var dataToSend = new FormData(form.get(0));
+
+       $.ajax({
+            url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
+                ShowSweetErrorAlert();
+            }}).done(function (data) {
+                var newForm = $("form", data);
+                $(".newsletter-widget").find("form").replaceWith(newForm);
+            var IsValid = newForm.find("input[name='IsValid']").val() === "True";
+            if (IsValid) {
+                $.ajax({ url: '/Admin/Base/Notification', error: function () { ShowSweetErrorAlert(); } }).done(function (notification) {
+                    ShowSweetSuccessAlert(notification)
+                });
+            }
+        });
+});
+
+
+
 
