@@ -423,5 +423,80 @@ namespace NewsWebsite.Data.Repositories
 
             return newsList;
         }
+
+
+        public async Task<List<NewsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId)
+        {
+            string NameOfCategories = "";
+            List<NewsViewModel> newsViewModel = new List<NewsViewModel>();
+            var newsGroup = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(u => u.User).Include(c => c.Comments)
+                                   join e in _context.NewsCategories on n.NewsId equals e.NewsId into bc
+                                   from bct in bc.DefaultIfEmpty()
+                                   join c in _context.Categories on bct.CategoryId equals c.CategoryId into cg
+                                   from cog in cg.DefaultIfEmpty()
+                                   join a in _context.NewsTags on n.NewsId equals a.NewsId into ac
+                                   from act in ac.DefaultIfEmpty()
+                                   join t in _context.Tags on act.TagId equals t.TagId into tg
+                                   from tog in tg.DefaultIfEmpty()
+                                   where (bct.CategoryId.Contains(categoryId) && act.TagId.Contains(TagId))
+                                   select (new NewsViewModel
+                                   {
+                                       NewsId = n.NewsId,
+                                       Title = n.Title,
+                                       Abstract = n.Abstract,
+                                       ShortTitle = n.Title.Length > 50 ? n.Title.Substring(0, 50) + "..." : n.Title,
+                                       Url = n.Url,
+                                       ImageName = n.ImageName,
+                                       Description = n.Description,
+                                       NumberOfVisit = n.Visits.Select(v => v.NumberOfVisit).Sum(),
+                                       NumberOfLike = n.Likes.Where(l => l.IsLiked == true).Count(),
+                                       NumberOfDisLike = n.Likes.Where(l => l.IsLiked == false).Count(),
+                                       NumberOfComments = n.Comments.Where(c => c.IsConfirm == true).Count(),
+                                       NameOfCategories = cog != null ? cog.CategoryName : "",
+                                       NameOfTags = tog != null ? tog.TagName : "",
+                                       IdOfTags = tog != null ? tog.TagId : "",
+                                       AuthorName = n.User.FirstName + " " + n.User.LastName,
+                                       IsPublish = n.IsPublish,
+                                       NewsType = n.IsInternal == true ? "داخلی" : "خارجی",
+                                       PublishDateTime = n.PublishDateTime == null ? new DateTime(01, 01, 01) : n.PublishDateTime,
+                                       PersianPublishDate = n.PublishDateTime == null ? "-" : n.PublishDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss"),
+                                   })).GroupBy(b => b.NewsId).Select(g => new { NewsId = g.Key, NewsGroup = g }).AsNoTracking().ToListAsync();
+
+
+            foreach (var item in newsGroup)
+            {
+                NameOfCategories = "";
+                foreach (var a in item.NewsGroup.Select(a => a.NameOfCategories).Distinct())
+                {
+                    if (NameOfCategories == "")
+                        NameOfCategories = a;
+                    else
+                        NameOfCategories = NameOfCategories + " - " + a;
+                }
+
+                NewsViewModel news = new NewsViewModel()
+                {
+                    NewsId = item.NewsId,
+                    Title = item.NewsGroup.First().Title,
+                    ShortTitle = item.NewsGroup.First().ShortTitle,
+                    Abstract = item.NewsGroup.First().Abstract,
+                    Url = item.NewsGroup.First().Url,
+                    Description = item.NewsGroup.First().Description,
+                    NumberOfVisit = item.NewsGroup.First().NumberOfVisit,
+                    NumberOfDisLike = item.NewsGroup.First().NumberOfDisLike,
+                    NumberOfLike = item.NewsGroup.First().NumberOfLike,
+                    PersianPublishDate = item.NewsGroup.First().PersianPublishDate,
+                    NewsType = item.NewsGroup.First().NewsType,
+                    Status = item.NewsGroup.First().IsPublish == false ? "پیش نویس" : (item.NewsGroup.First().PublishDateTime > DateTime.Now ? "انتشار در آینده" : "منتشر شده"),
+                    NameOfCategories = NameOfCategories,
+                    ImageName = item.NewsGroup.First().ImageName,
+                    AuthorName = item.NewsGroup.First().AuthorName,
+                    NumberOfComments = item.NewsGroup.First().NumberOfComments,
+                    PublishDateTime = item.NewsGroup.First().PublishDateTime,
+                };
+                newsViewModel.Add(news);
+            }
+            return newsViewModel;
+        }
     }
 }

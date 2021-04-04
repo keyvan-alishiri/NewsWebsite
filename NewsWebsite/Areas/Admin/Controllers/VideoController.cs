@@ -52,21 +52,21 @@ namespace NewsWebsite.Areas.Admin.Controllers
             if (sort == "عنوان ویدیو")
             {
                 if (order == "asc")
-                    videos = await _uw.VideoRepository.GetPaginateVideosAsync(offset, limit, true, null, search);
+                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>item.Title , item=>"", search);
                 else
-                    videos = await _uw.VideoRepository.GetPaginateVideosAsync(offset, limit, false, null, search);
+                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.Title, search);
             }
 
             else if (sort == "تاریخ انتشار")
             {
                 if (order == "asc")
-                    videos = await _uw.VideoRepository.GetPaginateVideosAsync(offset, limit, null, true, search);
+                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>item.PersianPublishDateTime, item=>"", search);
                 else
-                    videos = await _uw.VideoRepository.GetPaginateVideosAsync(offset, limit, null, false, search);
+                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>"", item => item.PersianPublishDateTime, search);
             }
 
             else
-                videos = await _uw.VideoRepository.GetPaginateVideosAsync(offset, limit, null, null, search);
+                videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>"",item=>item.PersianPublishDateTime, search);
 
             if (search != "")
                 total = videos.Count();

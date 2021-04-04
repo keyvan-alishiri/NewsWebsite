@@ -21,5 +21,6 @@ namespace NewsWebsite.Data.Contracts
         Task BindSubComments(Comment comment);
         Task<List<NewsViewModel>> GetNextAndPreviousNews(DateTime? PublishDateTime);
         Task<List<NewsViewModel>> GetRelatedNews(int number, List<string> tagIdList, string newsId);
+        Task<List<NewsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId);
     }
 }

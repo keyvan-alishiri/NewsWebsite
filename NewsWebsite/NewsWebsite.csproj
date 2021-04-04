@@ -24,4 +24,27 @@
     <Folder Include="wwwroot\posters\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\scss\backtotop.scss" />
+    <None Include="wwwroot\css\scss\blog.scss" />
+    <None Include="wwwroot\css\scss\breadcrumb.scss" />
+    <None Include="wwwroot\css\scss\buttons.scss" />
+    <None Include="wwwroot\css\scss\contact.scss" />
+    <None Include="wwwroot\css\scss\footer.scss" />
+    <None Include="wwwroot\css\scss\header.scss" />
+    <None Include="wwwroot\css\scss\heading.scss" />
+    <None Include="wwwroot\css\scss\hero.scss" />
+    <None Include="wwwroot\css\scss\mixins\_flex.scss" />
+    <None Include="wwwroot\css\scss\mixins\_miscellaneous.scss" />
+    <None Include="wwwroot\css\scss\preloader.scss" />
+    <None Include="wwwroot\css\scss\reboot.scss" />
+    <None Include="wwwroot\css\scss\spacing.scss" />
+    <None Include="wwwroot\css\scss\style.scss" />
+    <None Include="wwwroot\css\scss\utilities\_color.scss" />
+    <None Include="wwwroot\css\scss\utilities\_fonts.scss" />
+    <None Include="wwwroot\css\scss\utilities\_responsive.scss" />
+    <None Include="wwwroot\css\scss\utilities\_variables.scss" />
+    <None Include="wwwroot\css\scss\widget.scss" />
+  </ItemGroup>
+
 </Project>

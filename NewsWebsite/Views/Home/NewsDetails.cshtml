@@ -118,10 +118,11 @@
                                 @if (Model.News.TagNamesList.Count() != 0)
                                 {
                                     <ul>
-                                        @foreach (var item in Model.News.TagNamesList)
+                                        @for (var i = 0; i < Model.News.TagNamesList.Count; i++)
                                         {
-                                            <li><a href="#">@item</a></li>
+                                            <li><a href="/Tag/@Model.News.TagIdsList[i]">@Model.News.TagNamesList[i]</a></li>
                                         }
+
                                     </ul>
                                 }
                             </div>
@@ -259,7 +260,7 @@
                             </div>
 
                             <!-- Reply Form -->
-                            @await Html.PartialAsync("_SendComment",new CommentViewModel(null,Model.News.NewsId))
+                            @await Html.PartialAsync("_SendComment", new CommentViewModel(null, Model.News.NewsId))
                         </div>
 
                     </div>

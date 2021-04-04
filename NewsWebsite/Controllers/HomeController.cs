@@ -39,7 +39,7 @@ namespace NewsWebsite.Controllers
                 var mostPopulerNews = await _uw.NewsRepository.MostPopularNews(0, 5);
                 var internalNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, true);
                 var foreignNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, false);
-                var videos = await _uw.VideoRepository.GetPaginateVideosAsync(0, 10, null, false, "");
+                var videos =  _uw.VideoRepository.GetPaginateVideos(0, 10, item=>"", item=>item.PersianPublishDateTime, "");
                 var homePageViewModel = new HomePageViewModel(news, mostViewedNews,mostTalkNews,mostPopulerNews,internalNews,foreignNews, videos, countNewsPublished);
                 return View(homePageViewModel);
             }
@@ -78,6 +78,63 @@ namespace NewsWebsite.Controllers
             int countNewsPublished = _uw.NewsRepository.CountNewsPublished();
             var news = _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, "", true, null);
             return PartialView("_NewsPaginate", new NewsPaginateViewModel(countNewsPublished, news));
+        }
+
+        [Route("Category/{categoryId}/{url}")]
+        public async Task<IActionResult> NewsInCategory(string categoryId, string url)
+        {
+            if (string.IsNullOrEmpty(categoryId))
+                return NotFound();
+            else
+            {
+                var category = await _uw.BaseRepository<Category>().FindByIdAsync(categoryId);
+                if (category == null)
+                    return NotFound();
+                else
+                {
+                    ViewBag.Category = category.CategoryName;
+                    return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, ""));
+                }
+            }
+        }
+
+        [Route("Tag/{tagId}")]
+        public async Task<IActionResult> NewsInTag(string tagId)
+        {
+            if (string.IsNullOrEmpty(tagId))
+                return NotFound();
+            else
+            {
+                var tag = await _uw.BaseRepository<Tag>().FindByIdAsync(tagId);
+                if (tag == null)
+                    return NotFound();
+                else
+                {
+                    ViewBag.Tag = tag.TagName;
+                    return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag("", tagId));
+                }
+            }
+        }
+
+        [Route("Videos")]
+        public async Task<IActionResult> Videos()
+        {
+            return View(await _uw.BaseRepository<Video>().FindAllAsync());
+        }
+
+        [Route("Video/{videoId}")]
+        public async Task<IActionResult> VideoDetails(string videoId)
+        {
+            if (string.IsNullOrEmpty(videoId))
+                return NotFound();
+            else
+            {
+                var video = await _uw.BaseRepository<Video>().FindByIdAsync(videoId);
+                if (video == null)
+                    return NotFound();
+                else
+                    return View(video);
+            }
         }
     }
 }
