@@ -26,6 +26,7 @@ namespace NewsWebsite
             services.AddCustomServices();
             services.AddCustomIdentityServices();
             services.AddAutoMapper();
+            services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddMvc();
         }
 

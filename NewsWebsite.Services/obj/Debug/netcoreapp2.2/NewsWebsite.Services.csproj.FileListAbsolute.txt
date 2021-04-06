@@ -19,9 +19,9 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.AssemblyInfo.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp2.2\NewsWebsite.Services.pdb

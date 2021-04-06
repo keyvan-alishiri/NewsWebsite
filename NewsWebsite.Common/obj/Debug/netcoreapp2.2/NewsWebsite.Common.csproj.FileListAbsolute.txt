@@ -19,9 +19,9 @@ E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite.Common\obj\Debug\netcore
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\bin\Debug\netcoreapp2.2\NewsWebsite.Common.deps.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.AssemblyInfo.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.csprojAssemblyReference.cache

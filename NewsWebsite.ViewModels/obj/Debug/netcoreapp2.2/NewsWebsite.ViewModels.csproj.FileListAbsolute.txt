@@ -23,13 +23,13 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bi
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Common.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfoInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.AssemblyInfo.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\obj\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.dll
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.ViewModels\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
