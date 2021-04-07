@@ -33,7 +33,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" asp-action="Index" asp-controller="Video">
-            <i class="fa fa-video text-yellow"></i> مدیریت ویدئوها
+            <i class="fa fa-video text-primary"></i> مدیریت ویدئوها
         </a>
     </li>
     <li class="nav-item">
@@ -52,6 +52,19 @@
             <i class="ni ni-key-25 text-info"></i> تغییر کلمه عبور
         </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" asp-action="Index" asp-controller="SiteSetting">
+            <i class="ni ni-settings-gear-65 text-success"></i>تنظیمات سایت
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" asp-action="" asp-controller="">
+            <i class="ni ni-settings-gear-65 text-success"></i>احراز هویت دو مرحله ای
+        </a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" asp-action="Profile" asp-controller="Manage" asp-route-userId="@User.Identity.GetUserId()">
             <i class="ni ni-circle-08 text-pink"></i> نمایه من

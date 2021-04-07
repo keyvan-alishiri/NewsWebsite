@@ -7,8 +7,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="~/js/Ajax.js"></script>
-<!-- ##### Hero Area Start ##### -->
 <section class="hero--area section-padding-60">
     @if (Model.News.Count() != 0)
     {
@@ -204,14 +202,12 @@
                     {
                         <div id="NewsPaginate">
                             @await Html.PartialAsync("_NewsPaginate", new NewsPaginateViewModel(Model.CountNewsPublished, Model.News.Take(5).ToList()))
-
                         </div>
-
-                     
 
                         <div id="page" class="mt-5">
                             <ul class="pagination"></ul>
                         </div>
+
                     }
 
                 </div>
@@ -242,7 +238,6 @@
         </div>
     </div>
 </section>
-<!-- ##### Vizew Psot Area End ##### -->
 <script src="~/js/pagination.min.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -265,3 +260,5 @@ $(function() {
 });
 
 </script>
+
+
