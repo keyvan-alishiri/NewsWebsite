@@ -2000,18 +2000,14 @@ line-height: 1.5;
     }
 
 .children li {
-    background-color: #db4437;
-    color: #fff !important;
+    background-color: #fff;
+    color: #0f1112 !important;
     border: none !important;
 }
 
-.children .comment-date {
+/*.children .comment-date {
     color: #fff !important;
-}
-
-.children p {
-    color: #fff;
-}
+}*/
 
 .comment_area {
     position: relative;
