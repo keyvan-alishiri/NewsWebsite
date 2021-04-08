@@ -10,9 +10,11 @@ using Microsoft.Extensions.Logging;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities.identity;
 using NewsWebsite.Services.Contracts;
-using NewsWebsite.ViewModels.Account;
 using NewsWebsite.ViewModels.Manage;
 using NewsWebsite.Common;
+using NewsWebsite.Common.Attributes;
+using NewsWebsite.Entities;
+using NewsWebsite.ViewModels.Account;
 
 namespace NewsWebsite.Controllers
 {
@@ -25,6 +27,7 @@ namespace NewsWebsite.Controllers
         private readonly IEmailSender _emailSender;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<AccountController> _logger;
+        private const string BookmarkNotFound = "خبر بوکمارک شده یافت نشد.";
         public AccountController(IUnitOfWork uw, IHttpContextAccessor accessor, IApplicationUserManager userManager, IApplicationRoleManager roleManager, IEmailSender emailSender, SignInManager<User> signInManager, ILogger<AccountController> logger)
         {
             _uw = uw;
@@ -142,9 +145,60 @@ namespace NewsWebsite.Controllers
 
 
         [HttpGet]
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            int userId = User.Identity.GetUserId<int>();
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+
+            return View(new UserPanelViewModel(user, await _uw.NewsRepository.GetUserBookmarksAsync(userId)));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+        [HttpGet, AjaxOnly]
+        public IActionResult DeleteBookmark(int userId, string newsId)
+        {
+            if (userId == 0 || !newsId.HasValue())
+                ModelState.AddModelError(string.Empty, BookmarkNotFound);
+            else
+            {
+                var bookmark = _uw.BaseRepository<Bookmark>().FindByConditionAsync(b => b.NewsId == newsId && b.UserId == userId).Result.FirstOrDefault();
+                if (bookmark == null)
+                    ModelState.AddModelError(string.Empty, BookmarkNotFound);
+                else
+                    return PartialView("_DeleteConfirmation", bookmark);
+            }
+            return PartialView("_DeleteConfirmation");
+        }
+
+
+        [HttpPost, ActionName("DeleteBookmark"), AjaxOnly]
+        public async Task<IActionResult> DeleteBookmarkConfirmed(Bookmark model)
+        {
+            if (model.NewsId == null)
+                ModelState.AddModelError(string.Empty, BookmarkNotFound);
+            else
+            {
+                var bookmark = _uw.BaseRepository<Bookmark>().FindByConditionAsync(b => b.UserId == model.UserId && b.NewsId == model.NewsId).Result.FirstOrDefault();
+                if (bookmark == null)
+                    ModelState.AddModelError(string.Empty, BookmarkNotFound);
+                else
+                {
+                    _uw.BaseRepository<Bookmark>().Delete(bookmark);
+                    await _uw.Commit();
+                    return PartialView("_Bookmarks", await _uw.NewsRepository.GetUserBookmarksAsync(model.UserId));
+                }
+            }
+            return PartialView("_DeleteConfirmation");
         }
     }
 }

@@ -3,6 +3,7 @@ using NewsWebsite.ViewModels.News;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,5 +23,7 @@ namespace NewsWebsite.Data.Contracts
         Task<List<NewsViewModel>> GetNextAndPreviousNews(DateTime? PublishDateTime);
         Task<List<NewsViewModel>> GetRelatedNews(int number, List<string> tagIdList, string newsId);
         Task<List<NewsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId);
+
+        Task<List<NewsViewModel>> GetUserBookmarksAsync(int userId);
     }
 }

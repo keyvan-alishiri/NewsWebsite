@@ -1,6 +1,6 @@
 ﻿$(function () {
     var placeholder = $("#modal-placeholder");
-    $(document).on('click', 'button[data-toggle="ajax-modal"]', function () {
+    $(document).on('click','button[data-toggle="ajax-modal"]',function () {
         var url = $(this).data('url');
         $.ajax({
             url: url,
@@ -24,18 +24,17 @@
             form = $(".card-body").find('form');
             actionUrl = form.attr('action') + '/' + $(".modal").attr('id');
         }
-
+      
         var dataToSend = new FormData(form.get(0));
 
         $.ajax({
             url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
                 ShowSweetErrorAlert();
-            }
-        }).done(function (data) {
-            var newBody = $(".modal-body", data);
-            var newFooter = $(".modal-footer", data);
-            placeholder.find(".modal-body").replaceWith(newBody);
-            placeholder.find(".modal-footer").replaceWith(newFooter);
+            }}).done(function (data) {
+                var newBody = $(".modal-body", data);
+                var newFooter = $(".modal-footer", data);
+                placeholder.find(".modal-body").replaceWith(newBody);
+                placeholder.find(".modal-footer").replaceWith(newFooter);
 
             var IsValid = newBody.find("input[name='IsValid']").val() === "True";
             if (IsValid) {
@@ -105,15 +104,16 @@
             form = $(this).parents(".modal").find('#pills-signin form');
         }
         else {
-            form = $(this).parents(".modal").find('form');
+            form = $(this).parents(".modal").find('form');       
         }
 
         var actionUrl = form.attr('action');
         var dataToSend = new FormData(form.get(0));
         $.ajax({
-            url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
+            url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function ()
+            {
                 ShowSweetErrorAlert();
-            },
+            }, 
             beforeSend: function () { $('#modal-placeholder').after('<div class="preloader d-flex align-items-center justify-content-center"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>'); },
         }).done(function (data) {
             if (btnId == "btn-register") {
@@ -137,6 +137,20 @@
 
                 else {
                     $('#pills-signin').html($("#pills-signin", data));
+                }
+            }
+
+            else {
+                if (($(data).find(".modal-body").length) == 0) {
+                    $("#bookmarks").html(data);
+                    placeholder.find(".modal").modal('hide');
+                }
+                else {
+                    var newBody = $(".modal-body", data);
+                    var newFooter = $(".modal-footer", data);
+                    placeholder.find(".modal-body").replaceWith(newBody);
+                    placeholder.find(".modal-footer").replaceWith(newFooter);
+
                 }
             }
             $('.preloader').remove();
@@ -167,114 +181,115 @@ function ShowSweetSuccessAlert(message) {
 }
 
 
-$(document).on('click', 'a[data-toggle="tab"]', function () {
+$(document).on('click','a[data-toggle="tab"]',function () {
     var url = $(this).data('url');
     var id = $(this).attr('id');
-    var contentDivId = "#MostViewedNewsDiv";
-    var loadingDivId = "#nav-mostViewedNews";
-    if ($(this).hasClass("most-talk")) {
-        contentDivId = "#MostTalkNewsDiv";
-        loadingDivId = "#nav-mostTalkNews";
+    var contentDivId="#MostViewedNewsDiv";
+    var loadingDivId="#nav-mostViewedNews";
+    if($(this).hasClass("most-talk"))
+    {
+        contentDivId="#MostTalkNewsDiv";
+        loadingDivId="#nav-mostTalkNews";
     }
 
     $.ajax({
         url: url,
-        beforeSend: function () { $(loadingDivId).html("<p class='text-center mb-5 mt-3'><span style='font-size:18px;font-family: Vazir_Medium;'>در حال بارگزاری اطلاعات خبر </span><img src='/icons/LoaderIcon.gif'/></p>") },
+        beforeSend: function () {$(loadingDivId).html("<p class='text-center mb-5 mt-3'><span style='font-size:18px;font-family: Vazir_Medium;'>در حال بارگزاری اطلاعات خبر </span><img src='/icons/LoaderIcon.gif'/></p>")},
         error: function () {
-            ShowSweetErrorAlert();
+           ShowSweetErrorAlert();
         }
     }).done(function (result) {
-        $(contentDivId).html(result);
-        $(contentDivId + " a").removeClass("active");
-        $("#" + id).addClass("active");
+       $(contentDivId).html(result);
+       $(contentDivId+" a").removeClass("active");
+       $("#"+id).addClass("active");
     });
 });
 
 
-$(document).on('click', 'button[data-save="Ajax"]', function () {
-    var form = $(".newsletter-widget").find('form');
-    var actionUrl = form.attr('action');
-    var dataToSend = new FormData(form.get(0));
+$(document).on('click','button[data-save="Ajax"]',function () {
+      var form = $(".newsletter-widget").find('form');
+      var actionUrl = form.attr('action');
+      var dataToSend = new FormData(form.get(0));
 
-    $.ajax({
-        url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
-            ShowSweetErrorAlert();
-        }
-    }).done(function (data) {
-        var newForm = $("form", data);
-        $(".newsletter-widget").find("form").replaceWith(newForm);
-        var IsValid = newForm.find("input[name='IsValid']").val() === "True";
-        if (IsValid) {
-            $.ajax({ url: '/Admin/Base/Notification', error: function () { ShowSweetErrorAlert(); } }).done(function (notification) {
-                ShowSweetSuccessAlert(notification)
-            });
-        }
-    });
+       $.ajax({
+            url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
+                ShowSweetErrorAlert();
+            }}).done(function (data) {
+                var newForm = $("form", data);
+                $(".newsletter-widget").find("form").replaceWith(newForm);
+            var IsValid = newForm.find("input[name='IsValid']").val() === "True";
+            if (IsValid) {
+                $.ajax({ url: '/Admin/Base/Notification', error: function () { ShowSweetErrorAlert(); } }).done(function (notification) {
+                    ShowSweetSuccessAlert(notification)
+                });
+            }
+        });
 });
 
 
-function ShowCommentForm(parentCommentId, newsId) {
+function ShowCommentForm(parentCommentId,newsId){
     $.ajax({
-        url: "/Admin/Comments/SendComment?parentCommentId=" + parentCommentId + "&&newsId=" + newsId,
-        beforeSend: function () { $("#comment-" + parentCommentId).after("<p class='text-center mb-5 mt-3'><span style='font-size:18px;font-family: Vazir_Medium;'> لطفا منتظر بماند  </span><img src='/icons/LoaderIcon.gif'/></p>") },
+        url: "/Admin/Comments/SendComment?parentCommentId="+parentCommentId+"&&newsId="+newsId,
+        beforeSend: function () { $("#comment-"+parentCommentId).after("<p class='text-center mb-5 mt-3'><span style='font-size:18px;font-family: Vazir_Medium;'> لطفا منتظر بماند  </span><img src='/icons/LoaderIcon.gif'/></p>")},
         error: function () {
-            ShowSweetErrorAlert();
+           ShowSweetErrorAlert();
         }
     }).done(function (result) {
-        $("#comment-" + parentCommentId).next().replaceWith("");
-        $("#comment-" + parentCommentId).after("<hr/>" + result);
-        $("#btn-" + parentCommentId).html("لغو پاسخ");
-        $("#btn-" + parentCommentId).attr("onclick", "HideCommentForm('" + parentCommentId + "','" + newsId + "')");
+       $("#comment-"+parentCommentId).next().replaceWith("");
+       $("#comment-"+parentCommentId).after("<hr/>"+result);
+       $("#btn-"+parentCommentId).html("لغو پاسخ");
+       $("#btn-"+parentCommentId).attr("onclick","HideCommentForm('"+parentCommentId+"','"+newsId+"')");
     });
 }
 
-function HideCommentForm(parentCommentId, newsId) {
-    $("#comment-" + parentCommentId).next().replaceWith("");
-    $("#comment-" + parentCommentId).next().replaceWith("");
-    $("#btn-" + parentCommentId).html("پاسخ");
-    $("#btn-" + parentCommentId).attr("onclick", "ShowCommentForm('" + parentCommentId + "')");
+function HideCommentForm(parentCommentId,newsId){
+   $("#comment-"+parentCommentId).next().replaceWith("");
+   $("#comment-"+parentCommentId).next().replaceWith("");
+   $("#btn-"+parentCommentId).html("پاسخ");
+   $("#btn-"+parentCommentId).attr("onclick","ShowCommentForm('"+parentCommentId+"')");
 }
 
 
-function SendComment(parentCommentId) {
-    var form = $("#reply-" + parentCommentId).find('form');
-    var actionUrl = form.attr('action');
-    var dataToSend = new FormData(form.get(0));
-    var loaderAfter = "#comment-" + parentCommentId;
-    if ($("#comment-" + parentCommentId).length == 0) {
-        loaderAfter = "#reply-"
-    }
-    $.ajax({
-        url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
-            ShowSweetErrorAlert();
-        },
-        beforeSend: function () {
-            $(".vizew-btn").attr("disabled", true);
-            $(loaderAfter).after("<p class='text-center mb-5 mt-3'><span style='font-size:18px;font-family: Vazir_Medium;'> در حال ارسال دیدگاه  </span><img src='/icons/LoaderIcon.gif'/></p>")
-        },
-        complete: function () {
-            $(".vizew-btn").attr("disabled", false);
-            $(loaderAfter).next().replaceWith("");
-        }
-    }).done(function (data) {
-        var newForm = $("form", data);
-        $("#reply-" + parentCommentId).find("form").replaceWith(newForm);
-        var IsValid = newForm.find("input[name='IsValid']").val() === "True";
-        if (IsValid) {
-            $("#comment-" + parentCommentId).next().replaceWith("");
-            $("#comment-" + parentCommentId).next().replaceWith("");
-            $.ajax({ url: '/Admin/Base/Notification', error: function () { ShowSweetErrorAlert(); } }).done(function (notification) {
-                ShowSweetSuccessAlert(notification)
-            });
-            $("#Name").val("");
-            $("#Email").val("");
-            $("#Desription").val("");
-        }
-    });
+function SendComment(parentCommentId){
+      var form = $("#reply-"+parentCommentId).find('form');
+      var actionUrl = form.attr('action');
+      var dataToSend = new FormData(form.get(0));
+      var loaderAfter="#comment-"+parentCommentId;
+      if( $("#comment-"+parentCommentId).length==0){
+         loaderAfter="#reply-"
+      } 
+      $.ajax({
+            url: actionUrl, type: "post", data: dataToSend, processData: false, contentType: false, error: function () {
+               ShowSweetErrorAlert();},
+               beforeSend: function () 
+               { 
+                 $(".vizew-btn").attr("disabled", true);
+                 $(loaderAfter).after("<p class='text-center mb-5 mt-3'><span style='font-size:18px;font-family: Vazir_Medium;'> در حال ارسال دیدگاه  </span><img src='/icons/LoaderIcon.gif'/></p>")
+               },
+               complete: function () {
+                  $(".vizew-btn").attr("disabled", false);
+                  $(loaderAfter).next().replaceWith("");
+               }
+         }).done(function (data) {
+                var newForm = $("form", data);
+                $("#reply-"+parentCommentId).find("form").replaceWith(newForm);
+               var IsValid = newForm.find("input[name='IsValid']").val() === "True";
+               if (IsValid) {
+                   $("#comment-"+parentCommentId).next().replaceWith("");
+                   $("#comment-"+parentCommentId).next().replaceWith("");
+                   $.ajax({ url: '/Admin/Base/Notification', error: function () { ShowSweetErrorAlert(); } }).done(function (notification) {
+                      ShowSweetSuccessAlert(notification)
+                   }); 
+                   $("#Name").val("");
+                   $("#Email").val("");
+                   $("#Desription").val("");
+            }
+         });
 }
 
+ 
 
 
 
 
-
+   
