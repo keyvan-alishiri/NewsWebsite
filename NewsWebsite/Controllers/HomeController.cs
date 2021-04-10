@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
 using NewsWebsite.ViewModels.Home;
@@ -49,6 +50,7 @@ namespace NewsWebsite.Controllers
         [Route("News/{newsId}/{url}")]
         public async Task<IActionResult> NewsDetails(string newsId, string url)
         {
+            int userId = User.Identity.GetUserId<int>();
             string ipAddress = _accessor.HttpContext?.Connection?.RemoteIpAddress.ToString();
             Visit visit = _uw.BaseRepository<Visit>().FindByConditionAsync(n => n.NewsId == newsId && n.IpAddress == ipAddress).Result.FirstOrDefault();
             if (visit != null && visit.LastVisitDateTime.Date != DateTime.Now.Date)
@@ -64,7 +66,7 @@ namespace NewsWebsite.Controllers
                 await _uw.Commit();
             }
 
-            var news = await _uw.NewsRepository.GetNewsById(newsId);
+            var news = await _uw.NewsRepository.GetNewsById(newsId,userId);
             var newsComments = await _uw.NewsRepository.GetNewsCommentsAsync(newsId);
             var nextAndPreviousNews = await _uw.NewsRepository.GetNextAndPreviousNews(news.PublishDateTime);
             var newsRelated = await _uw.NewsRepository.GetRelatedNews(2, news.TagIdsList, newsId);
@@ -135,6 +137,52 @@ namespace NewsWebsite.Controllers
                 else
                     return View(video);
             }
+        }
+
+
+        [HttpGet]
+        public async Task<JsonResult> LikeOrDisLike(string newsId, bool isLike)
+        {
+            string ipAddress = _accessor.HttpContext?.Connection?.RemoteIpAddress.ToString();
+            Like likeOrDislike = _uw.BaseRepository<Like>().FindByConditionAsync(l => l.NewsId == newsId && l.IpAddress == ipAddress).Result.FirstOrDefault();
+            if (likeOrDislike == null)
+            {
+                likeOrDislike = new Like { NewsId = newsId, IpAddress = ipAddress, IsLiked = isLike };
+                await _uw.BaseRepository<Like>().CreateAsync(likeOrDislike);
+            }
+            else
+                likeOrDislike.IsLiked = isLike;
+
+            await _uw.Commit();
+            var likeAndDislike = _uw.NewsRepository.NumberOfLikeAndDislike(newsId);
+            return Json(new { like = likeAndDislike.NumberOfLike, dislike = likeAndDislike.NumberOfDisLike });
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> BookmarkNews(string newsId)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                int userId = User.Identity.GetUserId<int>();
+                Bookmark bookmark = _uw.BaseRepository<Bookmark>().FindByConditionAsync(l => l.NewsId == newsId && l.UserId == userId).Result.FirstOrDefault();
+                if (bookmark == null)
+                {
+                    bookmark = new Bookmark { NewsId = newsId, UserId = userId };
+                    await _uw.BaseRepository<Bookmark>().CreateAsync(bookmark);
+                    await _uw.Commit();
+                    return Json(true);
+                }
+                else
+                {
+                    _uw.BaseRepository<Bookmark>().Delete(bookmark);
+                    await _uw.Commit();
+                    return Json(false);
+                }
+            }
+
+            else
+                return PartialView("_SignIn");
         }
     }
 }

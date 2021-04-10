@@ -97,7 +97,10 @@ namespace NewsWebsite.ViewModels.News
         [JsonProperty("متن خبر")]
         public string Description { get; set; }
 
-        
+        [JsonIgnore]
+        public bool IsBookmarked { get; set; }
+
+
         [JsonIgnore]
         public string[] CategoryIds { get; set; }
 

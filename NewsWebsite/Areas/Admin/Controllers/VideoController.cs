@@ -42,36 +42,43 @@ namespace NewsWebsite.Areas.Admin.Controllers
         public async Task<IActionResult> GetVideos(string search, string order, int offset, int limit, string sort)
         {
             List<VideoViewModel> videos;
-            int total = _uw.BaseRepository<Video>().CountEntities();
-            if (!search.HasValue())
-                search = "";
 
-            if (limit == 0)
-                limit = total;
+          return  await Task.Run(() => {
 
-            if (sort == "عنوان ویدیو")
-            {
-                if (order == "asc")
-                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>item.Title , item=>"", search);
+                int total = _uw.BaseRepository<Video>().CountEntities();
+
+                if (!search.HasValue())
+                    search = "";
+
+                if (limit == 0)
+                    limit = total;
+
+                if (sort == "عنوان ویدیو")
+                {
+                    if (order == "asc")
+                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => item.Title, item => "", search);
+                    else
+                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.Title, search);
+                }
+
+                else if (sort == "تاریخ انتشار")
+                {
+                    if (order == "asc")
+                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => item.PersianPublishDateTime, item => "", search);
+                    else
+                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.PersianPublishDateTime, search);
+                }
+
                 else
-                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.Title, search);
-            }
+                    videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.PersianPublishDateTime, search);
 
-            else if (sort == "تاریخ انتشار")
-            {
-                if (order == "asc")
-                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>item.PersianPublishDateTime, item=>"", search);
-                else
-                    videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>"", item => item.PersianPublishDateTime, search);
-            }
+                if (search != "")
+                    total = videos.Count();
 
-            else
-                videos =  _uw.VideoRepository.GetPaginateVideos(offset, limit, item=>"",item=>item.PersianPublishDateTime, search);
+                return Json(new { total = total, rows = videos });
+            });
+            
 
-            if (search != "")
-                total = videos.Count();
-
-            return Json(new { total = total, rows = videos });
         }
 
 

@@ -25,7 +25,7 @@ namespace NewsWebsite
             services.AddDbContext<NewsDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
             services.AddCustomServices();
             services.AddCustomIdentityServices();
-            services.AddAutoMapper();
+            services.AddAutoMapper(typeof(Startup));
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddMvc();
         }

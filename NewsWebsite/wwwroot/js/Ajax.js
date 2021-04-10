@@ -287,8 +287,35 @@ function SendComment(parentCommentId){
          });
 }
 
- 
+function LikeOrDisLike(newsId, isLiked) {
+    $.ajax({
+        url: "/Home/LikeOrDisLike?newsId=" + newsId + "&&isLike=" + isLiked,
+    }).done(function (result) {
+        $("#like").html(result.like);
+        $("#dislike").html(result.dislike);
+    });
+}
 
+
+function Bookmark(newsId) {
+    $.ajax({
+        url: "/Home/BookmarkNews?newsId=" + newsId,
+    }).done(function (result) {
+        if (result == true) {
+            $("#bookmark").html('<i aria-hidden="true" class="fa fa-bookmark"></i>');
+        }
+        else if (result == false) {
+            $("#bookmark").html('<i aria-hidden="true" class="fa fa-bookmark-o"></i>');
+        }
+        else {
+            $("#modal-placeholder").html(result);
+            $("#pills-tab").after("<p class='alert alert-danger'>برای بوکمارک کردن خبر ابتدا باید وارد سایت شوید.</p>")
+            $("#modal-placeholder").find('.modal').modal('show');
+        }
+    });
+
+ 
+    }
 
 
 

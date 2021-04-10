@@ -261,7 +261,7 @@ namespace NewsWebsite.Data.Repositories
 
         }
 
-        public async Task<NewsViewModel> GetNewsById(string newsId)
+        public async Task<NewsViewModel> GetNewsById(string newsId,int userId)
         {
             string NameOfCategories = "";
             var newsGroup = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(u => u.User).Include(c => c.Comments)
@@ -295,6 +295,7 @@ namespace NewsWebsite.Data.Repositories
                                  NewsType = n.IsInternal == true ? "داخلی" : "خارجی",
                                  PublishDateTime = n.PublishDateTime == null ? new DateTime(01, 01, 01) : n.PublishDateTime,
                                  PersianPublishDate = n.PublishDateTime == null ? "-" : n.PublishDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss"),
+                                 IsBookmarked = n.Bookmarks.Any(b=>b.UserId == userId && b.NewsId == newsId),
                              })).GroupBy(b => b.NewsId).Select(g => new { NewsId = g.Key, NewsGroup = g }).AsNoTracking().ToListAsync();
 
 
@@ -327,6 +328,7 @@ namespace NewsWebsite.Data.Repositories
                 AuthorInfo= newsGroup.First().NewsGroup.First().AuthorInfo,
                 NumberOfComments = newsGroup.First().NewsGroup.First().NumberOfComments,
                 PublishDateTime = newsGroup.First().NewsGroup.First().PublishDateTime,
+                IsBookmarked = newsGroup.First().NewsGroup.First().IsBookmarked,
             };
 
             return news;
@@ -477,6 +479,16 @@ namespace NewsWebsite.Data.Repositories
                           join n in _context.News on b.NewsId equals n.NewsId
                           where (u.Id == userId)
                           select new NewsViewModel { NewsId = n.NewsId, Title = n.Title, PersianPublishDate = n.PublishDateTime.ConvertMiladiToShamsi("dd MMMM yyyy ساعت HH:mm"), Url = n.Url }).ToListAsync();
+
+        }
+
+    
+        public NewsViewModel NumberOfLikeAndDislike(string newsId)
+        {
+            return (from u in _context.News.Include(l => l.Likes)
+                    where (u.NewsId == newsId)
+                    select new NewsViewModel { NumberOfLike = u.Likes.Where(l => l.IsLiked == true).Count(), NumberOfDisLike = u.Likes.Where(l => l.IsLiked == false).Count() })
+                    .FirstOrDefault();
 
         }
     }
