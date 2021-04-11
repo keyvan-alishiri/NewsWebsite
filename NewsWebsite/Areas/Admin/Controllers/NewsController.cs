@@ -91,6 +91,14 @@ namespace NewsWebsite.Areas.Admin.Controllers
                     news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, search, null, null);
             }
 
+            else if (sort == "نظرات")
+            {
+                if (order == "asc")
+                    news = _uw.NewsRepository.GetPaginateNews(offset, limit, item => item.First().NumberOfComments, item => "", search, null, null);
+                else
+                    news = _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().NumberOfComments, search, null, null);
+            }
+
             else
                 news =  _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, search, null, null);
 

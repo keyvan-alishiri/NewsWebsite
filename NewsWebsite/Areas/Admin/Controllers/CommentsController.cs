@@ -26,14 +26,14 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string newsId,bool? isConfirm)
         {
-            return View();
+            return View(nameof(Index),new CommentViewModel { NewsId=newsId,IsConfirm = isConfirm});
         }
 
 
         [HttpGet]
-        public IActionResult GetComments(string search, string order, int offset, int limit, string sort)
+        public IActionResult GetComments(string search, string order, int offset, int limit, string sort, string newsId, bool? isConfirm)
         {
             List<CommentViewModel> comments;
             int total = _uw.BaseRepository<Comment>().CountEntities();
@@ -43,33 +43,36 @@ namespace NewsWebsite.Areas.Admin.Controllers
             if (limit == 0)
                 limit = total;
 
+            if (!newsId.HasValue())
+                newsId = "";
+
             if (sort == "نام")
             {
                 if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Name, item => "", search);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Name, item => "", search, newsId, isConfirm);
                 else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Name, search);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Name, search, newsId, isConfirm);
             }
 
 
             else if (sort == "ایمیل")
             {
                 if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Email, item => "", search);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Email, item => "", search, newsId, isConfirm);
                 else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Email, search);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Email, search, newsId, isConfirm);
             }
 
             else if (sort == "تاریخ ارسال")
             {
                 if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.PersianPostageDateTime, item => "", search);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.PersianPostageDateTime, item => "", search, newsId, isConfirm);
                 else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.PersianPostageDateTime, search);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.PersianPostageDateTime, search, newsId, isConfirm);
             }
 
             else
-                comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.PersianPostageDateTime, search);
+                comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.PersianPostageDateTime, search, newsId, isConfirm);
 
             if (search != "")
                 total = comments.Count();
@@ -194,24 +197,38 @@ namespace NewsWebsite.Areas.Admin.Controllers
             {
                
                 viewModel.PostageDateTime = DateTime.Now;
-                //Comment comment = new Comment()
-                //{
-                //    CommentId = viewModel.CommentId,
-                //    Name = viewModel.Name,
-                //    Email = viewModel.Email,
-                //    Desription = viewModel.Desription,
-                //    NewsId = viewModel.NewsId,
-                //    IsConfirm = viewModel.IsConfirm,
-                //    PostageDateTime = viewModel.PostageDateTime,
-                //    ParentCommentId = viewModel.ParentCommentId,
-                //};
+
+                Comment comment = new Comment()
+                {
+                    CommentId = viewModel.CommentId,
+                    Name = viewModel.Name,
+                    Email = viewModel.Email,
+                    Desription = viewModel.Desription,
+                    NewsId = viewModel.NewsId,
+                    IsConfirm = viewModel.IsConfirm ?? false,
+                    PostageDateTime = viewModel.PostageDateTime,
+                    ParentCommentId = viewModel.ParentCommentId,
+                };
 
                 //var temp = _mapper.Map<Comment>(viewModel);
+                await _uw.BaseRepository<Comment>().CreateAsync(comment);
+                // try
+                // {
+                //     var temp = _mapper.Map<Comment>(viewModel);
 
-                await _uw.BaseRepository<Comment>().CreateAsync(_mapper.Map<Comment>(viewModel));
+                // }
+                // catch (Exception ex)
+                // {
+
+                //     var message = ex.Message;
+                // }
+                //await _uw.BaseRepository<Comment>().CreateAsync(_mapper.Map<Comment>(viewModel));
 
                 await _uw.Commit();
+
                 TempData["notification"] = "دیدگاه شما با موفقیت ارسال شد و بعد از تایید در سایت نمایش داده می شود.";
+
+
             }
             return PartialView("_SendComment", viewModel);
         }

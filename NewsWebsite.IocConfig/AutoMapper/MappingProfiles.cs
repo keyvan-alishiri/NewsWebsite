@@ -46,7 +46,9 @@ namespace NewsWebsite.IocConfig.AutoMapper
 
 
             CreateMap<News, NewsViewModel>().ReverseMap();
-            CreateMap<Comment, CommentViewModel>().ReverseMap();
+            CreateMap<Comment, CommentViewModel>().ReverseMap(); 
+               
+       
 
 
         }

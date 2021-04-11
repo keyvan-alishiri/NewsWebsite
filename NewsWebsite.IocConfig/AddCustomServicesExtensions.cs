@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NewsWebsite.Data.Contracts;
+using NewsWebsite.Data.Repositories;
 using NewsWebsite.Data.UnitOfWork;
 using NewsWebsite.Services;
 using NewsWebsite.Services.Contracts;
@@ -12,6 +13,7 @@ namespace NewsWebsite.IocConfig
         {
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
             return services;
         }
     }
