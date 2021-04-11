@@ -15,7 +15,7 @@ using System.Text;
 
 namespace NewsWebsite.IocConfig.AutoMapper
 {
-   public class MappingProfiles :Profile
+    public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
@@ -24,10 +24,9 @@ namespace NewsWebsite.IocConfig.AutoMapper
                 .ForMember(p => p.Categories, opt => opt.Ignore())
                 .ForMember(p => p.NewsCategories, opt => opt.Ignore());
 
-
             CreateMap<Role, RolesViewModel>().ReverseMap()
-               .ForMember(p => p.Users, opt => opt.Ignore())
-               .ForMember(p => p.Claims, opt => opt.Ignore());
+                    .ForMember(p => p.Users, opt => opt.Ignore())
+                    .ForMember(p => p.Claims, opt => opt.Ignore());
 
             CreateMap<Tag, TagViewModel>().ReverseMap()
                    .ForMember(p => p.NewsTags, opt => opt.Ignore());
@@ -44,12 +43,8 @@ namespace NewsWebsite.IocConfig.AutoMapper
                    .ForMember(p => p.Bookmarks, opt => opt.Ignore())
                    .ForMember(p => p.Claims, opt => opt.Ignore());
 
-
             CreateMap<News, NewsViewModel>().ReverseMap();
-            CreateMap<Comment, CommentViewModel>().ReverseMap(); 
-               
-       
-
+            CreateMap<Comment, CommentViewModel>().ReverseMap();
 
         }
     }

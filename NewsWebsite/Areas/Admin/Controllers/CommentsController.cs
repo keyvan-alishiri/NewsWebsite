@@ -198,20 +198,20 @@ namespace NewsWebsite.Areas.Admin.Controllers
                
                 viewModel.PostageDateTime = DateTime.Now;
 
-                Comment comment = new Comment()
-                {
-                    CommentId = viewModel.CommentId,
-                    Name = viewModel.Name,
-                    Email = viewModel.Email,
-                    Desription = viewModel.Desription,
-                    NewsId = viewModel.NewsId,
-                    IsConfirm = viewModel.IsConfirm ?? false,
-                    PostageDateTime = viewModel.PostageDateTime,
-                    ParentCommentId = viewModel.ParentCommentId,
-                };
+                //Comment comment = new Comment()
+                //{
+                //    CommentId = viewModel.CommentId,
+                //    Name = viewModel.Name,
+                //    Email = viewModel.Email,
+                //    Desription = viewModel.Desription,
+                //    NewsId = viewModel.NewsId,
+                //    IsConfirm = viewModel.IsConfirm ?? false,
+                //    PostageDateTime = viewModel.PostageDateTime,
+                //    ParentCommentId = viewModel.ParentCommentId,
+                //};
 
-                //var temp = _mapper.Map<Comment>(viewModel);
-                await _uw.BaseRepository<Comment>().CreateAsync(comment);
+                ////var temp = _mapper.Map<Comment>(viewModel);
+                //await _uw.BaseRepository<Comment>().CreateAsync(comment);
                 // try
                 // {
                 //     var temp = _mapper.Map<Comment>(viewModel);
@@ -222,7 +222,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
                 //     var message = ex.Message;
                 // }
-                //await _uw.BaseRepository<Comment>().CreateAsync(_mapper.Map<Comment>(viewModel));
+                await _uw.BaseRepository<Comment>().CreateAsync(_mapper.Map<Comment>(viewModel));
 
                 await _uw.Commit();
 

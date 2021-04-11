@@ -68,6 +68,12 @@ E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\
 E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
 E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Category\_RenderCategory.g.cshtml.cs
 E:\ASP.NET Core Training\NewsWebsite - Copy\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\_ViewImports.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CoreCompileInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfo.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.deps.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.runtimeconfig.dev.json
@@ -87,12 +93,6 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.Services.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp2.2\NewsWebsite.ViewModels.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csprojAssemblyReference.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CoreCompileInputs.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorAssemblyInfo.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfoInputs.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.AssemblyInfo.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.input.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.TagHelpers.output.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.RazorCoreGenerate.cache
@@ -125,7 +125,9 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\_DeleteConfirmation.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\_RenderTag.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Tag\_TagTable.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\Details.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\Index.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\ResetPassword.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\_DeleteConfirmation.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\_RenderUser.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\_UserTable.g.cshtml.cs
@@ -171,5 +173,3 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\Details.g.cshtml.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\UserManager\ResetPassword.g.cshtml.cs

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
@@ -19,13 +20,17 @@ namespace NewsWebsite.Data.Repositories
     {
         private readonly NewsDBContext _context;
         private readonly IMapper _mapper;
-        public NewsRepository(NewsDBContext context, IMapper mapper)
+        private readonly IConfiguration _configuration;
+        public NewsRepository(NewsDBContext context, IMapper mapper, IConfiguration configuration)
         {
             _context = context;
             _context.CheckArgumentIsNull(nameof(_context));
 
             _mapper = mapper;
             _mapper.CheckArgumentIsNull(nameof(_mapper));
+
+            _configuration = configuration;
+            _configuration.CheckArgumentIsNull(nameof(_configuration));
         }
 
         public int CountNewsPublished() => _context.News.Where(n => n.IsPublish == true && n.PublishDateTime <= DateTime.Now).Count();
@@ -490,6 +495,34 @@ namespace NewsWebsite.Data.Repositories
                     select new NewsViewModel { NumberOfLike = u.Likes.Where(l => l.IsLiked == true).Count(), NumberOfDisLike = u.Likes.Where(l => l.IsLiked == false).Count() })
                     .FirstOrDefault();
 
+        }
+
+
+        public async Task<string> GetWeeklyNewsAsync()
+        {
+            string content = "";
+            int NumOfWeek = ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "dddd").GetNumOfWeek();
+            DateTime StartMiladiDate = DateTime.Now.AddDays((-1) * NumOfWeek).Date + new TimeSpan(0, 0, 0);
+            DateTime EndMiladiDate = DateTime.Now;
+
+            var news = await (from n in _context.News.Include(v => v.Visits).Include(l => l.Likes).Include(c => c.Comments)
+                              where (n.PublishDateTime <= EndMiladiDate && StartMiladiDate <= n.PublishDateTime)
+                              select (new NewsViewModel
+                              {
+                                  NewsId = n.NewsId,
+                                  Title = n.Title,
+                                  ShortTitle = n.Title.Length > 50 ? n.Title.Substring(0, 50) + "..." : n.Title,
+                                  Url = n.Url,
+                                  ImageName = n.ImageName,
+                              })).OrderByDescending(o => o.PublishDateTime).AsNoTracking().ToListAsync();
+
+            string url = _configuration.GetValue<string>("SiteSettings:SiteInfo:Url");
+            foreach (var item in news)
+            {
+                content = content + $"<div style='direction:rtl;font-family:tahoma;text-align:center'> <div class='row align-items-center'> <div class='col-12 col-lg-6'><div class='post-thumbnail'> <img src='{url + "/newsImage/" + item.ImageName}' alt='{item.ImageName}'> </div> </div> <div class='col-12 col-lg-6'> <div class='post-content mt-0'> <h4 style='color:#878484;'>{item.Title}</h4> <p> {item.ShortTitle} <a href='{url}/News/{item.NewsId}/{item.Url}'>[ادامه مطلب]</a> </p> </div> </div> </div> </div><hr/>";
+            }
+
+            return content;
         }
     }
 }
