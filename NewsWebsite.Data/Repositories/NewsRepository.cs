@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NewsWebsite.Common;
@@ -21,6 +22,7 @@ namespace NewsWebsite.Data.Repositories
         private readonly NewsDBContext _context;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+
         public NewsRepository(NewsDBContext context, IMapper mapper, IConfiguration configuration)
         {
             _context = context;
@@ -33,6 +35,9 @@ namespace NewsWebsite.Data.Repositories
             _configuration.CheckArgumentIsNull(nameof(_configuration));
         }
 
+        public int CountNews() => _context.News.Count();
+        public int CountFuturePublishedNews() => _context.News.Where(n => n.PublishDateTime > DateTime.Now).Count();
+        public int CountNewsPublishedOrDraft(bool? isPublish) => _context.News.Where(n => isPublish == true ? n.IsPublish == true && n.PublishDateTime <= DateTime.Now : n.IsPublish == false).Count();
         public int CountNewsPublished() => _context.News.Where(n => n.IsPublish == true && n.PublishDateTime <= DateTime.Now).Count();
         public List<NewsViewModel> GetPaginateNews(int offset, int limit, Func<IGrouping<string, NewsViewModel>, Object> orderByAscFunc, Func<IGrouping<string, NewsViewModel>, Object> orderByDescFunc, string searchText,bool? isPublish,bool? isInternal)
         {
@@ -300,7 +305,7 @@ namespace NewsWebsite.Data.Repositories
                                  NewsType = n.IsInternal == true ? "داخلی" : "خارجی",
                                  PublishDateTime = n.PublishDateTime == null ? new DateTime(01, 01, 01) : n.PublishDateTime,
                                  PersianPublishDate = n.PublishDateTime == null ? "-" : n.PublishDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss"),
-                                 IsBookmarked = n.Bookmarks.Any(b=>b.UserId == userId && b.NewsId == newsId),
+                                 IsBookmarked = n.Bookmarks.Any(b => b.UserId == userId && b.NewsId == newsId),
                              })).GroupBy(b => b.NewsId).Select(g => new { NewsId = g.Key, NewsGroup = g }).AsNoTracking().ToListAsync();
 
 
@@ -333,7 +338,7 @@ namespace NewsWebsite.Data.Repositories
                 AuthorInfo= newsGroup.First().NewsGroup.First().AuthorInfo,
                 NumberOfComments = newsGroup.First().NewsGroup.First().NumberOfComments,
                 PublishDateTime = newsGroup.First().NewsGroup.First().PublishDateTime,
-                IsBookmarked = newsGroup.First().NewsGroup.First().IsBookmarked,
+                IsBookmarked= newsGroup.First().NewsGroup.First().IsBookmarked,
             };
 
             return news;
@@ -487,7 +492,7 @@ namespace NewsWebsite.Data.Repositories
 
         }
 
-    
+
         public NewsViewModel NumberOfLikeAndDislike(string newsId)
         {
             return (from u in _context.News.Include(l => l.Likes)

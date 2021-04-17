@@ -24,3 +24,4 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\De
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.AssemblyInfo.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp2.2\NewsWebsite.Common.csprojAssemblyReference.cache

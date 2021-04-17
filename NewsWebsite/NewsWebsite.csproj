@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <None Include="wwwroot\css\scss\backtotop.scss" />
     <None Include="wwwroot\css\scss\blog.scss" />
     <None Include="wwwroot\css\scss\breadcrumb.scss" />
