@@ -176,5 +176,11 @@ namespace NewsWebsite.Areas.Admin.Controllers
                 return View(viewModel);
             }
         }
+
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

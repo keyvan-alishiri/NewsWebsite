@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
 using NewsWebsite.ViewModels.Comments;
+using NewsWebsite.ViewModels.DynamicAccess;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت دیدگاه ها")]
     public class CommentsController : BaseController
     {
         private readonly IUnitOfWork _uw;
@@ -26,16 +30,18 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index(string newsId,bool? isConfirm)
         {
-            return View(nameof(Index),new CommentViewModel { NewsId=newsId,IsConfirm = isConfirm});
+            return View(nameof(Index),new CommentViewModel {NewsId=newsId,IsConfirm=isConfirm});
         }
 
 
         [HttpGet]
-        public IActionResult GetComments(string search, string order, int offset, int limit, string sort, string newsId, bool? isConfirm)
+        public IActionResult GetComments(string search, string order, int offset, int limit, string sort,string newsId,bool? isConfirm)
         {
-            List<CommentViewModel> comments;
+            List <CommentViewModel> comments;
             int total = _uw.BaseRepository<Comment>().CountEntities();
             if (!search.HasValue())
                 search = "";
@@ -49,7 +55,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
             if (sort == "نام")
             {
                 if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Name, item => "", search, newsId, isConfirm);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit,item=>item.Name , item=>"", search , newsId ,isConfirm);
                 else
                     comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Name, search, newsId, isConfirm);
             }
@@ -58,9 +64,9 @@ namespace NewsWebsite.Areas.Admin.Controllers
             else if (sort == "ایمیل")
             {
                 if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Email, item => "", search, newsId, isConfirm);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Email, item=>"", search, newsId, isConfirm);
                 else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Email, search, newsId, isConfirm);
+                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit,item=>"", item => item.Email, search, newsId, isConfirm);
             }
 
             else if (sort == "تاریخ ارسال")
@@ -72,7 +78,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
             }
 
             else
-                comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.PersianPostageDateTime, search, newsId, isConfirm);
+                comments = _uw.CommentRepository.GetPaginateComments(offset, limit,item=>"",item=>item.PersianPostageDateTime, search, newsId, isConfirm);
 
             if (search != "")
                 total = comments.Count();
@@ -80,11 +86,12 @@ namespace NewsWebsite.Areas.Admin.Controllers
             return Json(new { total = total, rows = comments });
         }
 
-        [HttpGet]
+        [HttpGet,DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string commentId)
         {
             if (!commentId.HasValue())
-                ModelState.AddModelError(string.Empty, CommentNotFound);
+                ModelState.AddModelError(string.Empty,CommentNotFound);
             else
             {
                 var comment = await _uw.BaseRepository<Comment>().FindByIdAsync(commentId);
@@ -101,12 +108,12 @@ namespace NewsWebsite.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(Comment model)
         {
             if (model.CommentId == null)
-                ModelState.AddModelError(string.Empty, CommentNotFound);
+                ModelState.AddModelError(string.Empty,CommentNotFound);
             else
             {
                 var comment = await _uw.BaseRepository<Comment>().FindByIdAsync(model.CommentId);
                 if (comment == null)
-                    ModelState.AddModelError(string.Empty, CommentNotFound);
+                    ModelState.AddModelError(string.Empty,CommentNotFound);
                 else
                 {
                     _uw.BaseRepository<Comment>().Delete(comment);
@@ -120,7 +127,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet,DisplayName("تایید و عدم تایید")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> ConfirmOrInconfirm(string commentId)
         {
             if (!commentId.HasValue())
@@ -164,7 +172,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpPost, ActionName("DeleteGroup")]
+        [HttpPost, ActionName("DeleteGroup"),DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)
@@ -187,7 +196,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult SendComment(string parentCommentId, string newsId)
         {
-            return PartialView("_SendComment", new CommentViewModel(parentCommentId, newsId));
+            return PartialView("_SendComment",new CommentViewModel(parentCommentId, newsId));
         }
 
         [HttpPost]
@@ -195,40 +204,10 @@ namespace NewsWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-               
                 viewModel.PostageDateTime = DateTime.Now;
-
-                //Comment comment = new Comment()
-                //{
-                //    CommentId = viewModel.CommentId,
-                //    Name = viewModel.Name,
-                //    Email = viewModel.Email,
-                //    Desription = viewModel.Desription,
-                //    NewsId = viewModel.NewsId,
-                //    IsConfirm = viewModel.IsConfirm ?? false,
-                //    PostageDateTime = viewModel.PostageDateTime,
-                //    ParentCommentId = viewModel.ParentCommentId,
-                //};
-
-                ////var temp = _mapper.Map<Comment>(viewModel);
-                //await _uw.BaseRepository<Comment>().CreateAsync(comment);
-                // try
-                // {
-                //     var temp = _mapper.Map<Comment>(viewModel);
-
-                // }
-                // catch (Exception ex)
-                // {
-
-                //     var message = ex.Message;
-                // }
                 await _uw.BaseRepository<Comment>().CreateAsync(_mapper.Map<Comment>(viewModel));
-
                 await _uw.Commit();
-
                 TempData["notification"] = "دیدگاه شما با موفقیت ارسال شد و بعد از تایید در سایت نمایش داده می شود.";
-
-
             }
             return PartialView("_SendComment", viewModel);
         }

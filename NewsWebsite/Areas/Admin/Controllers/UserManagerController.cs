@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +12,12 @@ using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities.identity;
 using NewsWebsite.Services.Contracts;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.UserManager;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت کاربران")]
     public class UserManagerController : BaseController
     {
         private readonly IApplicationUserManager _userManager;
@@ -37,13 +41,14 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _env.CheckArgumentIsNull(nameof(_env));
         }
 
-        [HttpGet]
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
         }
 
-
+        [HttpGet]
         public JsonResult GetUsers(string search, string order, int offset, int limit, string sort)
         {
             List<UsersViewModel> allUsers;
@@ -106,7 +111,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet,DisplayName("درج و ویرایش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderUser(int? userId)
         {
             var user = new UsersViewModel();
@@ -184,7 +190,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet,DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string userId)
         {
             if (!userId.HasValue())
@@ -225,7 +232,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
 
 
-        [HttpPost, ActionName("DeleteGroup")]
+        [HttpPost, ActionName("DeleteGroup"),DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)
@@ -244,7 +252,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             return PartialView("_DeleteGroup");
         }
 
-
+        [HttpGet,DisplayName("مدیریت کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Details(int userId)
         {
             if (userId==0)

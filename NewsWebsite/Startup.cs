@@ -40,6 +40,11 @@ namespace NewsWebsite
             
             services.AddScheduler();
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
+            services.ConfigureApplicationCookie(options =>
+            {
+                //options.LoginPath = "/Account/SignIn";
+                options.AccessDeniedPath = "/Admin/Manage/AccessDenied";
+            });
             services.AddMvc();
         }
 

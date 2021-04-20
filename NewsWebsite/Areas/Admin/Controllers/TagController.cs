@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.Tag;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت برچسب ها")]
     public class TagController : BaseController
     {
         private readonly IUnitOfWork _uw;
@@ -27,6 +31,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
@@ -63,7 +69,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet,DisplayName("درج و ویرایش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderTag(string tagId)
         {
             var tagViewModel = new TagViewModel();
@@ -114,7 +121,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet,DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string tagId)
         {
             if (!tagId.HasValue())
@@ -153,7 +161,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpPost, ActionName("DeleteGroup")]
+        [HttpPost, ActionName("DeleteGroup"),DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)
@@ -163,9 +172,9 @@ namespace NewsWebsite.Areas.Admin.Controllers
                 foreach (var item in btSelectItem)
                 {
                     var tag = await _uw.BaseRepository<Tag>().FindByIdAsync(item);
-                    _uw.BaseRepository<Tag>().Delete(tag);
-                   
+                    _uw.BaseRepository<Tag>().Delete(tag);                  
                 }
+
                 await _uw.Commit();
                 TempData["notification"] = "حذف گروهی اطلاعات با موفقیت انجام شد.";
             }

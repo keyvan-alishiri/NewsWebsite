@@ -47,6 +47,7 @@ namespace NewsWebsite.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignIn(SignInViewModel viewModel)
         {
             if (ModelState.IsValid)

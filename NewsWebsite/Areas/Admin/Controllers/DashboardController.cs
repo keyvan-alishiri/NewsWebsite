@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.ViewModels.Dashboard;
+using NewsWebsite.ViewModels.DynamicAccess;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("داشبورد")]
     public class DashboardController : BaseController
     {
         private readonly IUnitOfWork _uw;
@@ -17,6 +21,9 @@ namespace NewsWebsite.Areas.Admin.Controllers
         {
             _uw = uw;
         }
+
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             ViewBag.News = _uw.NewsRepository.CountNews();

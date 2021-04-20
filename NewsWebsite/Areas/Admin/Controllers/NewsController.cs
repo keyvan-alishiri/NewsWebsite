@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,10 +12,12 @@ using NewsWebsite.Common;
 using NewsWebsite.Common.Attributes;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.News;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت اخبار")]
     public class NewsController : BaseController
     {
         private readonly IUnitOfWork _uw;
@@ -33,7 +37,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
-        [HttpGet]
+        [HttpGet, DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
@@ -108,7 +113,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             return Json(new { total = total, rows = news });
         }
 
-        [HttpGet]
+        [HttpGet, DisplayName("درج و ویرایش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> CreateOrUpdate(string newsId)
         {
             NewsViewModel newsViewModel = new NewsViewModel();
@@ -267,7 +273,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet, AjaxOnly]
+        [HttpGet, AjaxOnly, DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string newsId)
         {
             if (!newsId.HasValue())
@@ -307,7 +314,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpPost, ActionName("DeleteGroup"), AjaxOnly]
+        [HttpPost, ActionName("DeleteGroup"), AjaxOnly, DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)

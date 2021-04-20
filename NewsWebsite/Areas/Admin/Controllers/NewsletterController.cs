@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.Newsletter;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت خبرنامه ")]
     public class NewsletterController : BaseController
     {
         private readonly IUnitOfWork _uw;
@@ -25,6 +29,9 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _mapper = mapper;
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
+
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
@@ -67,7 +74,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             return Json(new { total = total, rows = newsletter });
         }
 
-        [HttpGet]
+        [HttpGet,DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string email)
         {
             if (!email.HasValue())
@@ -106,7 +114,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpPost, ActionName("DeleteGroup")]
+        [HttpPost, ActionName("DeleteGroup"),DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)
@@ -151,29 +160,6 @@ namespace NewsWebsite.Areas.Admin.Controllers
             }
 
             return PartialView("_RegisterInNewsLetter");
-        }
-
-
-        public async Task<IActionResult> ActiveOrInactive(string email)
-        {
-            if (!email.HasValue())
-                ModelState.AddModelError(string.Empty, EmailNotFound);
-            else
-            {
-                var newsletter = await _uw.BaseRepository<Newsletter>().FindByIdAsync(email);
-                if (newsletter == null)
-                    ModelState.AddModelError(string.Empty, EmailNotFound);
-                else
-                {
-                    if (newsletter.IsActive == true)
-                        newsletter.IsActive = false;
-                    else
-                        newsletter.IsActive = true;
-                    await _uw.Commit();
-                }
-            }
-
-            return PartialView();
         }
     }
 }

@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
 using NewsWebsite.Common.Attributes;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.Video;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت ویدیوها")]
     public class VideoController : BaseController
     {
         private readonly IUnitOfWork _uw;
@@ -32,6 +36,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _env.CheckArgumentIsNull(nameof(_env));
         }
 
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
@@ -39,50 +45,44 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetVideos(string search, string order, int offset, int limit, string sort)
+        public IActionResult GetVideos(string search, string order, int offset, int limit, string sort)
         {
             List<VideoViewModel> videos;
+            int total = _uw.BaseRepository<Video>().CountEntities();
+            if (!search.HasValue())
+                search = "";
 
-          return  await Task.Run(() => {
+            if (limit == 0)
+                limit = total;
 
-                int total = _uw.BaseRepository<Video>().CountEntities();
+            if (sort == "عنوان ویدیو")
+            {
+                if (order == "asc")
+                    videos = _uw.VideoRepository.GetPaginateVideos(offset, limit,item=>item.Title,item=>"", search);
+                else
+                    videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.Title, search);
+            }
 
-                if (!search.HasValue())
-                    search = "";
-
-                if (limit == 0)
-                    limit = total;
-
-                if (sort == "عنوان ویدیو")
-                {
-                    if (order == "asc")
-                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => item.Title, item => "", search);
-                    else
-                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.Title, search);
-                }
-
-                else if (sort == "تاریخ انتشار")
-                {
-                    if (order == "asc")
-                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => item.PersianPublishDateTime, item => "", search);
-                    else
-                        videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.PersianPublishDateTime, search);
-                }
-
+            else if (sort == "تاریخ انتشار")
+            {
+                if (order == "asc")
+                    videos = _uw.VideoRepository.GetPaginateVideos(offset, limit,item=>item.PersianPublishDateTime, item => "", search);
                 else
                     videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.PersianPublishDateTime, search);
+            }
 
-                if (search != "")
-                    total = videos.Count();
+            else
+                videos = _uw.VideoRepository.GetPaginateVideos(offset, limit, item => "", item => item.PersianPublishDateTime, search);
 
-                return Json(new { total = total, rows = videos });
-            });
-            
+            if (search != "")
+                total = videos.Count();
 
+            return Json(new { total = total, rows = videos });
         }
 
 
-        [HttpGet,AjaxOnly()]
+        [HttpGet,AjaxOnly(),DisplayName("درج و ویرایش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderVideo(string videoId)
         {
             var videoViewModel = new VideoViewModel();
@@ -106,21 +106,19 @@ namespace NewsWebsite.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 if(viewModel.PosterFile!=null)
+                {
                     viewModel.Poster = _uw.VideoRepository.CheckVideoFileName(viewModel.PosterFile.FileName);
+                    await viewModel.PosterFile.UploadFileAsync($"{_env.WebRootPath}/posters/{viewModel.Poster}");
+                }
+              
                 if (viewModel.VideoId.HasValue())
                 {
                     var video = await _uw.BaseRepository<Video>().FindByIdAsync(viewModel.VideoId);
-
                    
-                    
                     if (video != null)
                     {
-                        if (viewModel.PosterFile != null)
-                        {
-                            await viewModel.PosterFile.UploadFileAsync($"{_env.WebRootPath}/posters/{viewModel.Poster}");
+                        if(viewModel.PosterFile != null)
                             FileExtensions.DeleteFile($"{_env.WebRootPath}/posters/{video.Poster}");
-                        }
-
                         else
                             viewModel.Poster = video.Poster;
 
@@ -135,7 +133,6 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
                 else
                 {
-                    await viewModel.PosterFile.UploadFileAsync($"{_env.WebRootPath}/posters/{viewModel.Poster}");
                     viewModel.VideoId = StringExtensions.GenerateId(10);
                     await _uw.BaseRepository<Video>().CreateAsync(_mapper.Map<Video>(viewModel));
                     await _uw.Commit();
@@ -147,7 +144,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet, AjaxOnly()]
+        [HttpGet, AjaxOnly(),DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string videoId)
         {
             if (!videoId.HasValue())
@@ -187,7 +185,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpPost, ActionName("DeleteGroup"), AjaxOnly()]
+        [HttpPost, ActionName("DeleteGroup"), AjaxOnly(),DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)

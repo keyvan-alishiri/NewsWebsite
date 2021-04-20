@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
 using NewsWebsite.Common.Attributes;
 using NewsWebsite.Entities.identity;
 using NewsWebsite.Services.Contracts;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.RoleManager;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
+    [DisplayName("مدیریت نقش ها")]
     public class RoleManagerController : BaseController
     {
         private readonly IApplicationRoleManager _roleManager;
@@ -27,7 +31,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
-        [HttpGet]
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
@@ -64,7 +69,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet,AjaxOnly]
+        [HttpGet,AjaxOnly,DisplayName("درج و ویرایش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderRole(int? roleId)
         {
             var roleViewModel = new RolesViewModel();
@@ -105,7 +111,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet, AjaxOnly]
+        [HttpGet, AjaxOnly,DisplayName("حذف")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string roleId)
         {
             if (!roleId.HasValue())
@@ -143,7 +150,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpPost, ActionName("DeleteGroup"), AjaxOnly]
+        [HttpPost, ActionName("DeleteGroup"), AjaxOnly,DisplayName("حذف گروهی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
             if (btSelectItem.Count() == 0)

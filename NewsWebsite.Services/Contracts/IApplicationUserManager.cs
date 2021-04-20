@@ -124,6 +124,8 @@ namespace NewsWebsite.Services.Contracts
         // Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, bool? firstnameSortAsc, bool? lastnameSortAsc, bool? emailSortAsc, bool? usernameSortAsc, bool? registerDateTimeSortAsc, string searchText);
         List<UsersViewModel> GetPaginateUsers(int offset, int limit, Func<UsersViewModel, Object> orderByAscFunc, Func<UsersViewModel, Object> orderByDescFunc, string searchText);
         string CheckAvatarFileName(string fileName);
+        Task<User> FindClaimsInUser(int userId);
+        Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
         #endregion
     }
 }
