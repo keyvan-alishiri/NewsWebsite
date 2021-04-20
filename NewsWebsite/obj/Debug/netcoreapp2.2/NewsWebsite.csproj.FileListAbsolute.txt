@@ -175,3 +175,4 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\NewsWebsite.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\DynamicAccess\Index.g.cshtml.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Manage\AccessDenied.g.cshtml.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp2.2\Razor\Views\Home\Search.g.cshtml.cs

@@ -184,5 +184,9 @@ namespace NewsWebsite.Controllers
             else
                 return PartialView("_SignIn");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search(string searchText) => View(await _uw.NewsRepository.SearchInNews(searchText));
     }
 }
