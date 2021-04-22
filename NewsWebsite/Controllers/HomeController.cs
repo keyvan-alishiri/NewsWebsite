@@ -82,10 +82,28 @@ namespace NewsWebsite.Controllers
             return PartialView("_NewsPaginate", new NewsPaginateViewModel(countNewsPublished, news));
         }
 
+        //[Route("Category/{categoryId}/{url}")]
+        //public async Task<IActionResult> NewsInCategory(string categoryId, string url)
+        //{
+        //    if (string.IsNullOrEmpty(categoryId))
+        //        return NotFound();
+        //    else
+        //    {
+        //        var category = await _uw.BaseRepository<Category>().FindByIdAsync(categoryId);
+        //        if (category == null)
+        //            return NotFound();
+        //        else
+        //        {
+        //            ViewBag.Category = category.CategoryName;
+        //            return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, ""));
+        //        }
+        //    }
+        //}
+
         [Route("Category/{categoryId}/{url}")]
         public async Task<IActionResult> NewsInCategory(string categoryId, string url)
         {
-            if (string.IsNullOrEmpty(categoryId))
+            if (!categoryId.HasValue())
                 return NotFound();
             else
             {
@@ -93,11 +111,15 @@ namespace NewsWebsite.Controllers
                 if (category == null)
                     return NotFound();
                 else
-                {
-                    ViewBag.Category = category.CategoryName;
-                    return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, ""));
-                }
+                    return View("NewsInCategoryAndTag", new CategoryOrTagInfoViewModel { Id = category.CategoryId, Title = category.CategoryName, IsCategory = true });
             }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetNewsInCategoryAndTag(int pageIndex, int pageSize, string categoryId)
+        {
+            System.Threading.Thread.Sleep(4000);
+            return Json(await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, "", pageIndex, pageSize));
         }
 
         [Route("Tag/{tagId}")]
@@ -113,7 +135,7 @@ namespace NewsWebsite.Controllers
                 else
                 {
                     ViewBag.Tag = tag.TagName;
-                    return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag("", tagId));
+                    return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag("", tagId,0,100));
                 }
             }
         }

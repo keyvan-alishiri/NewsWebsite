@@ -1,4 +1,5 @@
 ﻿using NewsWebsite.Entities;
+using NewsWebsite.ViewModels.Home;
 using NewsWebsite.ViewModels.News;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace NewsWebsite.Data.Contracts
         Task BindSubComments(Comment comment);
         Task<List<NewsViewModel>> GetNextAndPreviousNews(DateTime? PublishDateTime);
         Task<List<NewsViewModel>> GetRelatedNews(int number, List<string> tagIdList, string newsId);
-        Task<List<NewsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId);
+
+        //Todo :Use Method Before Add LoadDataByScroll 
+        //Task<List<NewsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId);
+        Task<List<NewsInCategoriesAndTagsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId, int pageIndex, int pageSize);
 
         Task<List<NewsViewModel>> GetUserBookmarksAsync(int userId);
         NewsViewModel NumberOfLikeAndDislike(string newsId);
