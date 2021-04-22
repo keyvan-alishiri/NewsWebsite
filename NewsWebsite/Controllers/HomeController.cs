@@ -115,12 +115,18 @@ namespace NewsWebsite.Controllers
             }
         }
 
+
         [HttpGet]
-        public async Task<ActionResult> GetNewsInCategoryAndTag(int pageIndex, int pageSize, string categoryId)
+        public async Task<ActionResult> GetNewsInCategoryAndTag(int pageIndex, int pageSize, string categoryId, string tagId)
         {
-            System.Threading.Thread.Sleep(4000);
-            return Json(await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, "", pageIndex, pageSize));
+            if (!categoryId.HasValue())
+                categoryId = "";
+            if (!tagId.HasValue())
+                tagId = "";
+            //System.Threading.Thread.Sleep(4000);
+            return Json(await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, tagId, pageIndex, pageSize));
         }
+
 
         [Route("Tag/{tagId}")]
         public async Task<IActionResult> NewsInTag(string tagId)

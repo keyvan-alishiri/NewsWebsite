@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "eDmCVS75Lg+I+2Ifze4LmMO4EqNTHYddLn/P6qe+S5hKB7aS1WBmETdlc1NMr4yliR4qmLAy/Vc7UU3tzwO+Wg==",
+  "dgSpecHash": "JhlAJvb1NYSkdiVUVw3PvqOXH6Gi4sovu1PVbpm4yWPUN8mVaxxOS9ZZ8pJiElplwBRVX8vfxlMiPcaNREc78A==",
   "success": true,
   "projectFilePath": "C:\\Users\\keyvan\\Desktop\\جزوه .net core\\NewsWebsite\\NewsWebsite.Services\\NewsWebsite.Services.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
-    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\keyvan\\.nuget\\packages\\coravel\\4.0.2\\coravel.4.0.2.nupkg.sha512",
     "C:\\Users\\keyvan\\.nuget\\packages\\md.persiandatetime.core\\2.3.5\\md.persiandatetime.core.2.3.5.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

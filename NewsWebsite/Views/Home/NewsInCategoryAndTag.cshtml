@@ -31,7 +31,7 @@
                 <div class="archive-catagory-view mb-30 d-flex align-items-center justify-content-between">
                     <!-- Catagory -->
                     <div class="archive-catagory">
-                        <h4> @Model.Title </h4>
+                        <h4> @(Model.IsCategory?"دسته ی":"برچسب") @Model.Title </h4>
                     </div>
                     <!-- View Options -->
                     <div class="view-options">
@@ -79,7 +79,7 @@
         $.ajax({
             type: 'GET',
             url: '/Home/GetNewsInCategoryAndTag',
-            data:{"pageindex":pageIndex,"pagesize":pageSize,"categoryId":'@Model.Id'},
+            data:{"pageindex":pageIndex,"pagesize":pageSize,"categoryId":'@(Model.IsCategory?Model.Id:"")',"tagId":'@(Model.IsCategory==false?Model.Id:"")'},
             dataType: 'json',
             success: function (data) {
                 if (data != null) {
