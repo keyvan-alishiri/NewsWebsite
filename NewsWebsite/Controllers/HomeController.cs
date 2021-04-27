@@ -25,7 +25,7 @@ namespace NewsWebsite.Controllers
         {
             var isAjax = Request.Headers["X-Requested-With"] == "XMLHttpRequest";
             if (isAjax && TypeOfNews == "MostViewedNews")
-                return PartialView("_MostViewedNews", await _uw.NewsRepository.MostViewedNews(0, 3, duration));
+                return PartialView("_MostViewedNews", await _uw.NewsRepository.MostViewedNewsAsync(0, 3, duration));
 
 
             else if (isAjax && TypeOfNews == "MostTalkNews")
@@ -34,13 +34,13 @@ namespace NewsWebsite.Controllers
             else
             {
                 int countNewsPublished = _uw.NewsRepository.CountNewsPublished();
-                var news = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true , null);
-                var mostViewedNews = await _uw.NewsRepository.MostViewedNews(0, 3, "day");
+                var news = await _uw.NewsRepository.GetPaginateNewsAsync(0, 10, "PublishDateTime desc","", true , null);
+                var mostViewedNews = await _uw.NewsRepository.MostViewedNewsAsync(0, 3, "day");
                 var mostTalkNews = await _uw.NewsRepository.MostTalkNews(0, 5, "day");
                 var mostPopulerNews = await _uw.NewsRepository.MostPopularNews(0, 5);
-                var internalNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, true);
-                var foreignNews = _uw.NewsRepository.GetPaginateNews(0, 10, item => "", item => item.First().PersianPublishDate, "", true, false);
-                var videos =  _uw.VideoRepository.GetPaginateVideos(0, 10, item=>"", item=>item.PersianPublishDateTime, "");
+                var internalNews =await _uw.NewsRepository.GetPaginateNewsAsync(0, 10, "PublishDateTime desc", "", true, true);
+                var foreignNews = await _uw.NewsRepository.GetPaginateNewsAsync(0, 10, "PublishDateTime desc", "", true, false);
+                var videos = await _uw.VideoRepository.GetPaginateVideosAsync(0, 10, "PublishDateTime desc", "");
                 var homePageViewModel = new HomePageViewModel(news, mostViewedNews,mostTalkNews,mostPopulerNews,internalNews,foreignNews, videos, countNewsPublished);
                 return View(homePageViewModel);
             }
@@ -50,8 +50,8 @@ namespace NewsWebsite.Controllers
         [Route("News/{newsId}/{url}")]
         public async Task<IActionResult> NewsDetails(string newsId, string url)
         {
-            int userId = User.Identity.GetUserId<int>();
             string ipAddress = _accessor.HttpContext?.Connection?.RemoteIpAddress.ToString();
+            int userId = User.Identity.GetUserId<int>();
             Visit visit = _uw.BaseRepository<Visit>().FindByConditionAsync(n => n.NewsId == newsId && n.IpAddress == ipAddress).Result.FirstOrDefault();
             if (visit != null && visit.LastVisitDateTime.Date != DateTime.Now.Date)
             {
@@ -66,39 +66,23 @@ namespace NewsWebsite.Controllers
                 await _uw.Commit();
             }
 
-            var news = await _uw.NewsRepository.GetNewsById(newsId,userId);
+            var news = await _uw.NewsRepository.GetNewsByIdAsync(newsId,userId);
             var newsComments = await _uw.NewsRepository.GetNewsCommentsAsync(newsId);
             var nextAndPreviousNews = await _uw.NewsRepository.GetNextAndPreviousNews(news.PublishDateTime);
-            var newsRelated = await _uw.NewsRepository.GetRelatedNews(2, news.TagIdsList, newsId);
+            var newsRelated = await _uw.NewsRepository.GetRelatedNewsAsync(2, news.TagIdsList, newsId);
             var newsDetailsViewModel = new NewsDetailsViewModel(news, newsComments, newsRelated, nextAndPreviousNews);
             return View(newsDetailsViewModel);
         }
 
+
         [HttpGet]
-        public IActionResult GetNewsPaginate(int limit, int offset)
+        public async Task<IActionResult> GetNewsPaginate(int limit, int offset)
         {
             int countNewsPublished = _uw.NewsRepository.CountNewsPublished();
-            var news = _uw.NewsRepository.GetPaginateNews(offset, limit, item => "", item => item.First().PersianPublishDate, "", true, null);
+            var news = await _uw.NewsRepository.GetPaginateNewsAsync(offset, limit, "PublishDateTime desc", "", true,null);
             return PartialView("_NewsPaginate", new NewsPaginateViewModel(countNewsPublished, news));
         }
 
-        //[Route("Category/{categoryId}/{url}")]
-        //public async Task<IActionResult> NewsInCategory(string categoryId, string url)
-        //{
-        //    if (string.IsNullOrEmpty(categoryId))
-        //        return NotFound();
-        //    else
-        //    {
-        //        var category = await _uw.BaseRepository<Category>().FindByIdAsync(categoryId);
-        //        if (category == null)
-        //            return NotFound();
-        //        else
-        //        {
-        //            ViewBag.Category = category.CategoryName;
-        //            return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, ""));
-        //        }
-        //    }
-        //}
 
         [Route("Category/{categoryId}/{url}")]
         public async Task<IActionResult> NewsInCategory(string categoryId, string url)
@@ -111,27 +95,26 @@ namespace NewsWebsite.Controllers
                 if (category == null)
                     return NotFound();
                 else
-                    return View("NewsInCategoryAndTag", new CategoryOrTagInfoViewModel { Id = category.CategoryId, Title = category.CategoryName, IsCategory = true });
+                    return View("NewsInCategoryAndTag",new CategoryOrTagInfoViewModel {Id=category.CategoryId,Title=category.CategoryName,IsCategory=true});
             }
         }
-
 
         [HttpGet]
         public async Task<ActionResult> GetNewsInCategoryAndTag(int pageIndex, int pageSize, string categoryId, string tagId)
         {
-            if (!categoryId.HasValue())
-                categoryId = "";
-            if (!tagId.HasValue())
-                tagId = "";
-            //System.Threading.Thread.Sleep(4000);
-            return Json(await _uw.NewsRepository.GetNewsInCategoryAndTag(categoryId, tagId, pageIndex, pageSize));
+            if (categoryId.HasValue())
+                return Json(await _uw.NewsRepository.GetNewsInCategoryAsync(categoryId, pageIndex, pageSize));
+
+            else
+                return Json(await _uw.NewsRepository.GetNewsInTagAsync(tagId, pageIndex, pageSize));
         }
+
 
 
         [Route("Tag/{tagId}")]
         public async Task<IActionResult> NewsInTag(string tagId)
         {
-            if (string.IsNullOrEmpty(tagId))
+            if (!tagId.HasValue())
                 return NotFound();
             else
             {
@@ -139,10 +122,7 @@ namespace NewsWebsite.Controllers
                 if (tag == null)
                     return NotFound();
                 else
-                {
-                    ViewBag.Tag = tag.TagName;
-                    return View("NewsInCategoryAndTag", await _uw.NewsRepository.GetNewsInCategoryAndTag("", tagId,0,100));
-                }
+                    return View("NewsInCategoryAndTag", new CategoryOrTagInfoViewModel { Id = tag.TagId, Title = tag.TagName, IsCategory = false });
             }
         }
 
@@ -155,7 +135,7 @@ namespace NewsWebsite.Controllers
         [Route("Video/{videoId}")]
         public async Task<IActionResult> VideoDetails(string videoId)
         {
-            if (string.IsNullOrEmpty(videoId))
+            if (!videoId.HasValue())
                 return NotFound();
             else
             {
@@ -166,7 +146,6 @@ namespace NewsWebsite.Controllers
                     return View(video);
             }
         }
-
 
         [HttpGet]
         public async Task<JsonResult> LikeOrDisLike(string newsId, bool isLike)
@@ -213,8 +192,28 @@ namespace NewsWebsite.Controllers
                 return PartialView("_SignIn");
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Search(string searchText) => View(await _uw.NewsRepository.SearchInNews(searchText));
-    }
+
+
+      [HttpGet]
+      public IActionResult Error()
+      {
+         return View();
+      }
+
+
+      [HttpGet]
+      public IActionResult Error404()
+      {
+         return View();
+      }
+
+      public IActionResult test()
+      {
+         return View();
+      }
+   }
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Dynamic.Core;
 
 namespace NewsWebsite.Data.Repositories
 {
@@ -20,14 +21,12 @@ namespace NewsWebsite.Data.Repositories
         }
 
 
-        public async Task<List<TagViewModel>> GetPaginateTagsAsync(int offset, int limit, bool? tagNameSortAsc, string searchText)
+        public async Task<List<TagViewModel>> GetPaginateTagsAsync(int offset, int limit, string Orderby, string searchText)
         {
             List<TagViewModel> tags = await _context.Tags.Where(c => c.TagName.Contains(searchText))
-                                   .Select(t => new TagViewModel {TagId=t.TagId,TagName=t.TagName}).Skip(offset).Take(limit).AsNoTracking().ToListAsync();
-
-            if (tagNameSortAsc != null)
-                tags = tags.OrderBy(c => (tagNameSortAsc == true && tagNameSortAsc != null) ? c.TagName : "").OrderByDescending(c => (tagNameSortAsc == false && tagNameSortAsc != null) ? c.TagName : "").ToList();
-
+                                   .OrderBy(Orderby)
+                                   .Skip(offset).Take(limit)
+                                   .Select(t => new TagViewModel {TagId=t.TagId,TagName=t.TagName}).AsNoTracking().ToListAsync();
             foreach (var item in tags)
                 item.Row = ++offset;
 

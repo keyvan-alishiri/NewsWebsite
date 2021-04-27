@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
 using NewsWebsite.ViewModels.Category;
-using NewsWebsite.Common;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Threading.Tasks;
 
 namespace NewsWebsite.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+   public class CategoryRepository : ICategoryRepository
     {
         private readonly NewsDBContext _context;
         private readonly IMapper _mapper;
@@ -24,32 +21,26 @@ namespace NewsWebsite.Data.Repositories
             _mapper = mapper;
             _context.CheckArgumentIsNull(nameof(_context));
         }
-        public async Task<List<CategoryViewModel>> GetPaginateCategoriesAsync(int offset, int limit, bool? categoryNameSortAsc, bool? parentCategoryNameSortAsc, string searchText)
-        {
-            List<CategoryViewModel> categories = await _context.Categories.Include(c => c.Parent)
-                                    .Where(c => c.CategoryName.Contains(searchText) || c.Parent.CategoryName.Contains(searchText))
-                                    .ProjectTo<CategoryViewModel>(_mapper.ConfigurationProvider)
-                                    .Skip(offset).Take(limit).AsNoTracking().ToListAsync();
+      public async Task<List<CategoryViewModel>> GetPaginateCategoriesAsync(int offset, int limit, string orderBy, string searchText)
+      {
+         List<CategoryViewModel> categories = await _context.Categories.GroupJoin(_context.Categories,
+             (cl => cl.ParentCategoryId),
+             (or => or.CategoryId),
+             ((cl, or) => new { CategoryInfo = cl, ParentInfo = or }))
+             .SelectMany(p => p.ParentInfo.DefaultIfEmpty(), (x, y) => new { x.CategoryInfo, ParentInfo = y })
+             .OrderBy(orderBy)
+             .Skip(offset).Take(limit)
+             .Select(c => new CategoryViewModel { CategoryId = c.CategoryInfo.CategoryId, CategoryName = c.CategoryInfo.CategoryName, ParentCategoryId = c.ParentInfo.CategoryId, ParentCategoryName = c.ParentInfo.CategoryName }).AsNoTracking().ToListAsync();
 
-            if (categoryNameSortAsc != null)
-                categories = categories.OrderBy(c => (categoryNameSortAsc == true && categoryNameSortAsc != null) ? c.CategoryName : "")
-                                     .OrderByDescending(c => (categoryNameSortAsc == false && categoryNameSortAsc != null) ? c.CategoryName : "").ToList();
+         foreach (var item in categories)
+            item.Row = ++offset;
 
-            else if (parentCategoryNameSortAsc != null)
-            {
-                categories = categories.OrderBy(c => (parentCategoryNameSortAsc == true && parentCategoryNameSortAsc != null) ? c.ParentCategoryName : "")
-                                   .OrderByDescending(c => (parentCategoryNameSortAsc == false && parentCategoryNameSortAsc != null) ? c.ParentCategoryName : "").ToList();
-
-            }
-
-            foreach (var item in categories)
-                item.Row = ++offset;
-
-            return categories;
-        }
+         return categories;
+      }
 
 
-        public async Task<List<TreeViewCategory>>GetAllCategoriesAsync()
+
+      public async Task<List<TreeViewCategory>>GetAllCategoriesAsync()
         {
             var Categories =await (from c in _context.Categories
                               where (c.ParentCategoryId == null)

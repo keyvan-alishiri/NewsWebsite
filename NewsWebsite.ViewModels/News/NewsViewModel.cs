@@ -1,28 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
-using NewsWebsite.Common.Attributes;
+﻿using NewsWebsite.Common.Attributes;
 using NewsWebsite.Entities;
 using NewsWebsite.Entities.identity;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace NewsWebsite.ViewModels.News
 {
     public class NewsViewModel
     {
-        [JsonProperty("Id")]
+        [JsonPropertyName("Id")]
         public string NewsId { get; set; }
 
-        [JsonProperty("ردیف")]
+        [JsonPropertyName("ردیف")]
         public int Row { get; set; }
 
-        [JsonProperty("عنوان خبر"), Display(Name = "عنوان خبر")]
+        [JsonPropertyName("عنوان خبر"), Display(Name = "عنوان خبر")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string Title { get; set; }
 
-        [JsonProperty("ShortTitle")]
+        [JsonPropertyName("ShortTitle")]
         public string ShortTitle { get; set; }
 
         [JsonIgnore]
@@ -35,7 +33,7 @@ namespace NewsWebsite.ViewModels.News
         [JsonIgnore]
         public DateTime? PublishDateTime { get; set; }
 
-        [Display(Name = "تاریخ انتشار"), JsonProperty("تاریخ انتشار")]
+        [Display(Name = "تاریخ انتشار"), JsonPropertyName("تاریخ انتشار")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string PersianPublishDate { get; set; }
 
@@ -46,7 +44,7 @@ namespace NewsWebsite.ViewModels.News
         [JsonIgnore]
         public int UserId { get; set; }
 
-        [JsonProperty("نویسنده")]
+        [JsonPropertyName("نویسنده")]
         public string AuthorName { get; set; }
 
         [JsonIgnore]
@@ -63,42 +61,42 @@ namespace NewsWebsite.ViewModels.News
         [Display(Name = "نوع خبر"),JsonIgnore()]
         public bool? IsInternal { get; set; }
 
-        [JsonProperty("تگ ها")]
+        [JsonPropertyName("تگ ها")]
         public string NameOfTags { get; set; }
 
 
-        [JsonProperty("نوع خبر")]
+        [JsonPropertyName("نوع خبر")]
         public string NewsType { get; set; }
 
-        [JsonProperty("بازدید")]
+        [JsonPropertyName("بازدید")]
         public int NumberOfVisit { get; set; }
 
-        [JsonProperty("NumberOfLike")]
+        [JsonPropertyName("NumberOfLike")]
         public int NumberOfLike { get; set; }
 
-        [JsonProperty("NumberOfDisLike")]
+        [JsonPropertyName("NumberOfDisLike")]
         public int NumberOfDisLike { get; set; }
 
-        [JsonProperty("NumberOfComments")]
+        [JsonPropertyName("NumberOfComments")]
         public int NumberOfComments { get; set; }
 
-        [JsonProperty("دسته")]
+        [JsonPropertyName("دسته")]
         public string NameOfCategories { get; set; }
 
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
-        [Display(Name = "آدرس خبر"), JsonProperty("آدرس")]
+        [Display(Name = "آدرس خبر"), JsonPropertyName("آدرس")]
         [UrlValidate("/", @"\", " ")]
         public string Url { get; set; }
 
-        [JsonProperty("Status")]
+        [JsonPropertyName("Status")]
         public string Status { get; set; }
 
 
-        [JsonProperty("متن خبر")]
+        [JsonPropertyName("متن خبر")]
         public string Description { get; set; }
 
         [JsonIgnore]
-        public bool IsBookmarked { get; set; }
+        public  bool IsBookmarked { get; set; }
 
 
         [JsonIgnore]
@@ -107,6 +105,9 @@ namespace NewsWebsite.ViewModels.News
 
         [JsonIgnore]
         public string IdOfTags { get; set; }
+
+        [JsonIgnore]
+        public string IdOfCategories { get; set; }
 
         [JsonIgnore]
         public List<string> TagIdsList { get; set; }

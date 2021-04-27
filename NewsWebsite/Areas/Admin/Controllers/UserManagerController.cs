@@ -23,10 +23,10 @@ namespace NewsWebsite.Areas.Admin.Controllers
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private readonly IUnitOfWork _uw;
         private const string UserNotFound = "کاربر یافت نشد.";
-        public UserManagerController(IApplicationUserManager userManager, IMapper mapper, IApplicationRoleManager roleManager, IHostingEnvironment env)
+        public UserManagerController(IApplicationUserManager userManager, IMapper mapper, IApplicationRoleManager roleManager, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
@@ -48,70 +48,68 @@ namespace NewsWebsite.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpGet]
-        public JsonResult GetUsers(string search, string order, int offset, int limit, string sort)
-        {
-            List<UsersViewModel> allUsers;
-            int total = _userManager.Users.Count();
+      [HttpGet]
+      public async Task<JsonResult> GetUsers(string search, string order, int offset, int limit, string sort)
+      {
+         List<UsersViewModel> allUsers;
+         int total = _userManager.Users.Count();
 
-            if (string.IsNullOrWhiteSpace(search))
-                search = "";
+         if (string.IsNullOrWhiteSpace(search))
+            search = "";
 
-            if (limit == 0)
-                limit = total;
+         if (limit == 0)
+            limit = total;
 
-            if (sort == "نام")
-            {
-                if (order == "asc")
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => item.FirstName, item => "", search);
-                else
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => "", item => item.FirstName, search);
-            }
-
-            else if (sort == "نام خانوادگی")
-            {
-                if (order == "asc")
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => item.LastName, item => "", search);
-                else
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => "", item => item.LastName, search);
-            }
-
-            else if (sort == "ایمیل")
-            {
-                if (order == "asc")
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => item.Email, item => "", search);
-                else
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => "", item => item.Email, search);
-            }
-
-            else if (sort == "نام کاربری")
-            {
-                if (order == "asc")
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => item.UserName, item => "", search);
-                else
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => "", item => item.UserName, search);
-            }
-
-            else if (sort == "تاریخ عضویت")
-            {
-                if (order == "asc")
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => item.PersianRegisterDateTime, item => "", search);
-                else
-                    allUsers = _userManager.GetPaginateUsers(offset, limit, item => "", item => item.PersianRegisterDateTime, search);
-            }
-
+         if (sort == "نام")
+         {
+            if (order == "asc")
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "FirstName", search);
             else
-                allUsers = _userManager.GetPaginateUsers(offset, limit, item => item.PersianRegisterDateTime, item => "", search);
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "FirstName desc", search);
+         }
 
-            if (search != "")
-                total = allUsers.Count();
+         else if (sort == "نام خانوادگی")
+         {
+            if (order == "asc")
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "LastName", search);
+            else
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "LastName desc", search);
+         }
 
-            return Json(new { total = total, rows = allUsers });
-        }
+         else if (sort == "ایمیل")
+         {
+            if (order == "asc")
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "Email", search);
+            else
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "Email desc", search);
+         }
 
+         else if (sort == "نام کاربری")
+         {
+            if (order == "asc")
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "UserName", search);
+            else
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "UserName desc", search);
+         }
 
+         else if (sort == "تاریخ عضویت")
+         {
+            if (order == "asc")
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "RegisterDateTime", search);
+            else
+               allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "RegisterDateTime desc", search);
+         }
 
-        [HttpGet,DisplayName("درج و ویرایش")]
+         else
+            allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, "RegisterDateTime desc", search);
+
+         if (search != "")
+            total = allUsers.Count();
+
+         return Json(new { total = total, rows = allUsers });
+      }
+
+      [HttpGet,DisplayName("درج و ویرایش")]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderUser(int? userId)
         {

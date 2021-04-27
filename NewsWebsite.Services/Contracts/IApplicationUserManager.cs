@@ -39,7 +39,8 @@ namespace NewsWebsite.Services.Contracts
         Task<User> FindByIdAsync(string userId);
         Task<User> FindByNameAsync(string userName);
         Task<IdentityResult> CreateAsync(User user, string password);
-        string NormalizeKey(string key);
+        string NormalizeName(string name);
+        string NormalizeEmail(string email);
         Task UpdateNormalizedUserNameAsync(User user);
         Task<string> GetUserNameAsync(User user);
         Task<IdentityResult> SetUserNameAsync(User user, string userName);
@@ -122,8 +123,11 @@ namespace NewsWebsite.Services.Contracts
         Task<string> GetFullName(ClaimsPrincipal User);
         Task<User> GetUserAsync(ClaimsPrincipal User);
         // Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, bool? firstnameSortAsc, bool? lastnameSortAsc, bool? emailSortAsc, bool? usernameSortAsc, bool? registerDateTimeSortAsc, string searchText);
-        List<UsersViewModel> GetPaginateUsers(int offset, int limit, Func<UsersViewModel, Object> orderByAscFunc, Func<UsersViewModel, Object> orderByDescFunc, string searchText);
-        string CheckAvatarFileName(string fileName);
+       
+      //Before Migration To NetCore 3 and Use Package System.linq.Dynamic.Core
+      //List<UsersViewModel> GetPaginateUsers(int offset, int limit, Func<UsersViewModel, Object> orderByAscFunc, Func<UsersViewModel, Object> orderByDescFunc, string searchText);
+       Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, string orderBy, string searchText);
+      string CheckAvatarFileName(string fileName);
         Task<User> FindClaimsInUser(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
         #endregion

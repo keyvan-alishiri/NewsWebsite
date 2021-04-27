@@ -38,55 +38,55 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult GetComments(string search, string order, int offset, int limit, string sort,string newsId,bool? isConfirm)
-        {
-            List <CommentViewModel> comments;
-            int total = _uw.BaseRepository<Comment>().CountEntities();
-            if (!search.HasValue())
-                search = "";
+      [HttpGet]
+      public async Task<IActionResult> GetComments(string search, string order, int offset, int limit, string sort, string newsId, bool? isConfirm)
+      {
+         List<CommentViewModel> comments;
+         int total = _uw.BaseRepository<Comment>().CountEntities();
+         if (!search.HasValue())
+            search = "";
 
-            if (limit == 0)
-                limit = total;
+         if (limit == 0)
+            limit = total;
 
-            if (!newsId.HasValue())
-                newsId = "";
+         if (!newsId.HasValue())
+            newsId = "";
 
-            if (sort == "نام")
-            {
-                if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit,item=>item.Name , item=>"", search , newsId ,isConfirm);
-                else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.Name, search, newsId, isConfirm);
-            }
-
-
-            else if (sort == "ایمیل")
-            {
-                if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.Email, item=>"", search, newsId, isConfirm);
-                else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit,item=>"", item => item.Email, search, newsId, isConfirm);
-            }
-
-            else if (sort == "تاریخ ارسال")
-            {
-                if (order == "asc")
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => item.PersianPostageDateTime, item => "", search, newsId, isConfirm);
-                else
-                    comments = _uw.CommentRepository.GetPaginateComments(offset, limit, item => "", item => item.PersianPostageDateTime, search, newsId, isConfirm);
-            }
-
+         if (sort == "نام")
+         {
+            if (order == "asc")
+               comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "Name", search, newsId, isConfirm);
             else
-                comments = _uw.CommentRepository.GetPaginateComments(offset, limit,item=>"",item=>item.PersianPostageDateTime, search, newsId, isConfirm);
+               comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "Name desc", search, newsId, isConfirm);
+         }
 
-            if (search != "")
-                total = comments.Count();
 
-            return Json(new { total = total, rows = comments });
-        }
+         else if (sort == "ایمیل")
+         {
+            if (order == "asc")
+               comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "Email", search, newsId, isConfirm);
+            else
+               comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "Email desc", search, newsId, isConfirm);
+         }
 
-        [HttpGet,DisplayName("حذف")]
+         else if (sort == "تاریخ ارسال")
+         {
+            if (order == "asc")
+               comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "PostageDateTime", search, newsId, isConfirm);
+            else
+               comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "PostageDateTime desc", search, newsId, isConfirm);
+         }
+
+         else
+            comments = await _uw.CommentRepository.GetPaginateCommentsAsync(offset, limit, "PostageDateTime desc", search, newsId, isConfirm);
+
+         if (search != "")
+            total = comments.Count();
+
+         return Json(new { total = total, rows = comments });
+      }
+
+      [HttpGet,DisplayName("حذف")]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string commentId)
         {
@@ -204,7 +204,8 @@ namespace NewsWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                viewModel.PostageDateTime = DateTime.Now;
+                viewModel.PostageDateTime = DateTimeExtensions.DateTimeWithOutMilliSecends(DateTime.Now);
+                viewModel.CommentId = StringExtensions.GenerateId(10);
                 await _uw.BaseRepository<Comment>().CreateAsync(_mapper.Map<Comment>(viewModel));
                 await _uw.Commit();
                 TempData["notification"] = "دیدگاه شما با موفقیت ارسال شد و بعد از تایید در سایت نمایش داده می شود.";

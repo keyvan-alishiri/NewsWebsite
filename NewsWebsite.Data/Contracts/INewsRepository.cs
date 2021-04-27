@@ -14,26 +14,23 @@ namespace NewsWebsite.Data.Contracts
     {
         string CheckNewsFileName(string fileName);
         int CountNewsPublished();
-        List<NewsViewModel> GetPaginateNews(int offset, int limit, Func<IGrouping<string, NewsViewModel>, Object> orderByAscFunc, Func<IGrouping<string, NewsViewModel>, Object> orderByDescFunc, string searchText, bool? isPublish, bool? isInternal);
-        Task<List<NewsViewModel>> MostViewedNews(int offset, int limit, string duration);
+        Task<List<NewsViewModel>> GetPaginateNewsAsync(int offset, int limit, string orderBy, string searchText, bool? isPublish, bool? isInternal);
+        Task<List<NewsViewModel>> MostViewedNewsAsync(int offset, int limit, string duration);
         Task<List<NewsViewModel>> MostTalkNews(int offset, int limit, string duration);
         Task<List<NewsViewModel>> MostPopularNews(int offset, int limit);
-        Task<NewsViewModel> GetNewsById(string newsId,int userId);
+        Task<NewsViewModel> GetNewsByIdAsync(string newsId,int userId);
         Task<List<Comment>> GetNewsCommentsAsync(string newsId);
         Task BindSubComments(Comment comment);
         Task<List<NewsViewModel>> GetNextAndPreviousNews(DateTime? PublishDateTime);
-        Task<List<NewsViewModel>> GetRelatedNews(int number, List<string> tagIdList, string newsId);
-
-        //Todo :Use Method Before Add LoadDataByScroll 
-        //Task<List<NewsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId);
-        Task<List<NewsInCategoriesAndTagsViewModel>> GetNewsInCategoryAndTag(string categoryId, string TagId, int pageIndex, int pageSize);
-
+        Task<List<NewsViewModel>> GetRelatedNewsAsync(int number, List<string> tagIdList, string newsId);
+        Task<List<NewsInCategoriesAndTagsViewModel>> GetNewsInCategoryAsync(string categoryId, int pageIndex, int pageSize);
+        Task<List<NewsInCategoriesAndTagsViewModel>> GetNewsInTagAsync(string TagId, int pageIndex, int pageSize);
         Task<List<NewsViewModel>> GetUserBookmarksAsync(int userId);
         NewsViewModel NumberOfLikeAndDislike(string newsId);
         Task<string> GetWeeklyNewsAsync();
         int CountNews();
         int CountFuturePublishedNews();
-        int CountNewsPublishedOrDraft(bool? isPublish);
+        int CountNewsPublishedOrDraft(bool isPublish);
         Task<List<NewsViewModel>> SearchInNews(string textSearch);
     }
 }

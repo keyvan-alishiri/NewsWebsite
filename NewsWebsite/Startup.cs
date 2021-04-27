@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NewsWebsite.Data;
 using NewsWebsite.IocConfig;
 using NewsWebsite.IocConfig.AutoMapper;
 using NewsWebsite.Services;
+using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.Settings;
 using System;
 
@@ -20,10 +22,10 @@ namespace NewsWebsite
     {
         public IConfiguration Configuration { get; }
         public IServiceProvider Services { get; }
-        public Startup(IConfiguration configuration , IServiceProvider service)
+        public Startup(IConfiguration configuration )
         {
             Configuration = configuration;
-            Services = service;
+            
         }
         public void ConfigureServices(IServiceCollection services)
         {
@@ -45,18 +47,23 @@ namespace NewsWebsite
                 //options.LoginPath = "/Account/SignIn";
                 options.AccessDeniedPath = "/Admin/Manage/AccessDenied";
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
+            });
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+         if (env.IsDevelopment())
+            app.UseDeveloperExceptionPage();
+         else
+            app.UseExceptionHandler("/Home/Error");
 
-            app.UseStaticFiles();
+         app.UseStaticFiles();
             app.UseCustomIdentityServices();
 
             var provider = app.ApplicationServices;
@@ -66,19 +73,28 @@ namespace NewsWebsite
                // scheduler.Schedule<SendWeeklyNewsletter>().EveryMinute();
               scheduler.Schedule<SendWeeklyNewsletter>().Cron("30 20 * * 5"); //UTC Time
                // scheduler.Schedule<SendWeeklyNewsletter>().Cron("53 22 12 4 1"); //UTC Time
-            }).LogScheduledTaskProgress(Services.GetService<ILogger<IScheduler>>());
+            });
 
-
-
-            app.UseMvc(routes =>
+         app.Use(async (context, next) =>
+         {
+            await next();
+            if (context.Response.StatusCode == 404)
             {
-                routes.MapRoute(
+               context.Request.Path = "/home/error404";
+               await next();
+            }
+         });
+         app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(routes =>
+            {
+                routes.MapControllerRoute(
                   name: "areas",
-                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
-                routes.MapRoute(
+                routes.MapControllerRoute(
                  name: "default",
-                 template: "{controller=Home}/{action=Index}/{id?}"
+                 pattern: "{controller=Home}/{action=Index}/{id?}"
                );
             });
         }

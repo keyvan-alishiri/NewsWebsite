@@ -8,6 +8,8 @@ namespace NewsWebsite.Data.Contracts
 {
     public interface INewsletterRepository
     {
-        List<NewsletterViewModel> GetPaginateNewsletter(int offset, int limit, Func<NewsletterViewModel, Object> orderByAscFunc, Func<NewsletterViewModel, Object> orderByDescFunc, string searchText);
-    }
+      //Todo : Use Method Before Migaration To .NetCore 3
+      //List<NewsletterViewModel> GetPaginateNewsletter(int offset, int limit, Func<NewsletterViewModel, Object> orderByAscFunc, Func<NewsletterViewModel, Object> orderByDescFunc, string searchText);
+      Task<List<NewsletterViewModel>> GetPaginateNewsletterAsync(int offset, int limit, string orderBy, string searchText);
+   }
 }

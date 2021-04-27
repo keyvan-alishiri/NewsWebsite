@@ -15,19 +15,23 @@ namespace NewsWebsite.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "3.1.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderKey");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ProviderDisplayName");
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -38,13 +42,17 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Value");
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -53,9 +61,11 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("NewsWebsite.Entities.Bookmark", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "NewsId");
 
@@ -67,13 +77,16 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.Category", b =>
                 {
                     b.Property<string>("CategoryId")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CategoryName");
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ParentCategoryId");
+                    b.Property<string>("ParentCategoryId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
 
@@ -85,21 +98,28 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.Comment", b =>
                 {
                     b.Property<string>("CommentId")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Desription");
+                    b.Property<string>("Desription")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsConfirm");
+                    b.Property<bool>("IsConfirm")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ParentCommentId");
+                    b.Property<string>("ParentCommentId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("PostageDateTime");
+                    b.Property<DateTime?>("PostageDateTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CommentId");
 
@@ -112,11 +132,14 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("NewsWebsite.Entities.Like", b =>
                 {
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("IpAddress");
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsLiked");
+                    b.Property<bool>("IsLiked")
+                        .HasColumnType("bit");
 
                     b.HasKey("NewsId", "IpAddress");
 
@@ -126,25 +149,34 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.News", b =>
                 {
                     b.Property<string>("NewsId")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Abstract");
+                    b.Property<string>("Abstract")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageName");
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsInternal");
+                    b.Property<bool>("IsInternal")
+                        .HasColumnType("bit");
 
-                    b.Property<bool>("IsPublish");
+                    b.Property<bool>("IsPublish")
+                        .HasColumnType("bit");
 
-                    b.Property<DateTime?>("PublishDateTime");
+                    b.Property<DateTime?>("PublishDateTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("NewsId");
 
@@ -155,9 +187,11 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("NewsWebsite.Entities.NewsCategory", b =>
                 {
-                    b.Property<string>("CategoryId");
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CategoryId", "NewsId");
 
@@ -169,11 +203,13 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.NewsImage", b =>
                 {
                     b.Property<string>("NewsImageId")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ImageName");
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("NewsImageId");
 
@@ -184,9 +220,11 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("NewsWebsite.Entities.NewsTag", b =>
                 {
-                    b.Property<string>("TagId");
+                    b.Property<string>("TagId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("TagId", "NewsId");
 
@@ -198,15 +236,17 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.Newsletter", b =>
                 {
                     b.Property<string>("Email")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
                         .HasDefaultValueSql("1");
 
                     b.Property<DateTime?>("RegisterDateTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CONVERT(DATETIME, CONVERT(VARCHAR(20),GetDate(),120))");
 
                     b.HasKey("Email");
 
@@ -216,9 +256,10 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.Tag", b =>
                 {
                     b.Property<string>("TagId")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("TagName");
+                    b.Property<string>("TagName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TagId");
 
@@ -228,17 +269,21 @@ namespace NewsWebsite.Data.Migrations
             modelBuilder.Entity("NewsWebsite.Entities.Video", b =>
                 {
                     b.Property<string>("VideoId")
-                        .ValueGeneratedOnAdd();
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Poster");
+                    b.Property<string>("Poster")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("PublishDateTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CONVERT(DATETIME, CONVERT(VARCHAR(20),GetDate(),120))");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VideoId");
 
@@ -247,13 +292,17 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("NewsWebsite.Entities.Visit", b =>
                 {
-                    b.Property<string>("NewsId");
+                    b.Property<string>("NewsId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("IpAddress");
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("LastVisitDateTime");
+                    b.Property<DateTime>("LastVisitDateTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("NumberOfVisit");
+                    b.Property<int>("NumberOfVisit")
+                        .HasColumnType("int");
 
                     b.HasKey("NewsId", "IpAddress");
 
@@ -264,17 +313,22 @@ namespace NewsWebsite.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -291,13 +345,17 @@ namespace NewsWebsite.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClaimType");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -310,59 +368,82 @@ namespace NewsWebsite.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AccessFailedCount");
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Bio");
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("BirthDate");
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<bool>("EmailConfirmed");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender");
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Image");
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
                         .HasDefaultValueSql("1");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("LockoutEnabled");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("PasswordHash");
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PhoneNumberConfirmed");
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("RegisterDateTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CONVERT(DATETIME, CONVERT(VARCHAR(20),GetDate(),120))");
 
-                    b.Property<string>("SecurityStamp");
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("TwoFactorEnabled");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
@@ -382,13 +463,17 @@ namespace NewsWebsite.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClaimType");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -399,9 +484,11 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("NewsWebsite.Entities.identity.UserRole", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("RoleId");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -412,18 +499,20 @@ namespace NewsWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("NewsWebsite.Entities.identity.User")
+                    b.HasOne("NewsWebsite.Entities.identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("NewsWebsite.Entities.identity.User")
+                    b.HasOne("NewsWebsite.Entities.identity.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.Bookmark", b =>
@@ -431,12 +520,14 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.News", "News")
                         .WithMany("Bookmarks")
                         .HasForeignKey("NewsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NewsWebsite.Entities.identity.User", "User")
                         .WithMany("Bookmarks")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.Category", b =>
@@ -462,7 +553,8 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.News", "News")
                         .WithMany("Likes")
                         .HasForeignKey("NewsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.News", b =>
@@ -470,7 +562,8 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.identity.User", "User")
                         .WithMany("News")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.NewsCategory", b =>
@@ -478,12 +571,14 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.Category", "Category")
                         .WithMany("NewsCategories")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NewsWebsite.Entities.News", "News")
                         .WithMany("NewsCategories")
                         .HasForeignKey("NewsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.NewsImage", b =>
@@ -498,12 +593,14 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.News", "News")
                         .WithMany("NewsTags")
                         .HasForeignKey("NewsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NewsWebsite.Entities.Tag", "Tag")
                         .WithMany("NewsTags")
                         .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.Visit", b =>
@@ -511,7 +608,8 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.News", "News")
                         .WithMany("Visits")
                         .HasForeignKey("NewsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.identity.RoleClaim", b =>
@@ -519,7 +617,8 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.identity.Role", "Role")
                         .WithMany("Claims")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.identity.UserClaim", b =>
@@ -527,7 +626,8 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.identity.User", "User")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewsWebsite.Entities.identity.UserRole", b =>
@@ -535,12 +635,14 @@ namespace NewsWebsite.Data.Migrations
                     b.HasOne("NewsWebsite.Entities.identity.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NewsWebsite.Entities.identity.User", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

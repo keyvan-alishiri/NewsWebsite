@@ -1,0 +1,9 @@
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp3.1\NewsWebsite.Entities.deps.json
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp3.1\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\bin\Debug\netcoreapp3.1\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp3.1\NewsWebsite.Entities.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp3.1\NewsWebsite.Entities.AssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp3.1\NewsWebsite.Entities.csproj.CoreCompileInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp3.1\NewsWebsite.Entities.dll
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp3.1\NewsWebsite.Entities.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Entities\obj\Debug\netcoreapp3.1\NewsWebsite.Entities.csprojAssemblyReference.cache

@@ -26,17 +26,19 @@ namespace NewsWebsite.Areas.Admin.Controllers
         {
             _uw = uw;
             _uw.CheckArgumentIsNull(nameof(_uw));
+
             _mapper = mapper;
             _mapper.CheckArgumentIsNull(nameof(_mapper));
         }
 
-        [HttpGet, DisplayName("مشاهده")]
+        [HttpGet,DisplayName("مشاهده")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
         }
 
-
+   
         [HttpGet]
         public async Task<IActionResult> GetCategories(string search, string order, int offset, int limit, string sort)
         {
@@ -51,21 +53,21 @@ namespace NewsWebsite.Areas.Admin.Controllers
             if (sort == "دسته")
             {
                 if (order == "asc")
-                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, true, null, search);
+                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, "CategoryInfo.CategoryName", search);
                 else
-                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, false, null, search);
+                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, "CategoryInfo.CategoryName desc", search);
             }
 
             else if (sort == "دسته پدر")
             {
                 if (order == "asc")
-                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, null, true, search);
+                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, "ParentInfo.CategoryName", search);
                 else
-                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, null, false, search);
+                    categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, "ParentInfo.CategoryName desc", search);
             }
 
             else
-                categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, null, null, search);
+                categories = await _uw.CategoryRepository.GetPaginateCategoriesAsync(offset, limit, "CategoryInfo.CategoryName", search);
 
             if (search != "")
                 total = categories.Count();
@@ -73,23 +75,18 @@ namespace NewsWebsite.Areas.Admin.Controllers
             return Json(new { total = total, rows = categories });
         }
 
-        [HttpGet, AjaxOnly, DisplayName("درج و ویرایش")]
+        [HttpGet,AjaxOnly,DisplayName("درج و ویرایش")]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderCategory(string categoryId)
         {
             var categoryViewModel = new CategoryViewModel();
-            ViewBag.Categories = await _uw.CategoryRepository.GetAllCategoriesAsync(); ;
+            ViewBag.Categories = await _uw.CategoryRepository.GetAllCategoriesAsync();
             if (categoryId.HasValue())
             {
                 var category = await _uw.BaseRepository<Category>().FindByIdAsync(categoryId);
                 _uw._Context.Entry(category).Reference(c => c.Parent).Load();
                 if (category != null)
-                {
-
                     categoryViewModel = _mapper.Map<CategoryViewModel>(category);
-                    //  var temp = _mapper.Map<CategoryViewModel>(category);
-
-                }
                 else
                     ModelState.AddModelError(string.Empty, CategoryNotFound);
             }
@@ -102,8 +99,6 @@ namespace NewsWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 if (_uw.CategoryRepository.IsExistCategory(viewModel.CategoryName, viewModel.CategoryId))
                     ModelState.AddModelError(string.Empty, CategoryDuplicate);
                 else
@@ -123,7 +118,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                                 Url = viewModel.CategoryName,
                             };
                             await _uw.BaseRepository<Category>().CreateAsync(parent);
-                            viewModel.CategoryId = parent.CategoryId;
+                            viewModel.ParentCategoryId = parent.CategoryId;
                         }
                     }
 
@@ -132,9 +127,6 @@ namespace NewsWebsite.Areas.Admin.Controllers
                         var category = await _uw.BaseRepository<Category>().FindByIdAsync(viewModel.CategoryId);
                         if (category != null)
                         {
-                            //category.CategoryName = viewModel.CategoryName;
-                            //category.ParentCategoryId = parentCategoryId;
-                            //category.Url = viewModel.Url;
                             _uw.BaseRepository<Category>().Update(_mapper.Map(viewModel, category));
                             await _uw.Commit();
                             TempData["notification"] = EditSuccess;
@@ -145,30 +137,19 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
                     else
                     {
-
-                        //Category category = new Category()
-                        //{
-                        //    CategoryId = StringExtensions.GenerateId(10),
-                        //    CategoryName = viewModel.CategoryName,
-                        //    ParentCategoryId = parentCategoryId,
-                        //    Url = viewModel.Url,
-                        //};
-
                         viewModel.CategoryId = StringExtensions.GenerateId(10);
-                        //var temp = _mapper.Map<Category>(viewModel);
                         await _uw.BaseRepository<Category>().CreateAsync(_mapper.Map<Category>(viewModel));
                         await _uw.Commit();
                         TempData["notification"] = InsertSuccess;
                     }
                 }
-
             }
 
             return PartialView("_RenderCategory", viewModel);
         }
 
 
-        [HttpGet, AjaxOnly, DisplayName("حذف")]
+        [HttpGet, AjaxOnly,DisplayName("حذف")]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string categoryId)
         {
@@ -194,24 +175,21 @@ namespace NewsWebsite.Areas.Admin.Controllers
             else
             {
                 var category = await _uw.BaseRepository<Category>().FindByIdAsync(model.CategoryId);
-                //var childCategoryCount = _uw.BaseRepository<Category>().FindByConditionAsync(c => c.ParentCategoryId == category.CategoryId).Result.Count();
 
                 if (category == null)
                     ModelState.AddModelError(string.Empty, CategoryNotFound);
                 else
                 {
                     var childCategory = _uw.BaseRepository<Category>().FindByConditionAsync(c => c.ParentCategoryId == category.CategoryId).Result.ToList();
-
                     if (childCategory.Count() != 0)
                     {
                         _uw.BaseRepository<Category>().DeleteRange(childCategory);
                         await _uw.Commit();
                     }
 
-
                     _uw.BaseRepository<Category>().Delete(category);
                     await _uw.Commit();
-                    TempData["notification"] = DeleteSuccess;
+                    TempData["notification"] =DeleteSuccess;
                     return PartialView("_DeleteConfirmation", category);
                 }
             }
@@ -219,9 +197,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-
-
-        [HttpPost, ActionName("DeleteGroup"), AjaxOnly, DisplayName("حذف گروهی")]
+        [HttpPost, ActionName("DeleteGroup"), AjaxOnly,DisplayName("حذف گروهی")]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
         {
@@ -246,5 +222,6 @@ namespace NewsWebsite.Areas.Admin.Controllers
 
             return PartialView("_DeleteGroup");
         }
+
     }
 }

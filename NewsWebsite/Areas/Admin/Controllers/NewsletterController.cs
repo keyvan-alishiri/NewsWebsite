@@ -38,43 +38,45 @@ namespace NewsWebsite.Areas.Admin.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult GetNewsletter(string search, string order, int offset, int limit, string sort)
-        {
-            List<NewsletterViewModel> newsletter;
-            int total = _uw.BaseRepository<Newsletter>().CountEntities();
-            if (!search.HasValue())
-                search = "";
+       
 
-            if (limit == 0)
-                limit = total;
+      [HttpGet]
+      public async Task<IActionResult> GetNewsletter(string search, string order, int offset, int limit, string sort)
+      {
+         List<NewsletterViewModel> newsletter;
+         int total = _uw.BaseRepository<Newsletter>().CountEntities();
+         if (!search.HasValue())
+            search = "";
 
-            if (sort == "Id")
-            {
-                if (order == "asc")
-                    newsletter = _uw.NewsletterRepository.GetPaginateNewsletter(offset, limit,item=>item.Email,item=>"", search);
-                else
-                    newsletter = _uw.NewsletterRepository.GetPaginateNewsletter(offset, limit,item=>"", item => item.Email, search);
-            }
+         if (limit == 0)
+            limit = total;
 
-            else if (sort == "تاریخ عضویت")
-            {
-                if (order == "asc")
-                    newsletter = _uw.NewsletterRepository.GetPaginateNewsletter(offset, limit,item=>item.PersianRegisterDateTime,item=>"", search);
-                else
-                    newsletter = _uw.NewsletterRepository.GetPaginateNewsletter(offset, limit,item=>"",item=>item.PersianRegisterDateTime, search);
-            }
-
+         if (sort == "Id")
+         {
+            if (order == "asc")
+               newsletter = await _uw.NewsletterRepository.GetPaginateNewsletterAsync(offset, limit, "Email", search);
             else
-                newsletter = _uw.NewsletterRepository.GetPaginateNewsletter(offset, limit,item=>"",item=>item.PersianRegisterDateTime, search);
+               newsletter = await _uw.NewsletterRepository.GetPaginateNewsletterAsync(offset, limit, "Email desc", search);
+         }
 
-            if (search != "")
-                total = newsletter.Count();
+         else if (sort == "تاریخ عضویت")
+         {
+            if (order == "asc")
+               newsletter = await _uw.NewsletterRepository.GetPaginateNewsletterAsync(offset, limit, "RegisterDateTime", search);
+            else
+               newsletter = await _uw.NewsletterRepository.GetPaginateNewsletterAsync(offset, limit, "RegisterDateTime desc", search);
+         }
 
-            return Json(new { total = total, rows = newsletter });
-        }
+         else
+            newsletter = await _uw.NewsletterRepository.GetPaginateNewsletterAsync(offset, limit, "RegisterDateTime desc", search);
 
-        [HttpGet,DisplayName("حذف")]
+         if (search != "")
+            total = newsletter.Count();
+
+         return Json(new { total = total, rows = newsletter });
+      }
+
+      [HttpGet,DisplayName("حذف")]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(string email)
         {
