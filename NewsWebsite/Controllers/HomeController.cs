@@ -211,7 +211,7 @@ namespace NewsWebsite.Controllers
          return View();
       }
 
-      public IActionResult test()
+      public IActionResult Test()
       {
          return View();
       }

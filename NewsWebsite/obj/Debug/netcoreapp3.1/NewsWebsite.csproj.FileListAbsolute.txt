@@ -6,7 +6,6 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp3.1\NewsWebsite.RazorAssemblyInfo.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp3.1\NewsWebsite.RazorAssemblyInfo.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp3.1\NewsWebsite.exe
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp3.1\NewsWebsite.deps.json
@@ -167,3 +166,4 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\net
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp3.1\NewsWebsite.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error.cshtml.g.cs
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\obj\Debug\netcoreapp3.1\Razor\Views\Home\Error404.cshtml.g.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite\bin\Debug\netcoreapp3.1\appsettings.json

@@ -66,6 +66,7 @@ namespace NewsWebsite.Common
     {
         public bool IsShamsi { get; set; }
         public DateTime? MiladiDate { get; set; }
-    }
+	  public string searchText { get; set; }
+   }
 
 }
