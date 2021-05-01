@@ -4,13 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NewsWebsite.Services;
 using NewsWebsite.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NewsWebsite.IocConfig
 {
-    public static class AppSettingsExtensions
+   public static class AppSettingsExtensions
     {
         public static void ConfigureWritable<T>(
             this IServiceCollection services,
@@ -20,8 +17,8 @@ namespace NewsWebsite.IocConfig
             services.AddTransient<IWritableOptions<T>>(provider =>
             {
                 var configuration = (IConfigurationRoot)provider.GetService<IConfiguration>();
-                var environment = provider.GetService<IHostingEnvironment>();
-                var options = provider.GetService<IOptionsMonitor<T>>();
+               var environment = provider.GetService<IHostingEnvironment>();
+               var options = provider.GetService<IOptionsMonitor<T>>();
                 return new WritableOptions<T>(environment, options, configuration, section.Key, file);
             });
         }

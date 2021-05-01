@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsWebsite.ViewModels", "N
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{17507BA2-4BCB-4EC2-9536-FCB8CCB7749F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsite.XUnitTest", "NewsWebsite.XUnitTest\NewsWebsite.XUnitTest.csproj", "{3E56E9A9-3162-4D07-AF98-6C50A7794ACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsWebsite.XUnitTest", "NewsWebsite.XUnitTest\NewsWebsite.XUnitTest.csproj", "{3E56E9A9-3162-4D07-AF98-6C50A7794ACE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

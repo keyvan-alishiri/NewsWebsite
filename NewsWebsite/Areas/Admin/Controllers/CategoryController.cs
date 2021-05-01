@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using NewsWebsite.Common;
 using NewsWebsite.Common.Attributes;
 using NewsWebsite.Data.Contracts;
@@ -22,13 +23,17 @@ namespace NewsWebsite.Areas.Admin.Controllers
         private const string CategoryNotFound = "دسته ی درخواستی یافت نشد.";
         private const string CategoryDuplicate = "نام دسته تکراری است.";
         private readonly IMapper _mapper;
-        public CategoryController(IUnitOfWork uw, IMapper mapper)
+        private readonly IMemoryCache _cache;
+        public CategoryController(IUnitOfWork uw, IMapper mapper , IMemoryCache cache)
         {
             _uw = uw;
             _uw.CheckArgumentIsNull(nameof(_uw));
 
             _mapper = mapper;
             _mapper.CheckArgumentIsNull(nameof(_mapper));
+
+             _cache = cache;
+              _cache.CheckArgumentIsNull(nameof(_cache));
         }
 
         [HttpGet,DisplayName("مشاهده")]
@@ -103,6 +108,7 @@ namespace NewsWebsite.Areas.Admin.Controllers
                     ModelState.AddModelError(string.Empty, CategoryDuplicate);
                 else
                 {
+                    _cache.Remove("CategoriesEntry");
                     viewModel.Url = viewModel.Url.Trim();
                     if (viewModel.ParentCategoryName.HasValue())
                     {

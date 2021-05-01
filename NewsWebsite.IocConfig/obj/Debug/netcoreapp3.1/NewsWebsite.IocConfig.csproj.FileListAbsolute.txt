@@ -1,6 +1,3 @@
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.AssemblyInfoInputs.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.AssemblyInfo.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp3.1\NewsWebsite.IocConfig.deps.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp3.1\NewsWebsite.IocConfig.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp3.1\NewsWebsite.IocConfig.pdb
@@ -15,6 +12,9 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp3.1\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\bin\Debug\netcoreapp3.1\NewsWebsite.ViewModels.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.AssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.IocConfig\obj\Debug\netcoreapp3.1\NewsWebsite.IocConfig.pdb

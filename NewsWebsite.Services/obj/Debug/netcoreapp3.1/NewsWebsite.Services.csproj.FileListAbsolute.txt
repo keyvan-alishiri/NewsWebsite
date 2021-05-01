@@ -1,7 +1,3 @@
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.csprojAssemblyReference.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.AssemblyInfoInputs.cache
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.AssemblyInfo.cs
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp3.1\NewsWebsite.Services.deps.json
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp3.1\NewsWebsite.Services.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp3.1\NewsWebsite.Services.pdb
@@ -13,6 +9,10 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp3.1\NewsWebsite.Common.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp3.1\NewsWebsite.Entities.pdb
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\bin\Debug\netcoreapp3.1\NewsWebsite.ViewModels.pdb
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.csprojAssemblyReference.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.AssemblyInfoInputs.cache
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.AssemblyInfo.cs
+C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.csproj.CopyComplete
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Services\obj\Debug\netcoreapp3.1\NewsWebsite.Services.pdb

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
 using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities;
 using NewsWebsite.ViewModels.Home;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NewsWebsite.Controllers
 {
-    public class HomeController : Controller
+   public class HomeController : Controller
     {
         private readonly IUnitOfWork _uw;
         private readonly IHttpContextAccessor _accessor;
@@ -47,35 +45,32 @@ namespace NewsWebsite.Controllers
            
         }
 
-        [Route("News/{newsId}/{url}")]
-        public async Task<IActionResult> NewsDetails(string newsId, string url)
-        {
-            string ipAddress = _accessor.HttpContext?.Connection?.RemoteIpAddress.ToString();
+      [Route("News/{newsId}/{url}")]
+      public async Task<IActionResult> NewsDetails(string newsId, string url)
+      {
+         if (!newsId.HasValue())
+            return NotFound();
+         else
+         {
             int userId = User.Identity.GetUserId<int>();
-            Visit visit = _uw.BaseRepository<Visit>().FindByConditionAsync(n => n.NewsId == newsId && n.IpAddress == ipAddress).Result.FirstOrDefault();
-            if (visit != null && visit.LastVisitDateTime.Date != DateTime.Now.Date)
+            var news = await _uw.NewsRepository.GetNewsByIdAsync(newsId, userId);
+            if (news == null)
+               return NotFound();
+            else
             {
-                visit.NumberOfVisit = visit.NumberOfVisit + 1;
-                visit.LastVisitDateTime = DateTime.Now;
-                await _uw.Commit();
+               string ipAddress = _accessor.HttpContext?.Connection?.RemoteIpAddress.ToString();
+               await _uw.NewsRepository.InsertVisitOfUserAsync(newsId, ipAddress);
+               var newsComments = await _uw.NewsRepository.GetNewsCommentsAsync(newsId);
+               var nextAndPreviousNews = await _uw.NewsRepository.GetNextAndPreviousNews(news.PublishDateTime);
+               var newsRelated = await _uw.NewsRepository.GetRelatedNewsAsync(2, news.TagIdsList, newsId);
+               var newsDetailsViewModel = new NewsDetailsViewModel(news, newsComments, newsRelated, nextAndPreviousNews);
+               return View(newsDetailsViewModel);
             }
-            else if (visit == null)
-            {
-                visit = new Visit { IpAddress = ipAddress, LastVisitDateTime = DateTime.Now, NewsId = newsId, NumberOfVisit = 1 };
-                await _uw.BaseRepository<Visit>().CreateAsync(visit);
-                await _uw.Commit();
-            }
-
-            var news = await _uw.NewsRepository.GetNewsByIdAsync(newsId,userId);
-            var newsComments = await _uw.NewsRepository.GetNewsCommentsAsync(newsId);
-            var nextAndPreviousNews = await _uw.NewsRepository.GetNextAndPreviousNews(news.PublishDateTime);
-            var newsRelated = await _uw.NewsRepository.GetRelatedNewsAsync(2, news.TagIdsList, newsId);
-            var newsDetailsViewModel = new NewsDetailsViewModel(news, newsComments, newsRelated, nextAndPreviousNews);
-            return View(newsDetailsViewModel);
-        }
+         }
+      }
 
 
-        [HttpGet]
+      [HttpGet]
         public async Task<IActionResult> GetNewsPaginate(int limit, int offset)
         {
             int countNewsPublished = _uw.NewsRepository.CountNewsPublished();

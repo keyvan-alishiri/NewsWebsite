@@ -1,30 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsite.Common;
-using NewsWebsite.Data.Contracts;
 using NewsWebsite.Entities.identity;
 using NewsWebsite.Services.Contracts;
 using NewsWebsite.ViewModels.DynamicAccess;
 using NewsWebsite.ViewModels.UserManager;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NewsWebsite.Areas.Admin.Controllers
 {
-    [DisplayName("مدیریت کاربران")]
+   [DisplayName("مدیریت کاربران")]
     public class UserManagerController : BaseController
     {
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
-        private readonly IUnitOfWork _uw;
+       // private readonly IUnitOfWork _uw;
         private const string UserNotFound = "کاربر یافت نشد.";
         public UserManagerController(IApplicationUserManager userManager, IMapper mapper, IApplicationRoleManager roleManager, IWebHostEnvironment env)
         {

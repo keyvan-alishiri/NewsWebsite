@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Coravel;
-using Coravel.Scheduling.Schedule.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NewsWebsite.Data;
 using NewsWebsite.IocConfig;
+using NewsWebsite.IocConfig.Api.Middlewares;
+using NewsWebsite.IocConfig.Api.Swagger;
 using NewsWebsite.IocConfig.AutoMapper;
 using NewsWebsite.Services;
 using NewsWebsite.ViewModels.DynamicAccess;
@@ -18,16 +18,17 @@ using System;
 
 namespace NewsWebsite
 {
-    public class Startup
+   public class Startup
     {
         public IConfiguration Configuration { get; }
         public IServiceProvider Services { get; }
-        public Startup(IConfiguration configuration )
-        {
-            Configuration = configuration;
-            
-        }
-        public void ConfigureServices(IServiceCollection services)
+      private readonly SiteSettings SiteSettings;
+      public Startup(IConfiguration configuration)
+      {
+         Configuration = configuration;
+         SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
+      }
+      public void ConfigureServices(IServiceCollection services)
         {
 
            
@@ -53,15 +54,28 @@ namespace NewsWebsite
             });
 
             services.AddMvc();
-        }
+            services.AddApiVersioning();
+           services.AddSwagger(); 
+            services.AddCustomAuthentication(SiteSettings);
+      }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-         if (env.IsDevelopment())
-            app.UseDeveloperExceptionPage();
-         else
-            app.UseExceptionHandler("/Home/Error");
+
+         var cachePeriod = env.IsDevelopment() ? "600" : "605800";
+         app.UseWhen(context => context.Request.Path.StartsWithSegments("/api"), appBuilder =>
+         {
+            appBuilder.UseCustomExceptionHandler();
+         });
+
+         app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api"), appBuilder =>
+         {
+            if (env.IsDevelopment())
+               appBuilder.UseDeveloperExceptionPage();
+            else
+               appBuilder.UseExceptionHandler("/Home/Error");
+         });
 
          app.UseStaticFiles();
             app.UseCustomIdentityServices();
@@ -74,6 +88,7 @@ namespace NewsWebsite
               scheduler.Schedule<SendWeeklyNewsletter>().Cron("30 20 * * 5"); //UTC Time
                // scheduler.Schedule<SendWeeklyNewsletter>().Cron("53 22 12 4 1"); //UTC Time
             });
+       
 
          app.Use(async (context, next) =>
          {
@@ -84,6 +99,7 @@ namespace NewsWebsite
                await next();
             }
          });
+         app.UseSwaggerAndUI();
          app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(routes =>

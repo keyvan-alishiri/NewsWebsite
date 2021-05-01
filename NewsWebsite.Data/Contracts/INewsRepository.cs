@@ -32,5 +32,6 @@ namespace NewsWebsite.Data.Contracts
         int CountFuturePublishedNews();
         int CountNewsPublishedOrDraft(bool isPublish);
         Task<List<NewsViewModel>> SearchInNews(string textSearch);
+       Task InsertVisitOfUserAsync(string newsId, string ipAddress);
     }
 }

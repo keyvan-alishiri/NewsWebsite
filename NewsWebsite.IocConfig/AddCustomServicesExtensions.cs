@@ -3,6 +3,8 @@ using NewsWebsite.Data.Contracts;
 using NewsWebsite.Data.Repositories;
 using NewsWebsite.Data.UnitOfWork;
 using NewsWebsite.Services;
+using NewsWebsite.Services.Api;
+using NewsWebsite.Services.Api.Contract;
 using NewsWebsite.Services.Contracts;
 
 namespace NewsWebsite.IocConfig
@@ -15,6 +17,7 @@ namespace NewsWebsite.IocConfig
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddTransient<ICommentRepository, CommentRepository>();
             services.AddTransient<SendWeeklyNewsletter>();
+            services.AddTransient<IjwtService, jwtService>();
             return services;
         }
     }

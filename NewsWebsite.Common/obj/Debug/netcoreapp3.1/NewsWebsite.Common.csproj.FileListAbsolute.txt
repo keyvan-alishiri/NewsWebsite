@@ -6,4 +6,3 @@ C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\De
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp3.1\NewsWebsite.Common.csproj.CoreCompileInputs.cache
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp3.1\NewsWebsite.Common.dll
 C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp3.1\NewsWebsite.Common.pdb
-C:\Users\keyvan\Desktop\جزوه .net core\NewsWebsite\NewsWebsite.Common\obj\Debug\netcoreapp3.1\NewsWebsite.Common.csprojAssemblyReference.cache
